@@ -1,0 +1,22 @@
+# illa-builder 
+
+version: "3.9"
+
+services:
+
+  # http://192.168.88.69:2023/
+  illa-builder:
+    container_name: illa-builder
+    restart: always
+    image: "illasoft/illa-builder:v3.5.3"
+    ports:
+      - "2023:2022"
+    volumes:
+      - illa_database:/opt/illa/database:rw
+      - illa_drive:/opt/illa/drive:rw
+
+volumes:
+  illa_database:
+  illa_drive:
+  
+  
