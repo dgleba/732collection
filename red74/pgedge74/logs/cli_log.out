@@ -1,0 +1,12 @@
+2023-11-28 22:33:11 [COMMAND] : nc  set GLOBAL REPO https://pgedge-download.s3.amazonaws.com/REPO
+2023-11-28 22:33:11 [COMMAND] : nc  update --silent
+2023-11-28 22:33:11 [INFO] : Retrieving the remote list of latest component versions (versions.sql) ...
+2023-11-28 22:33:12 [INFO] : Validating checksum file...
+2023-11-28 22:33:12 [INFO] : Updating local repository with remote entries...
+2023-11-28 22:33:12 [INFO] : 'hub' is v23.134
+2023-11-28 22:33:12 [COMMAND] : nc  info
+2023-11-28 22:33:12 [COMMAND] : nc  install nclibs
+2023-11-28 22:33:12 [INFO] :   ['nclibs']
+2023-11-28 22:33:12 [INFO] : Get:1 https://pgedge-download.s3.amazonaws.com/REPO nclibs-1.0
+2023-11-28 22:33:12 [INFO] : Downloading file nclibs-1.0 
+2023-11-28 22:33:13 [INFO] : nclibs Enabled
