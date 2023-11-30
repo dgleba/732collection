@@ -1,0 +1,24 @@
+# jupyterlab
+
+version: "3.6"
+
+services:
+
+  jplab:
+    # http://10.4.1.231:18888  lab?token=   930f63f2611d3db4ecaaab02e60a6e28129564a566b7445a
+    # http://10.4.1.231:18889/lab?token=8614e1f8690bbcd825255cb2332e477c057e3854bd63d573
+    image: quay.io/jupyter/scipy-notebook:2023-10-31
+    ports:
+      - "18888:8888"
+    # working_dir: /home/jovyan
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/jlab:/home/jovyan/work
+      - /etc/localtime:/etc/localtime:ro
+    # entrypoint: bash -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/home --allow-root'
+    command: start-notebook.py --ServerApp.root_dir=/home/jovyan/work
+    restart: always
+    user: root  
+
+

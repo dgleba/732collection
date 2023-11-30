@@ -1,0 +1,109 @@
+version: "3.6"
+services:
+  djdev:
+    build: ./appdj
+    restart: on-failure
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    user: "0:33"
+    env_file:
+      - ./.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./appdj:/code
+      # use pip cache to reduce startup time..
+      # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+      - ~/sysdata/python-dot-cache/pip/:/root/.cache/pip
+    ports:
+      - "6466:8000"
+    networks:
+      - 499d-django_default      
+  
+  # adminerd:
+  #   # 10.4.1.231:6117/
+  #   # image: adminer:4.7
+  #   # image: dockette/adminer:full
+  #   build: ./adminer-sqlite
+  #   restart: always
+  #   ports:
+  #     - 14126:80
+  #     # 8080 for regular adminer, 80 for dockette
+  #   volumes:
+  #     - ./appdj/db.sqlite3:/db.sq3
+  #     - ./adminer-sqlite:/var/www/html
+  #   environment:
+  #     - ADMINER_DEFAULT_SERVER=s
+  #     - DB_PATH=/db.sq3
+  #     - DB_USER=u 
+  #     - DB_PASS=a
+  #     # - ADMINER_PLUGINS='tables-filter'
+
+  dbm:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    # environment:
+    # MYSQL_DATABASE: test
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "6467:3306"
+    volumes:
+      #  use PWD in mysql files volume so each project folder has it's own database folder. This is for mistake proofing. https://github.com/docker/compose/issues/2636
+      #  I tried directory with no full path.. ERROR: Invalid interpolation format for "volumes" option in service "db": ../sysdata/mysql-${PWD##*/}:/var/lib/mysql/"
+      # - ../sysdata/mysql${PWD}:/var/lib/mysql/ 
+      # Since we have the *yard folder to contain the project, this is clean and clear. folder for mysql's internal data files.
+      # - ../sysdata/mysql:/var/lib/mysql/ 
+      # if you want to test with an easily erased mysql system. Just docker-compose down -v to blow it all away.
+      - mysqldata:/var/lib/mysql
+      # folder for scripts, etc.
+      - ./script:/script 
+      # folder for exported data, etc.
+      # - ../data/home${PWD}/:/home 
+    #
+    # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "4"
+    networks:
+      - 499d-django_default      
+
+
+  adminer:
+    # 10.4.1.231:6117/  use db or 10.4.1.228:3308 for server while logging in.
+    image: adminer:4.7
+    restart: always
+    ports:
+      - 6463:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbm
+    networks:
+      - 499d-django_default   
+      
+
+networks:
+  499d-django_default:
+    name: 499d-django_default
+
+    #  
+      #
+        #   depends_on:
+        #     - db
+        # db:
+        #   image: "postgres:10.3-alpine"
+        #   restart: unless-stopped
+        #   env_file:
+        #     - ./.env
+        #   ports:
+        #     - "5432:5432"
+        #   volumes:
+        #     - ./postgres/data:/var/lib/postgresql/data
+        
+
+
+volumes:
+  mysqldata:
+

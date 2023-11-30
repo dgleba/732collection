@@ -1,0 +1,109 @@
+
+2020-12-31 -- 2021-01-16
+
+
+
+status:  
+
+works.
+built in roles work with html view, and drf also uses these builtin djangoModelPermissions.
+
+
+This repo is:
+    https://github.com/dgleba/532dkrcollection/tree/master/_533e-django-example-yard
+
+
+
+
+goal:
+
+use builtin roles permissions
+
+
+
+
+
+_____________
+
+
+done:
+    - add django built-in permissions to drf
+    - add search. django ones I think -- builtin.
+    - add pagination.  drf built-in
+    
+
+
+
+
+=================================================
+
+_____________
+
+detail.
+
+mangoproj/mangoproj generated from https://djangobuilder.io/?#/project/Fz0lGMqktuS2pTkvWvjJ
+ - renamed to mangosite/mangoproj
+
+_____________
+
+
+
+unfinished - on hold.
+
+
+    2020-12-30_Wed_am
+
+    RBAC simple
+
+    Gleba custom. dg_role_ability
+
+
+    Link to spreadsheet indicating roles:
+    https://docs.google.com/spreadsheets/d/1h_JcMPiqUf-CSU_WShsOsS4NSQu3pichzl8hwxnGz0s/edit?usp=sharing
+
+    copy of it..
+
+
+_____________
+
+
+
+2020-12-30_Wed_15.11-PM before try django permissions.
+
+
+2020-12-30 10:40 -rw-rw-r-- 664 1 albe 1000      www-data 33     91      ./_533-django-example-yard_dg-role/533-dkrs-djangoexample/mangosite/test_settings.py
+2020-12-30 10:40 -rw-rw-r-- 664 1 albe 1000      www-data 33     950     ./_533-django-example-yard_dg-role/533-dkrs-djangoexample/mangosite/blogapp/views.py
+2020-12-30 10:43 -rw-rw-r-- 664 1 albe 1000      www-data 33     3026    ./_533-django-example-yard_dg-role/README-notes2.md
+2020-12-30 11:56 -rw-rw-r-- 664 1 albe 1000      www-data 33     2412    ./_533-django-example-yard_dg-role/__status.txt
+2020-12-30 13:27 -rw-rw-r-- 664 1 albe 1000      www-data 33     341     ./_533-django-example-yard_dg-role/README.rbac.md
+2020-12-30 14:06 -rw-rw-r-- 664 1 albe 1000      www-data 33     4387    ./_533-django-example-yard_dg-role/README.md
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+
+_____________
+
+2020-12-30_Wed_15.11-PM try django permissions.
+
+
+no.
+https://stackoverflow.com/questions/5433172/how-to-redirect-on-conditions-with-class-based-views-in-django-1-3/12021673
+
+yes.
+https://docs.djangoproject.com/en/3.1/topics/auth/default/#django.contrib.auth.mixins.PermissionRequiredMixin
+
+
+2020-12-30 14:06 -rw-rw-r-- 664 1 albe 1000      www-data 33     4387    ./_533-django-example-yard_dg-role/README.md
+2020-12-30 15:12 -rw-rw-r-- 664 1 albe 1000      www-data 33     1536    ./_533-django-example-yard_dg-role/__status.txt
+2020-12-30 15:13 -rw-rw-r-- 664 1 albe 1000      www-data 33     367     ./_533-django-example-yard_dg-role/README.rbac.md
+2020-12-30 15:22 -rw-rw-r-- 664 1 albe 1000      www-data 33     1052    ./_533-django-example-yard_dg-role/533-dkrs-djangoexample/mangosite/blogapp/views.py
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+views.py changed to:
+
+class PostUpdateView(LoginRequiredMixin,PermissionRequiredMixin,generic.UpdateView):
+    permission_required = ('blogapp.change_post',  )
+
+
+_____________
+
+

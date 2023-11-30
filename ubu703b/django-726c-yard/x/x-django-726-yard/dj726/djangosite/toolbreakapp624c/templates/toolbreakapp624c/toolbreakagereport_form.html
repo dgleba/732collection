@@ -1,0 +1,122 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_ToolBreakageReport_list' %}">
+    ToolBreakageReport Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="updated_at">updated_at: </label>
+      <input class="form-control col-sm-10"
+         id="updated_at" type="datetime-local"
+         name="updated_at" value="{{ object.updated_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="if_other_describe">if_other_describe: </label>
+      <input class="form-control col-sm-10"
+         id="if_other_describe" type="text"
+         name="if_other_describe" value="{{ object.if_other_describe }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="countermeasure">countermeasure: </label>
+      <input class="form-control col-sm-10"
+         id="countermeasure" type="text"
+         name="countermeasure" value="{{ object.countermeasure }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="sup_approval">sup_approval: </label>
+      <input class="form-control col-sm-10"
+         id="sup_approval" type="text"
+         name="sup_approval" value="{{ object.sup_approval }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="break_dev_select">break_dev_select: </label>
+      <input class="form-control col-sm-10"
+         id="break_dev_select" type="text"
+         name="break_dev_select" value="{{ object.break_dev_select }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="broken_part_pic">broken_part_pic: </label>
+      <input class="form-control col-sm-10"
+         id="broken_part_pic" type="file"
+         name="broken_part_pic" value="{{ object.broken_part_pic }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="status">status: </label>
+      <input class="form-control col-sm-10"
+         id="status" type="text"
+         name="status" value="{{ object.status }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="num_parts_before_breakage">num_parts_before_breakage: </label>
+      <input class="form-control col-sm-10"
+         id="num_parts_before_breakage" type="number"
+         name="num_parts_before_breakage" value="{{ object.num_parts_before_breakage }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="created_at">created_at: </label>
+      <input class="form-control col-sm-10"
+         id="created_at" type="datetime-local"
+         name="created_at" value="{{ object.created_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="employee_name">employee_name: </label>
+      <input class="form-control col-sm-10"
+         id="employee_name" type="text"
+         name="employee_name" value="{{ object.employee_name }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="root_cause">root_cause: </label>
+      <input class="form-control col-sm-10"
+         id="root_cause" type="text"
+         name="root_cause" value="{{ object.root_cause }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="report_date_time">report_date_time: </label>
+      <input class="form-control col-sm-10"
+         id="report_date_time" type="datetime-local"
+         name="report_date_time" value="{{ object.report_date_time }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="part_number">part_number: </label>
+      {{ form.part_number }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="engineering">engineering: </label>
+      {{ form.engineering }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="press_information">press_information: </label>
+      {{ form.press_information }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="compact_issue">compact_issue: </label>
+      {{ form.compact_issue }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="broken_tools_shop_floor">broken_tools_shop_floor: </label>
+      {{ form.broken_tools_shop_floor }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="press_number">press_number: </label>
+      {{ form.press_number }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="toolroom">toolroom: </label>
+      {{ form.toolroom }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="coining_issue">coining_issue: </label>
+      {{ form.coining_issue }}
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

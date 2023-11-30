@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_CoinIssue_list' %}">
+    CoinIssue Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>updated_at</td><td>{{ object.updated_at }}</td></tr>
+    <tr><td>created_at</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>issue</td><td>{{ object.issue }}</td></tr>
+    <tr><td>rank</td><td>{{ object.rank }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_PressInfo_list' %}">
+    PressInfo Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>occurance</td><td>{{ object.occurance }}</td></tr>
+    <tr><td>updated_at</td><td>{{ object.updated_at }}</td></tr>
+    <tr><td>press_position</td><td>{{ object.press_position }}</td></tr>
+    <tr><td>rig_num</td><td>{{ object.rig_num }}</td></tr>
+    <tr><td>created_at</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>tonnage</td><td>{{ object.tonnage }}</td></tr>
+    <tr><td>fault_msg</td><td>{{ object.fault_msg }}</td></tr>
+    <tr><td>head_num</td><td>{{ object.head_num }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

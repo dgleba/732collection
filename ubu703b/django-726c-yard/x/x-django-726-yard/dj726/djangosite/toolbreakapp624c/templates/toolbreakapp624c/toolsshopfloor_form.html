@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_ToolsShopFloor_list' %}">
+    ToolsShopFloor Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="created_at">created_at: </label>
+      <input class="form-control col-sm-10"
+         id="created_at" type="datetime-local"
+         name="created_at" value="{{ object.created_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="updated_at">updated_at: </label>
+      <input class="form-control col-sm-10"
+         id="updated_at" type="datetime-local"
+         name="updated_at" value="{{ object.updated_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="tool_num">tool_num: </label>
+      <input class="form-control col-sm-10"
+         id="tool_num" type="text"
+         name="tool_num" value="{{ object.tool_num }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="serial_num">serial_num: </label>
+      <input class="form-control col-sm-10"
+         id="serial_num" type="text"
+         name="serial_num" value="{{ object.serial_num }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}
