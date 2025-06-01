@@ -1,0 +1,16 @@
+# =================================================
+# docker-compose.yaml
+
+version: '3'
+services:
+  hasst:
+    # http://192.168.88.77:8123
+    # container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:2023.6"
+    volumes:
+      - ./data/haconfig:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host
+
