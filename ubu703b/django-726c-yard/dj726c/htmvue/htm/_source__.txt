@@ -1,0 +1,29 @@
+2023-03-06_Mon_13.53-PM
+
+status: works.
+
+Issues:
+- login form incomplete.
+- this is just to show data list from db table without login.
+
+
+
+added simple js alert. then commented out.
+
+added bootstrap 5 toast alerts.
+
+
+this:
+sftp://albe@10.4.71.231/ap/620dkrcollection/web618_a_yard/618phphtml/html/vued/vued08/
+
+https://github.com/dgleba/620dkrcollection/tree/main/web618_a_yard/618phphtml/html/vued/vued08
+
+=================================================
+
+
+
+based on. https://vuejs.org/examples/#simple-component
+
+ref.
+
+https://www.codeply.com/p/3MCJfGYfJis

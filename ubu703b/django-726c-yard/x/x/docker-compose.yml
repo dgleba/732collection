@@ -1,0 +1,21 @@
+version: "3.6"
+
+networks:
+   sister9:
+     #name: sister9
+     driver: bridge
+     
+services:
+  deb:
+    # http://10.5.1.129:8461/
+    # http://10.4.71.231:37461/
+    # http://192.168.88.60:6461/
+    # http://192.168.88.60:6461/admin
+    build: .
+    #build: ./ubu
+    #restart: on-failure
+    networks:
+      - sister9
+    #working_dir: /code      
+
+

@@ -1,0 +1,3 @@
+Just plain startproject.
+I didn't edit it. 
+It's just to see what it does.

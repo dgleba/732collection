@@ -14,5 +14,6 @@ postgres/data/
 sysdata/
 datasys/
 data/
+x/
 
 #*.sqlite3

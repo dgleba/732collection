@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_ToolBreakageReport_list' %}">
+    ToolBreakageReport Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>updated_at</td><td>{{ object.updated_at }}</td></tr>
+    <tr><td>if_other_describe</td><td>{{ object.if_other_describe }}</td></tr>
+    <tr><td>countermeasure</td><td>{{ object.countermeasure }}</td></tr>
+    <tr><td>sup_approval</td><td>{{ object.sup_approval }}</td></tr>
+    <tr><td>break_dev_select</td><td>{{ object.break_dev_select }}</td></tr>
+    <tr><td>broken_part_pic</td><td>{{ object.broken_part_pic }}</td></tr>
+    <tr><td>status</td><td>{{ object.status }}</td></tr>
+    <tr><td>num_parts_before_breakage</td><td>{{ object.num_parts_before_breakage }}</td></tr>
+    <tr><td>created_at</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>employee_name</td><td>{{ object.employee_name }}</td></tr>
+    <tr><td>root_cause</td><td>{{ object.root_cause }}</td></tr>
+    <tr><td>report_date_time</td><td>{{ object.report_date_time }}</td></tr>
+    <tr><td>part_number</td><td>{{ object.part_number }}</td></tr>
+    <tr><td>engineering</td><td>{{ object.engineering }}</td></tr>
+    <tr><td>press_information</td><td>{{ object.press_information }}</td></tr>
+    <tr><td>compact_issue</td><td>{{ object.compact_issue }}</td></tr>
+    <tr><td>broken_tools_shop_floor</td><td>{{ object.broken_tools_shop_floor }}</td></tr>
+    <tr><td>press_number</td><td>{{ object.press_number }}</td></tr>
+    <tr><td>toolroom</td><td>{{ object.toolroom }}</td></tr>
+    <tr><td>coining_issue</td><td>{{ object.coining_issue }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}
