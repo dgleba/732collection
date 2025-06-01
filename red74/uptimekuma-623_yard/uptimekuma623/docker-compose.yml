@@ -1,0 +1,53 @@
+
+# start adminerd after upkuma. Give upkuma a chance to make it's data files first.
+#   docker-compose up upkuma -d ;  docker-compose logs upkuma ;
+#   sleep 19
+# if adminer starts first, it will create kuma.db folder and prevent upkuma from creating db properly.
+#       docker-compose up adminerd -d
+
+volumes:
+  uptime-kuma-data:
+  uptime-db-data:
+
+
+services:
+
+  upkuma:
+    # http://192.168.88.64:5001/
+    image: louislam/uptime-kuma:latest
+    restart: unless-stopped
+    ports:
+      - "6175:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    depends_on:
+      - dbm
+
+  dbm:
+    # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:11.6
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "16180:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - uptime-db-data:/var/lib/mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+
