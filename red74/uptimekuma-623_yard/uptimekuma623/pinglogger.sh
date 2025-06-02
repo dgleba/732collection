@@ -2,15 +2,19 @@
 
 echo ... Running.  See logs...
 
-for ((i=1; i<=86400; i++)); do
+END_TIME=$(( $(date +%s) + 57 ))
+
+mkdir -p log
+
+while [ $(date +%s) -lt $END_TIME ]; do
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     DATE=$(date "+%Y-%m-%d")
 
-    ALL_LOG="ping_all_${DATE}.log"
-    FAIL_LOG="ping_fail_${DATE}.log"
+    ALL_LOG="./log/ping_all_${DATE}.log"
+    FAIL_LOG="./log/ping_fail_${DATE}.log"
 
-    for HOST in     8.8.8.8     google.ca    ; do
-        OUTPUT=$(ping -c 1 -W 2 "$HOST" 2>&1)
+    for HOST in 8.8.8.8 google.ca; do
+        OUTPUT=$(ping -c 2 -W 2 "$HOST" 2>&1)
         STATUS=$?
 
         # Filter out unwanted lines
@@ -27,35 +31,35 @@ for ((i=1; i<=86400; i++)); do
         fi
     done
 
+    # Optional short pause to avoid tight loop, can be removed
     sleep 1
 done
 
 
 
+#=================================================
 
-offline01 () {
-echo ... Running  see logs...
-for ((i=1; i<=86400; i++)); do
-    TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
-    aDATE=$(date "+%Y-%m-%d")
+notes01 () {
 
-    ALL_LOG="ping_all_${aDATE}.log"
-    FAIL_LOG="ping_fail_${aDATE}.log"
+sudo apt install speedtest-cli
 
-    for HOST in     8.8.8.8   google.ca;    do
-        if ping -c 1 -W 2 "$HOST" > /dev/null 2>&1; then
-            echo "$TIMESTAMP - $HOST - SUCCESS" >> "$ALL_LOG"
-        else
-            echo "$TIMESTAMP - $HOST - FAILURE" >> "$ALL_LOG"
-            echo "$TIMESTAMP - $HOST - FAILURE" >> "$FAIL_LOG"
-        fi
-    done
+chmod +x pinglogger.sh
 
-    sleep 1
-done
+
+usage:
+
+contab -e
+
+* * * * *  cd  /ap/test/732collection/red74/uptimekuma-623_yard/uptimekuma623;  /ap/test/732collection/red74/uptimekuma-623_yard/uptimekuma623/pinglogger.sh
+
+
 }
 
-#  usage:
+#=================================================
+
+
+#  old  usage:
 #     bash pinglogger.sh &
-#     aDATE=$(date "+%Y-%m-%d") ;  tail -f ping_all_${aDATE}.log ;
+#     nohup ./pinglogger.sh &
+#     aDATE=$(date "+%Y-%m-%d") ;  tail -f ./log/ping_all_${aDATE}.log ;
 
