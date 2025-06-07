@@ -1,0 +1,64 @@
+
+# http://192.168.88.103:9001
+# http://192.168.88.103:9001/p/anything/ace
+
+# docker pull etherpad/etherpad:latest
+
+services:
+
+  etherpad:
+    image: etherpad/etherpad:latest
+    #container_name: etherpad
+    ports:
+      - "9001:9001"
+    environment:
+      - TITLE=dgEtherpad
+      - ADMIN_PASSWORD=jaf
+      - TRUST_PROXY=true
+      - DB_TYPE=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=etherpad
+      - DB_USER=muser
+      - DB_PASS=pw55
+    volumes:
+      - etherpad_data:/opt/etherpad-lite/var
+      # - ./etherpad:/opt/etherpad-lite
+      - ./code:/code
+      - ./ep_acepad:/opt/etherpad-lite/node_modules/ep_acepad
+    command: sh /code/install-plugins.sh
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:11.6
+    #container_name: etherpad_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=pw77
+      - MYSQL_DATABASE=etherpad
+      - MYSQL_USER=muser
+      - MYSQL_PASSWORD=pw55
+    volumes:
+      - db_data:/var/lib/mysql
+
+  adminer:
+    # http://192.168.88.103:8433/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    image: adminer:4.7
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_PLUGINS=tables-filter
+    ports:
+      - 8433:8080
+
+volumes:
+  etherpad_data:
+  db_data:
+

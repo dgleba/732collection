@@ -1,0 +1,37 @@
+# version: "3"
+
+# networks:
+  # gitea:
+    # external: false
+
+services:
+
+  gitea:
+    # http://192.168.88.103:6177
+    image: docker.io/gitea/gitea:1.22.6
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: unless-stopped
+    volumes:
+      - ../sysdata/gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "6177:3000"
+      - "6176:22"
+    depends_on:
+      - dbp
+    env_file:
+      - ./.env
+
+
+  dbp:
+    image: postgres:16-alpine
+    volumes:
+      - ../sysdata/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "8432:5432"

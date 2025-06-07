@@ -1,0 +1,17 @@
+
+Demo:
+
+If you create data and set the archive where clause you should see data archiving every minute.
+
+Eg: create 500 minutes of data and arhive data 490 minutes old.
+
+
+howto:
+
+Visit adminer at the address listed in the docker-compose.yml.
+
+Paste into sql command: ptarc02-makedata.sql
+
+edit ptarc.sh and ofelia config.ini
+
+

@@ -1,0 +1,22 @@
+
+#   PGADMIN_DEFAULT_EMAIL: dgleba@stackpole.com
+
+PGADMIN_DEFAULT_PASSWORD: jaf
+
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-04-13[Apr-Sun]11-23AM 
+
+dg powder12
+
+
+cryptpad-1  | =============================
+cryptpad-1  | Create your first admin account and customize your instance by visiting
+cryptpad-1  | http://192.168.88.103:3000/install/#bfb4c0954ed9e8158d2bb85f3bd89e1660f72359ed1021cceea8b04df44c2ddf
+cryptpad-1  | =============================
+
+
+

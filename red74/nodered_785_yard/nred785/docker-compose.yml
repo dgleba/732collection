@@ -1,0 +1,22 @@
+# version: "3"
+
+services:
+    
+  # http://10.5.1.129:1880/  
+  # http://10.5.16.224:1880/  
+  nodered:
+    build: .
+    environment:
+      - TZ=America/New_York 
+    ports:
+      - "1880:1880"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ../sysdata/nodered:/data
+    restart: unless-stopped
+    env_file:
+      - ./.env
+
+# volumes:
+  # node-red-data:
+

@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  pgadmin:
+    # http://10.5.1.129:5050  
+    # http://192.168.88.103:5050  
+    # image: dpage/pgadmin4:7.4
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dgleba@gmail.com
+    env_file:
+      - ./.env
+    ports:
+      - "5050:80"
+    
+    

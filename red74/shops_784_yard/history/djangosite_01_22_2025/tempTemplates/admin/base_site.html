@@ -1,0 +1,15 @@
+
+{% extends "admin/base_site.html" %}
+{% block title %}mlinxa{% endblock %}
+
+{% block branding %}
+<style>    /* Inline CSS to make the h1 30% smaller */
+        #site-name {    font-size: 109%;   }
+</style>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">m-linx a</a></h1>
+{% endblock %}
+
+{% block actions %}
+    {# Hiding the actions block #}
+{% endblock %}
+

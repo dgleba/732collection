@@ -1,0 +1,36 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+
+{% block searchbar %}
+<div id="toolbar">  e45
+    <form id="changelist-search" method="get">
+        <div>
+            {% for key, value in request.GET.items %}
+                {% if key != "q" %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endif %}
+            {% endfor %}
+            <input type="text" name="q" value="{{ cl.search_query|default_if_none:'' }}" placeholder="{% trans 'Search' %}">
+            <button type="submit" class="button">{% trans 'Search' %}</button>
+            <a href="{% url cl.opts|admin_urlname:'changelist' %}" class="button" style="margin-left: 10px;">{% trans 'Clear' %}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block branding %}
+    <style>
+        /* Inline CSS to make the h1 30% smaller */
+        #site-name {
+            font-size: 70%; /* 100% - 30% = 70% */
+        }
+    </style>
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">My Custom Admin</a></h1>
+{% endblock %}
+
+{% block actions %}
+    {# Hiding the actions block #}
+{% endblock %}
+

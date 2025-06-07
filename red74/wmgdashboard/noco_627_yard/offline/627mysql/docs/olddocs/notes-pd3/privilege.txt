@@ -1,0 +1,2 @@
+GRANT ALL PRIVILEGES ON *.* TO 'ciuser'@'%' IDENTIFIED BY 'pass' with Grant option;
+

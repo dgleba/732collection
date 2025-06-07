@@ -1,0 +1,61 @@
+
+services:
+
+  docmost:
+    # http://192.168.88.103:4000
+    image: docmost/docmost:latest
+    depends_on:
+      - db
+      - redis
+    environment:
+      APP_URL: 'http://localhost:3000'
+      APP_SECRET: 'EPLeC236aqw_WI29xT_LOzG_SCRrT-238'
+      DATABASE_URL: 'postgresql://docmost:pw88@db:5432/docmost?schema=public'
+      REDIS_URL: 'redis://redis:6379'
+    ports:
+      - "4000:3000"
+    restart: unless-stopped
+    volumes:
+      - docmost:/app/data/storage
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: docmost
+      POSTGRES_USER: docmost
+      POSTGRES_PASSWORD: pw88
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  adminer:
+    # http://192.168.88.60:6607/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 4001:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbp
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      # - ADMINER_DEFAULT_SERVER=dbm
+      # - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+     
+
+volumes:
+  docmost:
+  db_data:
+  redis_data:
+  

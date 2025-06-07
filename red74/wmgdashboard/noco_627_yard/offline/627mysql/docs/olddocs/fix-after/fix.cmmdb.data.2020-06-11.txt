@@ -1,0 +1,96 @@
+
+# (your complete mysqldump command) | sed -e "s/([0-9]*,/(NULL,/gi" > my_dump_with_no_primary_keys.sql
+
+
+cd 
+cd 0
+cat ./cmmdata-mysql519.2020-06-09.sql  | sed -e "s/([0-9]*,/(NULL,/gi" > my_dump_with_no_primary_keys.sql
+
+tail -n100 ./cmmdata-mysql519.2020-06-09.sql  ; 
+
+tail -n150 my_dump_with_no_primary_keys.sql
+
+--host-127.0.0.1 --port=3306 
+
+
+
+_____________
+
+
+
+echo "use cmmdb;" > ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql
+cat ./sysdata/in-out/cmmdata-pd3-2020-06-05.sql >> ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql
+head ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql
+tail -n33 ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql
+
+# nano  ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql
+
+
+
+docker-compose  exec  dbm sh -c  'mysql --local-infile=1 -uadmindb -p"$MYSQL_PASSWORD"  <  /in-out/cmmdata-pd3-2020-06-05b.sql'
+
+
+
+
+_____________
+
+
+echo "use cmmdb;" > ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql
+
+cat ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid.sql >> ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql
+
+
+    sed -i -e 's/CREATE TABLE/CREATE TABLE if not exists/' ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql
+  
+
+# nano  ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql
+
+
+
+
+docker-compose  exec  dbm sh -c  'mysql --local-infile=1 -uadmindb -p"$MYSQL_PASSWORD"  <  /in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql'
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-06-11[Jun-Thu]11-57AM 
+
+134358938
+
+albe@pmdsdata3:/srv/dkr/mysql519$ nano  ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql
+albe@pmdsdata3:/srv/dkr/mysql519$ docker-compose  exec  dbm sh -c  'mysql --local-infile=1 -uadmindb -p"$MYSQL_PASSWORD"  <  /in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql'
+
+ERROR 2006 (HY000) at line 10: MySQL server has gone away
+albe@pmdsdata3:/srv/dkr/mysql519$
+
+
+tail -n15 ./sysdata/in-out/cmmdata-mysql519.2020-06-09-nullid-b.sql > ./sysdata/in-out/b.sql
+
+
+head -n205 ./sysdata/in-out/cmmdata-pd3-2020-06-05b.sql > ./sysdata/in-out/c.sql
+
+ANS.
+
+set global max_allowed_packet=64*1024*1024;
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-06-11[Jun-Thu]12-15PM 
+
+134 358 938
+134 493 729
+fixed. i tink.
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-06-11[Jun-Thu]12-18PM 
+
+

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+
+# start up db first so it has time to initialize, then start others later.
+
+#  usage :  bash startsh
+
+
+# =================================================
+
+
+
+docker-compose up -d dbm phpmyadmin adminer
+
+s=121 ; read  -rsp $"Wait $s seconds or press Escape-key or Arrow key to continue..." -t $s -d $'\e'; echo;echo;
+
+docker-compose up -d perco
+
+s=9 ; read  -rsp $"Wait $s seconds or press Escape-key or Arrow key to continue..." -t $s -d $'\e'; echo;echo;
+
+docker-compose up -d ofelia
+
+docker-compose logs -tf

@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+    <ul>
+        {% for item in root_menu_items %}
+            {% include 'menu_item.html' with item=item %}
+        {% endfor %}
+    </ul>
+
+<div>
+  <a class="btn btn-primary"
+    href="{% url 'menu94app_MenuItem_create' %}">
+  Create a new MenuItem
+  </a>
+</div>
+{% endblock %}
+
+

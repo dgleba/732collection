@@ -2,7 +2,7 @@
 
 echo ... Running.  See logs...
 
-END_TIME=$(( $(date +%s) + 57 ))
+END_TIME=$(( $(date +%s) + 55 ))
 
 mkdir -p log
 
@@ -32,7 +32,7 @@ while [ $(date +%s) -lt $END_TIME ]; do
     done
 
     # Optional short pause to avoid tight loop, can be removed
-    sleep 1
+    sleep 3
 done
 
 
@@ -53,13 +53,13 @@ contab -e
 * * * * *  cd  /ap/test/732collection/red74/uptimekuma-623_yard/uptimekuma623;  /ap/test/732collection/red74/uptimekuma-623_yard/uptimekuma623/pinglogger.sh
 
 
-}
-
-#=================================================
-
-
 #  old  usage:
 #     bash pinglogger.sh &
 #     nohup ./pinglogger.sh &
 #     aDATE=$(date "+%Y-%m-%d") ;  tail -f ./log/ping_all_${aDATE}.log ;
+
+}
+
+#=================================================
+
 

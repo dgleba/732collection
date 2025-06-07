@@ -1,0 +1,136 @@
+# version: "3.7"
+
+# networks:
+  # net574:
+    # name: net574m2
+   
+volumes:
+  postgresdata:
+
+services:
+
+  mb:
+    # http://10.4.71.231:6536/
+    # http://192.168.88.103:6537/
+    # image: metabase/metabase:v0.40.5
+    image: metabase/metabase:v0.52.x
+    restart: always
+    ports:
+      - "6537:3000"
+    volumes:
+      - ../sysdata/metabasedata:/mbdata
+    env_file:
+      - .env
+    depends_on:
+      # - dbm
+      dbm:  
+        condition: service_healthy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "7"
+
+
+  dbm:
+    # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:11.6
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "16182:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # folder for mysql's internal data files. permanent store on local folder.. 
+      - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # more easily destroyed docker named volume. 
+      # - mysqldatastore:/var/lib/mysql/  
+      - ./script:/script
+      # folders for imported or exported data, etc.
+      - ../sysdata/in-out/:/in-out
+      #- ../data/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       # none of these worked..
+       #test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+       #test: ["CMD", "/usr/local/bin/healthcheck.sh", "--connect"]
+       #test: ["CMD", "/usr/local/bin/healthcheck.sh", "--connect", "--innodb_initialized"]
+       #test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1", "-u", "root", "-p", "${MYSQL_ROOT_PASSWORD}" ]
+       # interval: seemed to wait for that before starting depends-on containers
+       interval: 60s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+
+  
+
+  # dbp:
+    # image: "postgres:16-alpine"
+    # restart: unless-stopped
+    # env_file:
+      # - ./.env
+    # ports:
+      # - "16432:5432"
+    # volumes:
+      # - ../sysdata/postgres/data:/var/lib/postgresql/data
+      # networks:
+        # - net574m2
+
+  # dbm:
+    # image: mysql:5.7
+    # ports: 
+      # - 6534:3306
+    # restart: unless-stopped  
+    # env_file:
+      # - .env
+    # volumes:
+      # # folder for mysql's internal data files.
+      # # - mysqldata:/var/lib/mysql
+      # # - ../datasys/mysql${PWD}:/var/lib/mysql/  
+      # - ../sysdata/mysql_data:/var/lib/mysql/ 
+      # # init data scripts..
+      # - ./mysql-init/:/docker-entrypoint-initdb.d/
+      # # folder for scripts, etc.
+      # - ./script:/script
+      # # folder for exported/imported data, etc.
+      # - ../data/mydat/:/mydat
+    # command: --default-authentication-plugin=mysql_native_password
+    # logging:
+      # driver: "json-file"
+      # options:
+        # max-size: "100k"
+        # max-file: "3"
+    # healthcheck:
+      # test: ["CMD", ping", "-c 2", "localhost"]
+      # interval: 1m30s
+      # timeout: 20s
+      # retries: 3
+      # start_period: 60s
+    # networks:
+      # - net574m2 
+
+
+  adminer:
+    # 10.4.1.231:6117/
+    image: adminer:4.8.1
+    restart: unless-stopped
+    ports:
+      - 6536:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_PLUGINS='tables-filter tinymce'
+    # networks:
+      # - net574m2

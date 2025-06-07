@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post List</title>
+</head>
+<body>
+    <h1>Post List</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'blogapp:post_detail' post.pk %}">{{ post.title }}</a></li>
+        {% empty %}
+            <li>No posts available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'blogapp:post_create' %}">Create New Post</a>
+</body>
+</html>

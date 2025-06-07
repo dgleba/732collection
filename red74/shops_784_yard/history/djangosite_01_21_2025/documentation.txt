@@ -1,0 +1,8 @@
+Documentation as of 01-20-2025 14:45:51
+
+The base for this app was taken from "/ap/dkr/shops_784_yard/shops784/djangosite_original" codebase, 
+
+Modifications made:
+Now we have 2 seperate apps (tpm777 and pchart783) both uses same kind of code setup and both have common admin panel.
+
+

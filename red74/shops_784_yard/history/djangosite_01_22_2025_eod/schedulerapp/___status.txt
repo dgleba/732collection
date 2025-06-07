@@ -1,0 +1,17 @@
+
+2021-02-25:
+
+problem: Jobs are running twice.
+
+https://github.com/agronholm/apscheduler/issues/492
+
+
+Fixed: 
+add --no-reload
+
+
+=================================================
+
+
+tail -f /srv/dkr/532dkrcollection/_533e-django-example-yard/data/djangosite/schedulerapp-output01.txt
+

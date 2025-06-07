@@ -1,0 +1,11 @@
+
+services:
+  python1001:
+    # http://10.4.71.231:16471/admin
+    build: ./docker
+    restart: on-failure
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    # user: "0:33"
+    # command: python manage.py runserver 0.0.0.0:8000 --noreload 

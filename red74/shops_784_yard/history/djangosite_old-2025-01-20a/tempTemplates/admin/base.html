@@ -1,0 +1,40 @@
+
+<!-- https://stackoverflow.com/questions/7357057/overriding-admin-css-in-django -->
+
+<!-- https://stackoverflow.com/questions/22345527/how-to-remove-breadcrumbs-in-django-admin -->
+
+{% extends "admin/base.html" %}
+{% block extrahead %}
+    <style>
+        /* .field-__str__ {
+            font-family: Consolas, monospace;
+        }
+         */
+
+        /* .breadcrumbs>ul li:nth-child(2) {
+            display:none;
+        } */
+
+        .breadcrumbs {
+            display:none;
+        }
+
+        /* grp-breadcrumbs>ul li:nth-child(2) {
+            display:none;
+        } */
+
+
+        /* https://stackoverflow.com/questions/36319424/jquery-add-and-remove-a-br-tag-depending-on-window-width-and-whether-or-not-t 
+        use
+        <br class="br_ifdesk" />
+        -
+        add br if screen narrower than 749px (likely mobile)
+        */
+        @media only screen and (max-width: 767px)  {
+        .br_ifdesk {display:none;}
+}
+
+
+    </style>
+{% endblock %}
+

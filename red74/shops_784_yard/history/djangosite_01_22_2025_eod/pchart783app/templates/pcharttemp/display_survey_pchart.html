@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ survey_instance.name }}{% endblock %}
+
+{% block content %}
+<div class="w-100 my-5 px-0">
+    <h1 class="display-4 text-primary text-center mb-4">{{ survey_instance.name }}</h1>
+    
+    <p class="lead text-center mb-5">{{ survey_instance.description }}</p>
+
+    <form method="post" class="bg-white p-4 rounded shadow w-100 mx-0" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-4 text-start form-group">
+                <label class="form-label fw-bold d-block">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                    {% endif %}
+                </label>
+                {% if field.field.widget.input_type == 'radio' %}
+                    <div class="radio-group d-flex flex-column" data-question-type="choice">
+                        {% for radio in field %}
+                            <div class="form-check mb-2">
+                                {{ radio }}
+                                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                </label>
+                            </div>
+                        {% endfor %}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted mt-2">
+                                <i class="fas fa-info-circle me-1"></i>{{ field.help_text }}
+                            </small>
+                        {% endif %}
+                    </div>
+                    
+                    <div id="conditional-{{ field.name }}" class="conditional-field mt-3 d-none">
+                        <div class="mb-3">
+                            <label for="issue_{{ field.name }}" class="form-label">Please describe the issue:</label>
+                            <textarea id="issue_{{ field.name }}" required name="issue_{{ field.name }}" class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="action_{{ field.name }}" class="form-label">What action was taken?</label>
+                            <textarea id="action_{{ field.name }}" required name="action_{{ field.name }}" class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="autofillAction('{{ field.name }}')">
+                            Autofill: Contacted Team Leader / Supervisor
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="input-wrapper">
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted mt-2">
+                                <i class="fas fa-info-circle me-1"></i>{{ field.help_text }}
+                            </small>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if not forloop.last %}
+                <hr class="my-4 border-secondary opacity-25">
+            {% endif %}
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a href="{% url 'pchart783app:pchart_survey_list' %}" class="btn btn-danger float-end">
+            Discard Progress and Go Back to Surveys
+        </a>
+    </form>
+    
+                    {% comment %} The commented code is to populate 2 text box if the user selects "NO" 
+                                  to the question "Are you satisfied with the service here?" for now I have commented this out but can always get it back
+                    {% endcomment %}
+
+                    
+
+</div>
+<div id="unsavedChangesPopup" class="popup-overlay d-none">
+    <div class="popup-content">
+        <p>You have unsaved changes. Are you sure you want to leave this page?</p>
+        <button id="confirmLeave" class="btn btn-danger">Leave</button>
+        <button id="cancelLeave" class="btn btn-secondary">Stay</button>
+    </div>
+</div>
+<style>
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .popup-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content button {
+        margin: 10px;
+    }
+
+    .radio-group {
+        margin-top: 0.5rem;
+    }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-check-label {
+        margin-left: 0.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+  }
+  
+  .input-wrapper {
+      width: 100%;
+      max-width: 400px;  /* Adjust this value based on your needs */
+  }
+  
+  .form-control {
+      width: 100%;
+  }
+  
+  .radio-group {
+      gap: 0.5rem;
+  }
+  
+  .form-check {
+      padding-left: 1.5rem;
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid #dee2e6;
+    margin: 2rem 0;
+    opacity: 0.25;
+}
+    textarea.form-control {
+        min-height: calc(1.5em * 3 + 0.75rem * 2);  /* 3 lines of text plus padding */
+        resize: vertical;  /* allows vertical resizing only */
+    }
+
+
+  
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const links = document.querySelectorAll('a');
+        const popup = document.getElementById("unsavedChangesPopup");
+        const confirmLeaveButton = document.getElementById("confirmLeave");
+        const cancelLeaveButton = document.getElementById("cancelLeave");
+        let formChanged = false;
+        let pendingNavigationUrl = null;
+
+        if (!form) {
+            console.error("Form element not found");
+            return;
+        }
+
+        // Track changes in all form elements (input, textarea, select)
+        document.querySelectorAll("form input, form textarea, form select").forEach(element => {
+            element.addEventListener("input", () => {
+                formChanged = true;
+                console.log(`Form element changed: ${element.name}`);
+            });
+        });
+
+        // Radio button change event to show/hide conditional fields
+        radioButtons.forEach(radio => {
+            radio.addEventListener("change", function () {
+                const questionName = this.name;
+                const questionGroup = this.closest('[data-question-type="choice"]');
+                const conditionalField = document.getElementById(`conditional-${questionName}`);
+                const issueField = document.getElementById(`issue_${questionName}`);
+                const actionField = document.getElementById(`action_${questionName}`);
+    
+                if (questionGroup && this.value === "No" && conditionalField) {
+                    conditionalField.classList.remove("d-none");
+                    issueField.setAttribute("required", "true");
+                    actionField.setAttribute("required", "true");
+                } else if (conditionalField) {
+                    conditionalField.classList.add("d-none");
+                    issueField.removeAttribute("required");
+                    actionField.removeAttribute("required");
+                }
+    
+                formChanged = true;
+            });
+        });
+
+
+        // Handle clicks on links to show the custom pop-up if there are unsaved changes
+        links.forEach(link => {
+            link.addEventListener("click", (event) => {
+                // Skip links with target="_blank" and dropdown toggle links
+                if (link.target === "_blank" || link.classList.contains("dropdown-toggle")) {
+                    return;
+                }
+
+                if (formChanged && !link.classList.contains("btn-success")) {
+                    event.preventDefault();
+                    pendingNavigationUrl = link.href;
+                    popup.classList.remove("d-none");
+                }
+            });
+        });
+
+        // Confirm leaving the page
+        confirmLeaveButton.addEventListener("click", () => {
+            if (pendingNavigationUrl) {
+                window.location.href = pendingNavigationUrl;
+            }
+        });
+
+        // Cancel leaving and close the pop-up
+        cancelLeaveButton.addEventListener("click", () => {
+            popup.classList.add("d-none");
+            pendingNavigationUrl = null;
+        });
+    });
+
+    // Autofill action function
+    function autofillAction(fieldName) {
+        const actionField = document.getElementById(`action_${fieldName}`);
+        if (actionField) {
+            actionField.value = "Contacted Team Leader / Supervisor";
+        }
+    }
+  </script>
+{% endblock %}

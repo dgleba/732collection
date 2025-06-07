@@ -1,0 +1,45 @@
+
+# sftp://10.4.1.232/srv/dkr/620dkrcollection/noco627_a_yard/627mysql/docker-compose.yml
+
+cd /ap/noco627_a_yard
+
+mkdir -p data/noco_data
+mkdir -p data/crib/
+mkdir -p sysdata/mysqldata
+mkdir -p sysdata/in-out
+
+chown albe:www-data sysdata
+chown albe:www-data sysdata/in-out
+chown  -R albe:www-data data
+
+
+
+docker-compose -f ./627mysql/docker-compose.yml    up    -d
+
+docker-compose -f ./627mysql/docker-compose.yml   logs -t
+
+s=229 ; read  -rsp $"Wait $s seconds or press Escape-key or Arrow key to continue..." -t $s -d $'\e'; echo;echo;
+
+
+docker-compose -f ./627nocodb/docker-compose.yml     up     -d
+docker-compose -f ./627nocodb/docker-compose.yml    logs -t
+
+docker-compose -f ./627metabase/docker-compose.yml up    -d
+
+
+echo sleeping a long time...
+sleep 98765
+
+=================================================
+
+
+stop:
+
+
+docker-compose -f ./627mysql/docker-compose.yml down
+
+docker-compose -f ./627nocodb/docker-compose.yml down 
+
+
+
+
