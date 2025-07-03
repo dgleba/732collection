@@ -2,7 +2,7 @@
 
 echo ... Running.  See logs...
 
-END_TIME=$(( $(date +%s) + 55 ))
+END_TIME=$(( $(date +%s) + 53 ))
 
 mkdir -p log
 

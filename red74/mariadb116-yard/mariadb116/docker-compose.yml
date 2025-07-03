@@ -1,0 +1,56 @@
+volumes:
+  db-data:
+
+services:
+
+  dbm:
+    image: mariadb:11.6
+    # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "6180:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - db-data:/var/lib/mysql
+      - ./script:/script
+      - ../sysdata/in-out/:/in-out
+      - ../sysdata/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "11"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+
+
+  adminer:
+    # http://10.4.71.231:36608/  use dbm or ip:port for server while logging in.
+    # http://192.168.88.103:6199/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # http://10.4.1.245:6607/  use dbm or ip:port for server while logging in.
+    # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    ports:
+      - 6199:8080
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=dbm
+      - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+      
