@@ -1,0 +1,41 @@
+# FROM python:3.12-slim
+
+FROM ubuntu:22.04
+
+# Install dependencies for building Python
+RUN apt update && \
+    apt install -y --no-install-recommends \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libffi-dev \
+    wget \
+    curl \
+    ca-certificates cron  python3-pip
+
+# Install dependencies for django-auth-ldap..
+# RUN apt-get install -y  libldap2-dev libsasl2-dev libssl-dev
+
+Run    rm -rf /var/lib/apt/lists/*
+
+#    libncursesw6-dev \
+#    xz-utils \
+#    tk-dev \
+
+WORKDIR /code
+
+RUN whoami
+
+copy ./code/requirements.txt /code
+RUN pip install  -r requirements.txt
+
+RUN  chmod -R g+rws  /code
+
+# ADD  entrypoint.sh /code
+# RUN  chmod  +x  /code/entrypoint.sh
+# ENTRYPOINT ["/code/entrypoint.sh"]
+
+# CMD ["python", "--version"]

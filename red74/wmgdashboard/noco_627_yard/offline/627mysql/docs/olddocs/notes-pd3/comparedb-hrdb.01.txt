@@ -1,0 +1,25 @@
+--- ./sysdata/in-out/comp-pd3/pd3-hrdb-4comparedb-mysql.sql^I2020-06-06 14:30:43.232674000 -0400
++++ ./sysdata//in-out/compr/m519-hrdb-4comparedb-mysql.sql^I2020-06-06 14:43:03.312674000 -0400
+@@ -27357,14 +27357,14 @@ SET character_set_client = @saved_cs_cli
+ /*!50003 SET sql_mode              = '' */ ;
+ DELIMITER ;;
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `addcolumns1`()
+-begin
+-    declare continue handler for 1060 begin end; -- this ignores errors if they occur in the following lines. say if the column already exists.
+-    alter table dc_disciplines add sigpad_supervisor text;
+-    alter table dc_disciplines add hr_manager_approval varchar(99);
+-    alter table dc_disciplines add production_manager_approval varchar(99);
+-    alter table dc_disciplines add documents_on_file bool null;
+-    alter table dc_disciplines MODIFY COLUMN documents_on_file bool after dc_action;
+-    
++begin^M
++    declare continue handler for 1060 begin end; -- this ignores errors if they occur in the following lines. say if the column already exists.^M
++    alter table dc_disciplines add sigpad_supervisor text;^M
++    alter table dc_disciplines add hr_manager_approval varchar(99);^M
++    alter table dc_disciplines add production_manager_approval varchar(99);^M
++    alter table dc_disciplines add documents_on_file bool null;^M
++    alter table dc_disciplines MODIFY COLUMN documents_on_file bool after dc_action;^M
++    ^M
+ end ;;
+ DELIMITER ;
+ /*!50003 SET sql_mode              = @saved_sql_mode */ ;

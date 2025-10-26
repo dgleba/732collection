@@ -1,0 +1,123 @@
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  add whitenoise - in development, and pic upload
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2023-10-30[Oct-Mon]08-45AM 
+
+
+copied it from djbuilder17 as is and then make it run.
+see git history.
+
+
+------------
+
++++ b/dj726/djangosite/djangoproj/settings.py
+@@ -21,7 +21,7 @@ SECRET_KEY = '^l)7d*%h&db4uft@dk%h-w&nup#pu%)a!d)c7jwgoixo5_hm0$'
+ # SECURITY WARNING: don't run with debug turned on in production!
+ DEBUG = True
+
+-ALLOWED_HOSTS = []
++ALLOWED_HOSTS = ['*']
+
+ # Application definition
+ INSTALLED_APPS = [
++    "whitenoise.runserver_nostatic",
+     'django.contrib.admin',
+ 
+ MIDDLEWARE = [
+     'django.middleware.security.SecurityMiddleware',
++    "whitenoise.middleware.WhiteNoiseMiddleware",
++
+
++#whitenoise docs say..
++STATIC_ROOT = BASE_DIR / "static"
++
+ 
+ 
+ ------------
+ 
+ note related_name:
+ 
+    # # Relationships
+    postedfrom = models.ForeignKey("blogappm2m.PostedFromTbl", on_delete=models.CASCADE, related_name='postedfrom')
+    tags = models.ManyToManyField("blogappm2m.TagTbl", related_name='tags')
+
+pic:
+    pic = models.ImageField(upload_to="images/", default=None, blank=True, null=True,)
+
+admin.py
+
++    fields = [
++        "title",
++        "body",
++        "pic",
++        "tags",
++        "postedfrom",
++    ]
++    autocomplete_fields = [
++        "tags",
++        "postedfrom",
++    ]
+
+
+class TagTblAdmin(admin.ModelAdmin):
++    search_fields = [
+         "name",
+     ]
+
+
+------------
+
+albe@pmadata01:/ap/test/django-726-yard/dj726$ git d  djangosite/djangoproj/settings.py
+
++MEDIA_URL = '/upload/'
++MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
++
++
+
+
+------------
+
+albe@pmadata01:/ap/test/django-726-yard/dj726$ git d  djangosite/djangoproj/urls.py
+diff --git a/dj726/djangosite/djangoproj/urls.py b/dj726/djangosite/djangoproj/urls.py
++++ b/dj726/djangosite/djangoproj/urls.py
+
++from django.conf import settings
++from django.conf.urls.static import static
++
+
+ urlpatterns = [
++    path('', include(static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT))),
++
+
+
+
+=================================================
+
+
+=================================================
+
+ref.
+D:\n\sfile\computer\0computersf\0-cm-notes-01\django.starter.dg.app.features.know.txt
+
+=================================================
+
+2023-03-02
+
+used whitenoise to fix it.
+
+
+(I believe the runserver static assets are broken.)
+
+
+2022-10-02
+I broke this.
+
+admin has no css.
+logs show 404 error.
+I have not been able to fix it yet.
+
+=================================================
+

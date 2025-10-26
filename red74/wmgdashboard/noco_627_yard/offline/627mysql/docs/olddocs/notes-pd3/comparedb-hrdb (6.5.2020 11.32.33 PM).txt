@@ -1,0 +1,54 @@
+cat -n ./sysdata/in-out/comp-pd3/pd3-hrdb-4comparedb-mysql.sql	|sed '18380,18391!d' >x/a
+cat -n  ./sysdata//in-out/compr/m519-hrdb-4comparedb-mysql.sql|sed '18380,18391!d' >x/b
+diff x/a x/b  |cat -t
+
+
+
+
+--- ./sysdata/in-out/comp-pd3/pd3-hrdb-4comparedb-mysql.sql	2020-06-05 22:30:08.809659106 -0400
++++ ./sysdata//in-out/compr/m519-hrdb-4comparedb-mysql.sql	2020-06-05 22:29:24.881659106 -0400
+@@ -10927,10 +10927,10 @@ INSERT INTO `employees` VALUES (5920,'Jo
+ /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+ /*!50003 SET sql_mode              = '' */ ;
+ DELIMITER ;;
+-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER employees_trigger_created BEFORE INSERT ON 
+-employees
+-FOR EACH ROW BEGIN
+-SET new.created_at := now();
++/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER employees_trigger_created BEFORE INSERT ON 
++employees
++FOR EACH ROW BEGIN
++SET new.created_at := now();
+ END */;;
+ DELIMITER ;
+ /*!50003 SET sql_mode              = @saved_sql_mode */ ;
+@@ -14257,10 +14257,10 @@ INSERT INTO `stf_assets` VALUES (846,'69
+ /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+ /*!50003 SET sql_mode              = '' */ ;
+ DELIMITER ;;
+-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER stf_assets_trigger_created BEFORE INSERT ON 
+-stf_assets
+-FOR EACH ROW BEGIN
+-SET new.created_at := now();
++/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER stf_assets_trigger_created BEFORE INSERT ON 
++stf_assets
++FOR EACH ROW BEGIN
++SET new.created_at := now();
+ END */;;
+ DELIMITER ;
+ /*!50003 SET sql_mode              = @saved_sql_mode */ ;
+@@ -18381,10 +18381,10 @@ INSERT INTO `stf_employees` VALUES (7636
+ /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+ /*!50003 SET sql_mode              = '' */ ;
+ DELIMITER ;;
+-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER stf_employees_trigger_created BEFORE INSERT ON 
+-stf_employees
+-FOR EACH ROW BEGIN
+-SET new.created_at := now();
++/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER stf_employees_trigger_created BEFORE INSERT ON 
++stf_employees
++FOR EACH ROW BEGIN
++SET new.created_at := now();
+ END */;;
+ DELIMITER ;
+ /*!50003 SET sql_mode              = @saved_sql_mode */ ;

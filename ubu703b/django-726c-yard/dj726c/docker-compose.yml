@@ -1,0 +1,204 @@
+version: "3"
+
+# networks:
+  # sister:
+    # name: sister
+
+volumes:
+  mysqldatastore:
+
+services:
+  djdev:
+    # http://10.4.71.231:16461/admin
+    # http://10.4.1.231:6461/
+    # http://192.168.88.69:16401/
+    build: ./docker
+    restart: on-failure
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    # user: "0:33"
+    ports:
+      - "16401:8000"
+      # - "18886:8888"
+    env_file:
+      # .env.dev sets debug=True
+      # - ./.env.dev
+      - ./.env
+    # entrypoint: sh /code/entrypoint.sh
+    # entrypoint: /code/entrypoint.sh
+    #
+    #  to avoid running apscheduler twice use --noreload   https://stackoverflow.com/questions/33814615/how-to-avoid-appconfig-ready-method-running-twice-in-django
+    command: python manage.py runserver 0.0.0.0:8000 --noreload 
+    #
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./djangosite:/code
+      # - ../data/djangosite:/data
+      # use pip cache to reduce startup time..
+      # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+      - ~/sysdata/python-dot-cache/pip/:/root/.cache/pip
+    # networks:
+      # - sister
+    # environment:
+      # - VIRTUAL_HOST=devdj.198.144.183.160.nip.io
+      # - VIRTUAL_PORT=8000
+      # - LETSENCRYPT_HOST=devdj.198.144.183.160.nip.io
+      # - xLETSENCRYPT_EMAIL=dgleba@gmail.com
+    # depends_on:
+      # - dbm
+
+
+  wetty:
+    # ref:  https://github.com/butlerx/wetty/blob/main/docker-compose.yml   
+    # https://butlerx.github.io/wetty/#/atoz    https://github.com/butlerx/wetty
+    # http://192.168.88.69:16402/wetty
+    image: wettyoss/wetty
+    tty: true
+    working_dir: /usr/src/app
+    restart: always
+    ports:
+      - '16402:3000'
+    command: wetty --ssh-host 192.168.88.69 --ssh-port 22  --title "192.168.88.69" 
+
+
+  # gotty:
+    # # http://192.168.88.69:16412/
+    # build:
+      # context: "./gotty"
+      # dockerfile: Dockerfile
+    # # working_dir: /code
+    # # --credential a:1325 (user:pass) . 
+    # command: gotty -w --credential a:1325  bash
+    # ports:
+      # - "16412:8080"
+    # env_file:
+      # - ./.env
+
+
+  # dbm:
+    # # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    # restart: always
+    # env_file:
+      # - .env
+    # command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    # ports:
+      # - "16608:3306"
+      # #- "6609:33060"
+    # volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # # folder for mysql's internal data files. permanent store on local folder.. 
+      # - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # # more easily destroyed docker named volume. 
+      # # - mysqldatastore:/var/lib/mysql/  
+      # - ./script:/script
+      # # folders for imported or exported data, etc.
+      # - ../sysdata/in-out/:/in-out
+      # - ../data/crib/:/crib
+      # - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    # # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    # logging:
+      # driver: "json-file"
+      # options:
+        # max-size: "100k"
+        # max-file: "5"
+    # # networks:
+    # #   - sister2
+    # # networks:
+      # # - sister
+
+
+  # jupyterlab
+  # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+  jplab:
+    # http://10.4.1.231:18888  lab?token=   930f63f2611d3db4ecaaab02e60a6e28129564a566b7445a
+    # http://10.4.1.231:18889/lab?token=8614e1f8690bbcd825255cb2332e477c057e3854bd63d573
+    # http://192.168.88.69:16403/
+    image: quay.io/jupyter/base-notebook:2023-10-31
+    ports:
+      - "16403:8888"
+      - "18000:8000"
+    # working_dir: /home/jovyan
+    env_file:
+      - ./.env
+    volumes:
+      # - ./data/jlab:/home/jovyan/work
+      - ./djangosite:/home/jovyan/work
+      - /etc/localtime:/etc/localtime:ro
+    # entrypoint: bash -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/home --allow-root'
+    command: start-notebook.py --ServerApp.root_dir=/home/jovyan/work
+    restart: always
+    user: root  
+
+
+
+
+  # adminer:
+    # # http://10.4.71.231:36608/  use dbm or ip:port for server while logging in.
+    # # http://192.168.88.60:6607/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # # http://10.4.1.245:6607/  use dbm or ip:port for server while logging in.
+    # # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    # image: adminer:4.7
+    # volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # # - ../turbotodorail7/apprails/db:/crib2
+    # restart: always
+    # env_file:
+      # - .env
+    # ports:
+      # - 36608:8080
+    # # networks:
+    # #   - sister2
+    # # networks:
+      # # - sister3
+    # environment:
+      # # - ADMINER_DEFAULT_SERVER=dbp
+      # # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      # - ADMINER_DEFAULT_SERVER=dbm
+      # - ADMINER_DEFAULT_DB_DRIVER=mysql
+      # - ADMINER_PLUGINS=tables-filter
+      
+      
+  # htmvue:
+    # # serve vue code
+    # # http://10.4.71.231:9280/  
+    # image: "nginx:1.19-alpine"
+    # restart: on-failure
+    # # environment:
+    # # env_file:
+    # #   - ./.env
+    # #   - NODE_ENV=production
+    # # user: "0:33"
+    # # working_dir: /usr/share/nginx/html
+    # volumes:
+      # - ./htmvue/conf:/etc/nginx/conf.d
+      # - ./htmvue/htm:/usr/share/nginx/html
+    # ports:
+      # - "9280:80"
+
+  # for adminer for sqlite db
+  # adminerd:
+  #   # http://192.168.88.60:14123/
+  #   # http://10.4.1.231:6117/
+  #   # image: adminer:4.7
+  #   # image: dockette/adminer:full
+  #   image: dgleba/adminer-sqlite:one
+  #   # build: ./adminer-sqlite
+  #   restart: always
+  #   ports:
+  #     - 14123:80
+  #     # 8080 for regular adminer, 80 for dockette
+  #   volumes:
+  #     - ./djangosite/db.sqlite3:/db.sq3
+  #     - ./adminer-sqlite:/var/www/html
+  #   environment:
+  #     - ADMINER_DEFAULT_SERVER=srvr
+  #     - DB_PATH=/db.sq3
+  #     - DB_USER=user
+  #     - DB_PASS=apass
+  #     # - ADMINER_PLUGINS='tables-filter'
+
+
+# for redis, see django-select2 example.. https://github.com/codingjoe/django-select2/tree/master/example
+      # and  https://github.com/wildfish/wildfish-django-starter/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/dev-docker-compose.yml.default

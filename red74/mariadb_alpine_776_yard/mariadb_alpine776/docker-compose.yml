@@ -1,0 +1,59 @@
+
+services:
+  dbm:
+    # image: yobasystems/alpine-mariadb:10.11
+    build: ./docker-mariadb
+    env_file:
+      - .env
+    volumes:
+      - ../sysdata/mysqldata:/var/lib/mysql
+      # init data scripts..
+      - ./mysql-init/:/docker-entrypoint-initdb.d/
+      # folder for scripts, etc.
+      - ../data:/data
+    restart: always
+    ports: 
+      - 6192:3306
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+
+
+# notes..
+    # expose:
+      # - "3306"
+    # command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --default-authentication-plugin=mysql_native_password
+    # for 8.0
+    # command: --default-authentication-plugin=mysql_native_password
+    # command:  --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    # for 8.4
+    # command: ["mysqld", "--mysql-native-password=ON"]
+    # for 9.0 dont use the above.
+    # healthcheck:
+      # test: ["CMD", ping", "-c 2", "localhost"]
+      # interval: 1m30s
+      # timeout: 20s
+      # retries: 3
+      # start_period: 60s
+
+
+  adminer:
+    # http://10.4.71.231:36608/  use dbm or ip:port for server while logging in.
+    # http://192.168.88.103:6199/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # http://10.4.1.245:6607/  use dbm or ip:port for server while logging in.
+    # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    image: adminer:4.7
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    ports:
+      - 6199:8080
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=dbm
+      - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+      

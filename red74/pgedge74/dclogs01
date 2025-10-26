@@ -1,0 +1,448 @@
+docker-pgedge-n2-1  | ****** Phase 1 running as root
+docker-pgedge-n2-1  | sshd: no hostkeys available -- exiting.
+docker-pgedge-n2-1  | Archive:  /home/pgedge/pgedgekey.zip
+docker-pgedge-n2-1  |   inflating: id_rsa                  
+docker-pgedge-n2-1  |   inflating: id_rsa.pub              
+docker-pgedge-n2-1  | ****** Phase 2 running as pgedge
+docker-pgedge-n2-1  | /usr/lib64/python3.9/tarfile.py:2239: RuntimeWarning: The default behavior of tarfile extraction has been changed to disallow common exploits (including CVE-2007-4559). By default, absolute/parent paths are disallowed and some mode bits are cleared. See https://access.redhat.com/articles/7004769 for more details.
+docker-pgedge-n2-1  |   warnings.warn(
+docker-pgedge-n2-1  |  
+docker-pgedge-n2-1  | [1m######################################################################[0m
+docker-pgedge-n2-1  | [1m#     NodeCtl: [0mv23.134  /opt/pgedge/pgedge
+docker-pgedge-n2-1  | [1m# User & Host: [0mpgedge  n2  127.0.0.1
+docker-pgedge-n2-1  | [1m#          OS: [0mRocky Linux 9.2 (Blue Onyx)  glibc-2.34-el9
+docker-pgedge-n2-1  | [1m#     Machine: [0m15 GB, 8 vCPU, Intel Core i5-10310U @ 1.70GHz
+docker-pgedge-n2-1  | [1m#       Langs: [0mPython v3.9.18
+docker-pgedge-n2-1  | [1m#    Repo URL: [0mhttps://pgedge-download.s3.amazonaws.com/REPO
+docker-pgedge-n2-1  | [1m# Last Update: [0m2023-11-29 18:48:16
+docker-pgedge-n2-1  | [1m######################################################################[0m
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing nclibs ###############
+docker-pgedge-n2-1  |   ['nclibs']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO nclibs-1.0
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking nclibs-1.0.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/nclibs-1.0.tar.bz2 | tar xf -
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/nclibs/config-nclibs.py", line 17, in <module>
+docker-pgedge-n2-1  |     if util.get_el_os() == "EL9":
+docker-pgedge-n2-1  | AttributeError: module 'util' has no attribute 'get_el_os'
+docker-pgedge-n2-1  | Downloading CLI 23.134 ...
+docker-pgedge-n2-1  | Unpacking ...
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | pgedge/nodectl installed.
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing pgedge ###############
+docker-pgedge-n2-1  |   ['pgedge']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO pgedge-2-5
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking pgedge-2-5.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/pgedge-2-5.tar.bz2 | tar xf -
+docker-pgedge-n2-1  | #### Checking for Pre-Req's #########################
+docker-pgedge-n2-1  |   Verify Linux
+docker-pgedge-n2-1  |   Verify Linux supported glibc version
+docker-pgedge-n2-1  |   Verify Python 3.9+
+docker-pgedge-n2-1  |   Verify non-root user
+docker-pgedge-n2-1  |   Verify port 5432 availability
+docker-pgedge-n2-1  |   Using port 5432
+docker-pgedge-n2-1  |   Verify empty data directory 'data/pg16'
+docker-pgedge-n2-1  |   Verify -U usr & -P passwd...
+docker-pgedge-n2-1  | #
+docker-pgedge-n2-1  | #  ./nodectl install pg16
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing pg16 ###############
+docker-pgedge-n2-1  |   ['pg16']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO pg16-16.0-1-el9
+docker-pgedge-n2-1  |    10 MB [10%]
+docker-pgedge-n2-1  |    20 MB [21%]
+docker-pgedge-n2-1  |    30 MB [32%]
+docker-pgedge-n2-1  |    40 MB [43%]
+docker-pgedge-n2-1  |    50 MB [54%]
+docker-pgedge-n2-1  |    60 MB [65%]
+docker-pgedge-n2-1  |    70 MB [75%]
+docker-pgedge-n2-1  |    80 MB [86%]
+docker-pgedge-n2-1  |    90 MB [97%]
+docker-pgedge-n2-1  |    92 MB [100%]
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking pg16-16.0-1-el9.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/pg16-16.0-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n2-1  | #
+docker-pgedge-n2-1  | #  ./nodectl init pg16
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ## Initializing pg16 #######################
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Initializing Postgres DB with:
+docker-pgedge-n2-1  |   /opt/pgedge/pgedge/pg16/bin/initdb -U pgedge -A scram-sha-256 -E UTF8 --data-checksums -D "/opt/pgedge/pgedge/data/pg16" --pwfile="/opt/pgedge/pgedge/pg16/.pgpass" > "/opt/pgedge/pgedge/data/logs/pg16/install.log" 2>&1
+docker-pgedge-n2-1  | ssl = on
+docker-pgedge-n2-1  | Password securely remembered
+docker-pgedge-n2-1  |  
+docker-pgedge-n2-1  | #
+docker-pgedge-n2-1  | #  ./nodectl config pg16 --port=5432
+docker-pgedge-n2-1  | #
+docker-pgedge-n2-1  | #  ./nodectl start pg16
+docker-pgedge-n2-1  | pg16 starting on port 5432
+docker-pgedge-n2-1  | #   ./nodectl pgbin 16 "psql -q -c \"CREATE ROLE dbuser PASSWORD '???' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN\" postgres"
+docker-pgedge-n2-1  | #   ./nodectl pgbin 16 "createdb 'demo' --owner='dbuser'"
+docker-pgedge-n2-1  | #   ./nodectl tune pg16
+docker-pgedge-n2-1  | Tuning 'postgresql.conf' parms for 'pg16':
+docker-pgedge-n2-1  |   new: shared_buffers = 4GB
+docker-pgedge-n2-1  |   new: maintenance_work_mem = 1565MB
+docker-pgedge-n2-1  |   new: wal_log_hints = on
+docker-pgedge-n2-1  |   new: effective_cache_size = 12GB
+docker-pgedge-n2-1  |   new: log_min_duration_statement = 1000
+docker-pgedge-n2-1  |   new: shared_preload_libraries = 'pg_stat_statements'
+docker-pgedge-n2-1  | #   ./nodectl install readonly --no-restart
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing readonly-pg16 ###############
+docker-pgedge-n2-1  |   ['readonly-pg16']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO readonly-pg16-1.1.1-1-el9
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking readonly-pg16-1.1.1-1-el9.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/readonly-pg16-1.1.1-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n2-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly'
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | #   ./nodectl install foslots --no-restart
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing foslots-pg16 ###############
+docker-pgedge-n2-1  |   ['foslots-pg16']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO foslots-pg16-1a-1-el9
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking foslots-pg16-1a-1-el9.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/foslots-pg16-1a-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n2-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly, pg_failover_slots'
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | #   ./nodectl install spock31-pg16 -d demo
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | ########### Installing spock31-pg16 ###############
+docker-pgedge-n2-1  |   ['spock31-pg16']
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO spock31-pg16-3.1.8-1-el9
+docker-pgedge-n2-1  |     1 MB [100%]
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Unpacking spock31-pg16-3.1.8-1-el9.tar.bz2
+docker-pgedge-n2-1  | #   lbzip2 -dc conf/cache/spock31-pg16-3.1.8-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n2-1  |   new: wal_level = 'logical'
+docker-pgedge-n2-1  |   new: max_worker_processes = 12
+docker-pgedge-n2-1  |   new: max_replication_slots = 16
+docker-pgedge-n2-1  |   new: max_wal_senders = 16
+docker-pgedge-n2-1  |   new: hot_standby_feedback = 'on'
+docker-pgedge-n2-1  |   new: wal_sender_timeout = '5s'
+docker-pgedge-n2-1  |   new: track_commit_timestamp = 'on'
+docker-pgedge-n2-1  |   new: spock.conflict_resolution = 'last_update_wins'
+docker-pgedge-n2-1  |   new: spock.save_resolutions = 'on'
+docker-pgedge-n2-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly, pg_failover_slots, spock'
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | pg16 stopping
+docker-pgedge-n2-1  | pg16 starting on port 5432
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | $ pg16/bin/psql -p 5432 -c "CREATE EXTENSION IF NOT EXISTS spock"  demo
+docker-pgedge-n2-1  | CREATE EXTENSION
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n2-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n2-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n2-1  |     import_from_libpq()
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n2-1  |     raise ImportError(
+docker-pgedge-n2-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | ****** Phase 1 running as root
+docker-pgedge-n1-1  | sshd: no hostkeys available -- exiting.
+docker-pgedge-n1-1  | Archive:  /home/pgedge/pgedgekey.zip
+docker-pgedge-n1-1  |   inflating: id_rsa                  
+docker-pgedge-n1-1  |   inflating: id_rsa.pub              
+docker-pgedge-n1-1  | ****** Phase 2 running as pgedge
+docker-pgedge-n1-1  | /usr/lib64/python3.9/tarfile.py:2239: RuntimeWarning: The default behavior of tarfile extraction has been changed to disallow common exploits (including CVE-2007-4559). By default, absolute/parent paths are disallowed and some mode bits are cleared. See https://access.redhat.com/articles/7004769 for more details.
+docker-pgedge-n1-1  |   warnings.warn(
+docker-pgedge-n1-1  |  
+docker-pgedge-n1-1  | [1m######################################################################[0m
+docker-pgedge-n1-1  | [1m#     NodeCtl: [0mv23.134  /opt/pgedge/pgedge
+docker-pgedge-n1-1  | [1m# User & Host: [0mpgedge  n1  127.0.0.1
+docker-pgedge-n1-1  | [1m#          OS: [0mRocky Linux 9.2 (Blue Onyx)  glibc-2.34-el9
+docker-pgedge-n1-1  | [1m#     Machine: [0m15 GB, 8 vCPU, Intel Core i5-10310U @ 1.70GHz
+docker-pgedge-n1-1  | [1m#       Langs: [0mPython v3.9.18
+docker-pgedge-n1-1  | [1m#    Repo URL: [0mhttps://pgedge-download.s3.amazonaws.com/REPO
+docker-pgedge-n2-1  | Attempts made:
+docker-pgedge-n2-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n2-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n2-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n2-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n2-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n2-1  |     import_from_libpq()
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n2-1  |     raise ImportError(
+docker-pgedge-n2-1  | ImportError: no pq wrapper available.
+docker-pgedge-n2-1  | Attempts made:
+docker-pgedge-n2-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n2-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n2-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n2-1  | Setup to go from 172.19.0.3  to 172.19.0.2
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n2-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n2-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n2-1  |     import_from_libpq()
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n2-1  |     raise ImportError(
+docker-pgedge-n2-1  | ImportError: no pq wrapper available.
+docker-pgedge-n2-1  | Attempts made:
+docker-pgedge-n2-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n2-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n2-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n2-1  | CREATE TABLE
+docker-pgedge-n2-1  | ALTER TABLE
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n2-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n2-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n2-1  |     import_from_libpq()
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  | [1m# Last Update: [0m2023-11-29 18:48:16
+docker-pgedge-n1-1  | [1m######################################################################[0m
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing nclibs ###############
+docker-pgedge-n1-1  |   ['nclibs']
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO nclibs-1.0
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking nclibs-1.0.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/nclibs-1.0.tar.bz2 | tar xf -
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/nclibs/config-nclibs.py", line 17, in <module>
+docker-pgedge-n1-1  |     if util.get_el_os() == "EL9":
+docker-pgedge-n1-1  | AttributeError: module 'util' has no attribute 'get_el_os'
+docker-pgedge-n1-1  | Downloading CLI 23.134 ...
+docker-pgedge-n1-1  | Unpacking ...
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | pgedge/nodectl installed.
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing pgedge ###############
+docker-pgedge-n1-1  |   ['pgedge']
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO pgedge-2-5
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking pgedge-2-5.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/pgedge-2-5.tar.bz2 | tar xf -
+docker-pgedge-n1-1  | #### Checking for Pre-Req's #########################
+docker-pgedge-n1-1  |   Verify Linux
+docker-pgedge-n1-1  |   Verify Linux supported glibc version
+docker-pgedge-n1-1  |   Verify Python 3.9+
+docker-pgedge-n1-1  |   Verify non-root user
+docker-pgedge-n1-1  |   Verify port 5432 availability
+docker-pgedge-n1-1  |   Using port 5432
+docker-pgedge-n1-1  |   Verify empty data directory 'data/pg16'
+docker-pgedge-n1-1  |   Verify -U usr & -P passwd...
+docker-pgedge-n1-1  | #
+docker-pgedge-n1-1  | #  ./nodectl install pg16
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing pg16 ###############
+docker-pgedge-n1-1  |   ['pg16']
+docker-pgedge-n1-1  | 
+docker-pgedge-n2-1  |     raise ImportError(
+docker-pgedge-n2-1  | ImportError: no pq wrapper available.
+docker-pgedge-n2-1  | Attempts made:
+docker-pgedge-n2-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n2-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n2-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n2-1  | Traceback (most recent call last):
+docker-pgedge-n2-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n2-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n2-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n2-1  |     import_from_libpq()
+docker-pgedge-n2-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n2-1  |     raise ImportError(
+docker-pgedge-n2-1  | ImportError: no pq wrapper available.
+docker-pgedge-n2-1  | Attempts made:
+docker-pgedge-n2-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n2-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n2-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO pg16-16.0-1-el9
+docker-pgedge-n1-1  |    10 MB [10%]
+docker-pgedge-n1-1  |    20 MB [21%]
+docker-pgedge-n1-1  |    30 MB [32%]
+docker-pgedge-n1-1  |    40 MB [43%]
+docker-pgedge-n1-1  |    50 MB [54%]
+docker-pgedge-n1-1  |    60 MB [65%]
+docker-pgedge-n1-1  |    70 MB [75%]
+docker-pgedge-n1-1  |    80 MB [86%]
+docker-pgedge-n1-1  |    90 MB [97%]
+docker-pgedge-n1-1  |    92 MB [100%]
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking pg16-16.0-1-el9.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/pg16-16.0-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n1-1  | #
+docker-pgedge-n1-1  | #  ./nodectl init pg16
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ## Initializing pg16 #######################
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Initializing Postgres DB with:
+docker-pgedge-n1-1  |   /opt/pgedge/pgedge/pg16/bin/initdb -U pgedge -A scram-sha-256 -E UTF8 --data-checksums -D "/opt/pgedge/pgedge/data/pg16" --pwfile="/opt/pgedge/pgedge/pg16/.pgpass" > "/opt/pgedge/pgedge/data/logs/pg16/install.log" 2>&1
+docker-pgedge-n1-1  | ssl = on
+docker-pgedge-n1-1  | Password securely remembered
+docker-pgedge-n1-1  |  
+docker-pgedge-n1-1  | #
+docker-pgedge-n1-1  | #  ./nodectl config pg16 --port=5432
+docker-pgedge-n1-1  | #
+docker-pgedge-n1-1  | #  ./nodectl start pg16
+docker-pgedge-n1-1  | pg16 starting on port 5432
+docker-pgedge-n1-1  | #   ./nodectl pgbin 16 "psql -q -c \"CREATE ROLE dbuser PASSWORD '???' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN\" postgres"
+docker-pgedge-n1-1  | #   ./nodectl pgbin 16 "createdb 'demo' --owner='dbuser'"
+docker-pgedge-n1-1  | #   ./nodectl tune pg16
+docker-pgedge-n1-1  | Tuning 'postgresql.conf' parms for 'pg16':
+docker-pgedge-n1-1  |   new: shared_buffers = 4GB
+docker-pgedge-n1-1  |   new: maintenance_work_mem = 1565MB
+docker-pgedge-n1-1  |   new: wal_log_hints = on
+docker-pgedge-n1-1  |   new: effective_cache_size = 12GB
+docker-pgedge-n1-1  |   new: log_min_duration_statement = 1000
+docker-pgedge-n1-1  |   new: shared_preload_libraries = 'pg_stat_statements'
+docker-pgedge-n1-1  | #   ./nodectl install readonly --no-restart
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing readonly-pg16 ###############
+docker-pgedge-n1-1  |   ['readonly-pg16']
+docker-pgedge-n2-1  |  node_id | node_name | location | country | info 
+docker-pgedge-n2-1  | ---------+-----------+----------+---------+------
+docker-pgedge-n2-1  | (0 rows)
+docker-pgedge-n2-1  | 
+docker-pgedge-n2-1  | Sleeping for a long time (1day), there is no TTY
+docker-pgedge-n2-1  | (suggest attaching to this container via 'docker exec ...')
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO readonly-pg16-1.1.1-1-el9
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking readonly-pg16-1.1.1-1-el9.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/readonly-pg16-1.1.1-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n1-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly'
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | #   ./nodectl install foslots --no-restart
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing foslots-pg16 ###############
+docker-pgedge-n1-1  |   ['foslots-pg16']
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO foslots-pg16-1a-1-el9
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking foslots-pg16-1a-1-el9.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/foslots-pg16-1a-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n1-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly, pg_failover_slots'
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | #   ./nodectl install spock31-pg16 -d demo
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | ########### Installing spock31-pg16 ###############
+docker-pgedge-n1-1  |   ['spock31-pg16']
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Get:1 https://pgedge-download.s3.amazonaws.com/REPO spock31-pg16-3.1.8-1-el9
+docker-pgedge-n1-1  |     1 MB [100%]
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Unpacking spock31-pg16-3.1.8-1-el9.tar.bz2
+docker-pgedge-n1-1  | #   lbzip2 -dc conf/cache/spock31-pg16-3.1.8-1-el9.tar.bz2 | tar xf -
+docker-pgedge-n1-1  |   new: wal_level = 'logical'
+docker-pgedge-n1-1  |   new: max_worker_processes = 12
+docker-pgedge-n1-1  |   new: max_replication_slots = 16
+docker-pgedge-n1-1  |   new: max_wal_senders = 16
+docker-pgedge-n1-1  |   new: hot_standby_feedback = 'on'
+docker-pgedge-n1-1  |   new: wal_sender_timeout = '5s'
+docker-pgedge-n1-1  |   new: track_commit_timestamp = 'on'
+docker-pgedge-n1-1  |   new: spock.conflict_resolution = 'last_update_wins'
+docker-pgedge-n1-1  |   new: spock.save_resolutions = 'on'
+docker-pgedge-n1-1  |   new: shared_preload_libraries = 'pg_stat_statements, pg_readonly, pg_failover_slots, spock'
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | pg16 stopping
+docker-pgedge-n1-1  | pg16 starting on port 5432
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | $ pg16/bin/psql -p 5432 -c "CREATE EXTENSION IF NOT EXISTS spock"  demo
+docker-pgedge-n1-1  | CREATE EXTENSION
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n1-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n1-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n1-1  |     import_from_libpq()
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  |     raise ImportError(
+docker-pgedge-n1-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | Attempts made:
+docker-pgedge-n1-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n1-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n1-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n1-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n1-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n1-1  |     import_from_libpq()
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  |     raise ImportError(
+docker-pgedge-n1-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | Attempts made:
+docker-pgedge-n1-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n1-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n1-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  | Setup to go from 172.19.0.2  to 172.19.0.3
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n1-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n1-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n1-1  |     import_from_libpq()
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  |     raise ImportError(
+docker-pgedge-n1-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | Attempts made:
+docker-pgedge-n1-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n1-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n1-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  | CREATE TABLE
+docker-pgedge-n1-1  | ALTER TABLE
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n1-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n1-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n1-1  |     import_from_libpq()
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  |     raise ImportError(
+docker-pgedge-n1-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | Attempts made:
+docker-pgedge-n1-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n1-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n1-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  | Traceback (most recent call last):
+docker-pgedge-n1-1  |   File "/opt/pgedge/pgedge/hub/scripts/spock.py", line 6, in <module>
+docker-pgedge-n1-1  |     import util, meta, api, fire, psycopg
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/__init__.py", line 9, in <module>
+docker-pgedge-n1-1  |     from . import pq  # noqa: F401 import early to stabilize side effects
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 114, in <module>
+docker-pgedge-n1-1  |     import_from_libpq()
+docker-pgedge-n1-1  |   File "/usr/local/lib/python3.9/site-packages/psycopg/pq/__init__.py", line 106, in import_from_libpq
+docker-pgedge-n1-1  |     raise ImportError(
+docker-pgedge-n1-1  | ImportError: no pq wrapper available.
+docker-pgedge-n1-1  | Attempts made:
+docker-pgedge-n1-1  | - couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+docker-pgedge-n1-1  | - couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+docker-pgedge-n1-1  | - couldn't import psycopg 'python' implementation: libpq library not found
+docker-pgedge-n1-1  |  node_id | node_name | location | country | info 
+docker-pgedge-n1-1  | ---------+-----------+----------+---------+------
+docker-pgedge-n1-1  | (0 rows)
+docker-pgedge-n1-1  | 
+docker-pgedge-n1-1  | Sleeping for a long time (1day), there is no TTY
+docker-pgedge-n1-1  | (suggest attaching to this container via 'docker exec ...')

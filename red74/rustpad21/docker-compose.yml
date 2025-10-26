@@ -1,0 +1,22 @@
+
+services:
+
+  rustpad:
+    # http://10.99.98.69:7878  10.99.98.69
+    image: ekzhang/rustpad:latest
+    ports:
+      - "7878:3030"
+    environment:
+      - SQLITE_URI=sqlite:///data/rustpad.db
+      - EXPIRY_DAYS=1  # 0 means never expire
+    volumes:
+      #- rustpad_data:/data
+      - ./sysdata/paddata:/data
+    restart: unless-stopped
+    env_file:
+      - .env
+
+volumes:
+  rustpad_data:
+
+

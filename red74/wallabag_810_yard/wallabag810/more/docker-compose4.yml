@@ -1,0 +1,59 @@
+services:
+  wallabag:
+    image: wallabag/wallabag:2.6.13
+    restart: unless-stopped
+    environment:
+      - SYMFONYx="xxq"
+    ports:
+      - "8087:80"
+    volumes:
+      - waladata:/var/www/wallabag
+    depends_on:
+      dbm:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env.wala      
+      
+  dbm:
+    image: mariadb:12
+    restart: unless-stopped
+    # environment:
+      # - MYSQL_ROOT_PASSWORD=
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--innodb_initialized"]
+      interval: 20s
+      timeout: 3s
+    env_file:
+      - .env
+
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped    
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 20s
+      timeout: 3s
+
+
+  adminer:
+    # http://10.33.44.81:6613/  use dbm or ip:port for server while logging in.
+    image: adminer:5.3.0
+    restart: unless-stopped
+    ports:
+      - 6613:8080
+    # env_file:
+      # - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbm
+
+
+volumes:
+  waladata:
+  wala_img:
+  db_data:
+  

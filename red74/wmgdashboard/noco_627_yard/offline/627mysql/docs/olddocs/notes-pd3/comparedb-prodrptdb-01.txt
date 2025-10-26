@@ -1,0 +1,57 @@
+--- ./sysdata/in-out/comp-pd3/pd3-prodrptdb-4comparedb-mysql.sql^I2020-06-06 14:31:11.204674000 -0400
++++ ./sysdata//in-out/compr/m519-prodrptdb-4comparedb-mysql.sql^I2020-06-06 14:43:26.576674000 -0400
+@@ -1699126,30 +1699126,30 @@ SET character_set_client = @saved_cs_cli
+ /*!50003 SET sql_mode              = '' */ ;
+ DELIMITER ;;
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `archive_tkbprodtrak1`()
+-BEGIN
+-DECLARE arcinterval Int;
+-DECLARE now1 int default unix_timestamp(NOW());
+-DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+-    BEGIN
+-      ROLLBACK;
+-    END;
+-DECLARE exit handler for sqlwarning
+- BEGIN
+-    -- WARNING
+-    ROLLBACK;
+-END;
+-set arcinterval = (unix_timestamp(now())-(180*86400));
+-Start TRANSACTION;
+-  INSERT
+-      INTO    prodrptdb_archive.tkb_prodtrak_arc (Id,pi_id,machine,part_number,part_timestamp,qty,perpetual_counter,downtime,cycletime,statuscode,autotime,last_time_diff)
+-      SELECT  Id,pi_id,machine,part_number,part_timestamp,qty,perpetual_counter,downtime,cycletime,statuscode,autotime,last_time_diff
+-      FROM    prodrptdb.tkb_prodtrak
+-      WHERE   part_timestamp < arcinterval
+-      FOR UPDATE;
+-  DELETE
+-      FROM    prodrptdb.tkb_prodtrak
+-      WHERE   part_timestamp < arcinterval;
+-COMMIT;
++BEGIN^M
++DECLARE arcinterval Int;^M
++DECLARE now1 int default unix_timestamp(NOW());^M
++DECLARE EXIT HANDLER FOR SQLEXCEPTION ^M
++    BEGIN^M
++      ROLLBACK;^M
++    END;^M
++DECLARE exit handler for sqlwarning^M
++ BEGIN^M
++    -- WARNING^M
++    ROLLBACK;^M
++END;^M
++set arcinterval = (unix_timestamp(now())-(180*86400));^M
++Start TRANSACTION;^M
++  INSERT^M
++      INTO    prodrptdb_archive.tkb_prodtrak_arc (Id,pi_id,machine,part_number,part_timestamp,qty,perpetual_counter,downtime,cycletime,statuscode,autotime,last_time_diff)^M
++      SELECT  Id,pi_id,machine,part_number,part_timestamp,qty,perpetual_counter,downtime,cycletime,statuscode,autotime,last_time_diff^M
++      FROM    prodrptdb.tkb_prodtrak^M
++      WHERE   part_timestamp < arcinterval^M
++      FOR UPDATE;^M
++  DELETE^M
++      FROM    prodrptdb.tkb_prodtrak^M
++      WHERE   part_timestamp < arcinterval;^M
++COMMIT;^M
+ END ;;
+ DELIMITER ;
+ /*!50003 SET sql_mode              = @saved_sql_mode */ ;

@@ -1,0 +1,9 @@
+
+------------
+purpose:
+
+2025-09-06 cftunnel for red74 server with gotodaveg.com using only docker run
+
+
+------------
+

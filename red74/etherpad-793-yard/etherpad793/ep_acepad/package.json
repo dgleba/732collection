@@ -1,0 +1,18 @@
+{
+  "name": "ep_acepad",
+  "version": "0.0.1",
+  "description": "Ace Editor plugin for Etherpad",
+  "author": "you",
+  "contributors": [],
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "dependencies": {},
+  "ep": {
+    "hooks": {
+      "expressCreateServer": "index.expressCreateServer"
+    }
+  }
+}

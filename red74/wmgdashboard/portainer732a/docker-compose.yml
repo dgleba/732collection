@@ -1,0 +1,97 @@
+# 
+version: "3"
+
+services:
+
+  portainer:
+    # https://192.168.88.69:9443/  
+    # https://10.5.1.129:2123/  
+    # https://10.4.1.231:2123/  
+    # https://10.4.1.231:2123/  
+    restart: always
+    image: portainer/portainer-ce:latest
+    ports:
+      - 6187:9443
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - ./.env
+      
+
+  # jupyterlab
+  # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+  jplab:
+    # http://10.4.1.231:2124/lab?token=4a5086f094db3e5e92097200b84c39514d8ca6b77015badf
+    # http://10.4.1.231:2124  lab?token=   930f63f2611d3db4ecaaab02e60a6e28129564a566b7445a
+    # http://10.5.1.129:2124
+    image: quay.io/jupyter/base-notebook:2023-10-31
+    privileged: true
+    ports:
+      - "6188:8888"
+    # working_dir: /home/jovyan
+    env_file:
+      - ./.env
+    volumes:
+      # Say this docker compose file is in /ap/dkr/portainerx. --  ../../ will show all of /ap folder to jupyterlab.
+      - ../:/home/jovyan/work
+      # - ./data/jlab:/home/jovyan/work
+      - /etc/localtime:/etc/localtime:ro
+      # server settings..      https://discourse.jupyter.org/t/jupyterlab-4-configuration-override/24643/3
+      - ./jplab/jupyter_server_config.py:/home/jovyan/.jupyter/jupyter_server_config.py
+      - ./jplab/overrides.json:/opt/conda/share/jupyter/lab/settings/overrides.json
+    # entrypoint: bash -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/home --allow-root'
+    command: start-notebook.py --ServerApp.root_dir=/home/jovyan/work
+    restart: always
+    user: root  
+
+
+  adminer:
+    # http://10.4.71.231:29609/  use dbm or ip:port for server while logging in.
+    # http://192.168.88.60:6607/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # http://10.4.1.245:6607/  use dbm or ip:port for server while logging in.
+    # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    image: adminer:4.7
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 6189:8080
+    # networks:
+    #   - sister2
+    # networks:
+      # - sister3
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=dbm
+      - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+  
+  pgadmin:
+    # http://10.5.1.129:5050  
+    image: dpage/pgadmin4:8.14
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dgleba@stackpole.com
+    env_file:
+      - ./.env
+    ports:
+      - "6182:80"
+    
+
+
+
+    
+volumes:
+  data:
+
+# portainer container link opens to 0.0.0.0
+# https://www.reddit.com/r/portainer/comments/y4tt7s/0000_ip_address_for_container_ui/
+# https://portal.portainer.io/knowledge/exposed-ports-in-the-container-view-redirect-me-to-0.0.0.0-what-can-i-do
+# Change the configuration of your Docker daemon by adding the --ip option.
+# no:    command: --ip=${host_ip}
+

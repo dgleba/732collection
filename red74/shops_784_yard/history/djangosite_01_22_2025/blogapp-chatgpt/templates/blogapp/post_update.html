@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Post - {{ post.title }}</title>
+</head>
+<body>
+    <h1>Edit Post - {{ post.title }}</h1>
+    <form action="{% url 'blogapp:post_update' post.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+    <a href="{% url 'blogapp:post_detail' post.pk %}">Cancel</a>
+</body>
+</html>

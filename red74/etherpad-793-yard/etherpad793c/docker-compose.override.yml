@@ -1,0 +1,13 @@
+
+# http://192.168.88.103:9001
+# http://192.168.88.103:9001/admin
+
+services:
+  app:
+    environment:
+      - ETHERPAD_PLUGINS=ep_hello,ep_align
+    volumes:
+      - ./ep_hello:/opt/etherpad-lite/src/node_modules/ep_hello
+      # this clobbers the settings already there..  - ./settings.json:/opt/etherpad-lite/settings.json
+    # ports:
+      # - "5432:5432"

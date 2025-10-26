@@ -1,0 +1,24 @@
+Date,Download (Mbps),Upload (Mbps),Ping (ms)
+2025-06-01 19:17:35,892.35,539.56,7.02
+2025-06-01 19:23:01,894.69,549.70,6.88
+2025-06-01 19:24:01,873.06,505.96,6.63
+2025-06-01 19:25:01,842.46,565.85,6.65
+2025-06-01 19:26:01,821.05,569.62,6.72
+2025-06-01 19:27:01,905.42,584.47,6.47
+Date,Download (Mbps),Upload (Mbps),Ping (ms),Server,ISP
+2025-06-01 19:29:01,918.63,494.53,0.00,"ogers (Toronto, ON) [35.13 km]: 6.527 ms","Telus Communications (209.29.187.108)"
+2025-06-01 19:30:01,0.00,0.00,0.00,"","Telus Communications (209.29.187.108)"
+2025-06-01 19:31:01,901.00,542.21,0.00,"ogers (Toronto, ON) [35.13 km]: 6.633 ms","Telus Communications (209.29.187.108)"
+2025-06-01 19:32:01,882.05,570.53,0.00,"ogers (Toronto, ON) [35.13 km]: 6.729 ms","Telus Communications (209.29.187.108)"
+2025-06-01 19:33:01,867.59,503.06,0.00,"ogers (Toronto, ON) [35.13 km]: 6.622 ms","Telus Communications (209.29.187.108)"
+2025-06-01 19:34:01,821.72,716.12,0.00,"ogers (Toronto, ON) [35.13 km]: 6.62 ms","Telus Communications (209.29.187.108)"
+2025-06-01 19:50:07,922.76,603.09,6.725,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:51:07,904.56,602.59,6.772,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:52:08,844.31,528.71,6.8,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:53:08,836.83,540.01,6.628,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:54:08,889.25,490.06,6.811,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:55:08,799.13,564.90,6.634,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+2025-06-01 19:56:08,851.72,586.58,6.72,"Rogers (Toronto, ON)","Telus Communications (209.29.187.108)"
+hourly
+Date,Download (Mbps),Upload (Mbps),Ping (ms),Server,ISP
+2025-06-01 20:04:01,ERROR,ERROR,ERROR,"",""

@@ -1,0 +1,10 @@
+#
+
+------------
+
+
+docker cp wallabag810-wallabag-1:/var/www/wallabag  /ap/dkr/732collection/red74/wallabag_810_yard/x/copyofwww-wallabag
+
+
+------------
+

@@ -1,0 +1,11 @@
+// package.json
+{
+  "name": "ep_hello",
+  "version": "0.0.1",
+  "description": "Say Hello plugin",
+  "main": "index.js",
+  "engines": {
+    "node": ">=12"
+  },
+  "author": "You"
+}

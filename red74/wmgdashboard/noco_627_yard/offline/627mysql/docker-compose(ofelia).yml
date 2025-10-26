@@ -1,0 +1,92 @@
+# https://hub.docker.com/_/mysql
+version: "3.6"
+
+services:
+
+  # Scheduler Service
+  ofelia:
+    image: mcuadros/ofelia:v0.3.4
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./ofelia/config.ini:/etc/ofelia/config.ini
+      - ./script:/script
+    depends_on:
+      - perco
+    # This says sh not found. the first run doesn't have to succeed anyway..
+    # command: sh -c "/script/wait2start.sh"
+
+  # [pt-archiver]
+  perco:
+    image: perconalab/percona-toolkit:3.2.1
+    restart: always
+    # must keep container alive so ofelia can run it periodically..
+    command: bash -c "tail -f /dev/null"
+    # command: bash -c "bash /tmp/perco/ptarc02.sh;"
+    volumes:
+      - ./perco:/tmp/perco
+    # run with user 1000 so /tmp/perco is writable. If not 1000 then it will be made with root and not writable.  
+    user: "1000:33"
+
+  dbm:
+    image: mysql:8.0.23
+    #hostname: mysql573t
+    restart: always
+    env_file:
+      - .env
+    # environment:
+    # MYSQL_DATABASE: test
+    # command: --default-authentication-plugin=mysql_native_password
+    # https://dev.mysql.com/doc/refman/8.0/en/innodb-parameters.html#sysvar_innodb_file_per_table
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "6601:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # folder for mysql's internal data files. permanent store on local folder.. 
+      - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # more easily destroyed docker named volume. 
+      #- mysqldatastore:/var/lib/mysql/  
+      - ./script:/script
+      # folders for imported or exported data, etc.
+      - ../sysdata/in-out/:/in-out
+      - ../data/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "5"
+    # networks:
+    #   - sister2
+
+  adminer:
+    # http://192.168.88.60:6602/  use dbm or ip:port for server while logging in.
+    image: adminer:4.7
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 6602:8080
+    # networks:
+    #   - sister2
+
+  # https://github.com/phpmyadmin/docker  
+  phpmyadmin:
+    image: phpmyadmin:5.1.0
+    environment:
+    - PMA_ARBITRARY=1
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+    - 6604:80
+    volumes:
+    - /sessions
+    # - ../phpmyadmin/sessions/:/sessions
+
+volumes:
+  mysqldatastore:
+

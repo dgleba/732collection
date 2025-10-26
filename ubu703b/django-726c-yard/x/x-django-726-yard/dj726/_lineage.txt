@@ -1,0 +1,37 @@
+
+**********  Parent at top
+
+------------
+
+
+
+_based.on.533-e7-django-2-admins-yard
+
+------------
+
+
+..
+i need to write more history here.
+..
+
+------------
+
+
+menu694yard
+
+django-726-yard
+  plain djangobuilder, add picture field.
+  
+
+
+------------
+
+2023-10-30_Mon_13.46-PM
+
+sftp://10.4.71.231/ap/test/django-726-yard/dj726/djangosite/___this_is_made-by-djbuilder17.txt
+whitenoise working in development.
+added m2m and foreignkey.
+added picture upload
+
+------------
+

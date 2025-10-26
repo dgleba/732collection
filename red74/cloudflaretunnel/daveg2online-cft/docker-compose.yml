@@ -1,0 +1,24 @@
+
+networks:
+  sister2:
+    name: sister2
+    external: true
+  cfnet1:
+    name: cfnet1
+
+services:
+
+  # Cloudflare Tunnel Container
+  cftunnel:
+    image: cloudflare/cloudflared
+    command: tunnel  --no-autoupdate  run  --token ${TUNNEL_TOKEN}
+    # volumes:
+    #   - ./cloudflared:/etc/cloudflared
+    restart: unless-stopped
+    environment:
+    #   TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
+      - TZ=America/New_York # Adjust to your timezone
+    user:  root
+    networks:
+      #- sister2
+      - cfnet1

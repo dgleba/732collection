@@ -1,0 +1,184 @@
+
+https://www.percona.com/doc/percona-toolkit/1.0/pt-archiver.html
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-12[Apr-Mon]21-38PM 
+
+
+
+note that primary key must not exist in archive table.
+
+
+
+albe@vamp398:/srv/test/mysql/mysql-573-t-yard/mysql573t$ dc up perco
+Starting mysql573t_perco_1 ... done
+perco_1       | + pt-archiver --source h=192.168.88.60,P=7411,D=dkrdb,t=mydates,u=root,p=iof --where 'mydate  <  date_sub( now(), interval 90 day )' --dest h=192.168.88.60,P=7411,D=dkrdb,t=arc_copy_mydates,u=root,p=iof --limit=1 --why-quit
+perco_1       | + tee -a /tmp/perco/mydates-arch.log
+
+perco_1       | DBD::mysql::st execute failed: Duplicate entry '1' for key 'PRIMARY' [for Statement "INSERT INTO `dkrdb`.`arc_copy_mydates`(`id`,`mydate`) VALUES (?,?)" with ParamValues: 0=1, 1='2021-01-01 00:00:00'] at /usr/bin/pt-archiver line 6771.
+perco_1       | + pwd
+perco_1       | /
+mysql573t_perco_1 exited with code 0
+albe@vamp398:/srv/test/mysql/mysql-573-t-yard/mysql573t$
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-12[Apr-Mon]21-39PM 
+
+
+
+drop table if exists mydates;
+
+CREATE TABLE arc_mydates
+(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  mydate datetime,
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE mydates
+(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  mydate datetime,
+  PRIMARY KEY (`id`)
+);
+
+DROP PROCEDURE IF EXISTS filldates;
+DELIMITER ||
+CREATE PROCEDURE filldates(dateStart DATE, dateEnd DATE)
+BEGIN
+  WHILE dateStart <= dateEnd DO
+    INSERT INTO mydates (mydate) VALUES (dateStart);
+    SET dateStart = date_add(dateStart, INTERVAL 1 DAY);
+  END WHILE;
+END;
+||
+DELIMITER ;
+CALL filldates('2021-01-01','2021-04-01');
+
+select mydates limit 2;
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-12[Apr-Mon]21-39PM 
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-09-01[Sep-Tue]10-59AM 
+
+
+
+https://dbtut.com/index.php/2018/09/06/archive-data-using-pt-archiver/
+
+1
+query log stuff in this post.
+
+
+set global general_log=on
+
+
+
+_____________
+
+
+2
+pt-archiver 
+
+	--source h=192.168.100.184,P=8001,D=testarchive,t=sourcetb,u=archive,p=archivepwd --where 'id < 3' 
+	--dest h=192.168.100.103,P=4001,u=archive_wr,p=wrpwd,D=destdb,t=targettb 
+		--limit=1 --no-delete --why-quit 2>&1 >> archive.log
+
+
+pt-archiver --source h=192.168.100.184,P=8001,D=testarchive,t=sourcetb,u=archive,p=archivepwd --where 'id < 3' 
+--dest h=192.168.100.103,P=4001,u=archive_wr,p=wrpwd,D=destdb,t=targettb 
+--limit=1 --no-delete --why-quit 2>&1 >> archive.log
+
+
+compare to:
+
+C:\n\sfile\0computersf\0-cm-notes-01\cmm-remove-olddata5_copyof,mysql,delete,chunked.sh
+
+officially live on pmdsdata3
+C:\backup\unzipped\htdocs.pmdsdata3.latest\html\cmmdb\actions\cmm-remove-olddata5.sh
+
+_____________
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-09-06[Sep-Sun]20-58PM 
+
+
+https://github.com/percona/percona-toolkit
+
+
+ref:
+  https://hub.docker.com/r/yuuki0xff/percona-toolkit
+
+
+try:
+https://github.com/yuuki0xff/docker-percona-toolkit/blob/master/Dockerfile
+
+
+https://github.com/fr3nd/docker-percona-toolkit/blob/master/Dockerfile
+
+alpine
+https://github.com/brunoric/docker-percona-toolkit/blob/master/Dockerfile
+https://github.com/brunoric/docker-percona-toolkit
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-09-08[Sep-Tue]15-56PM 
+
+
+https://dzone.com/articles/generating-test-data-mysql
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-09-08[Sep-Tue]15-56PM 
+
+
+percona toolkit docker
+
+
+https://hub.docker.com/r/yuuki0xff/percona-toolkit/dockerfile
+
+
+_____________
+
+
+
+
+
+
+

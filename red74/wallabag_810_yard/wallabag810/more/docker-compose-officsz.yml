@@ -1,0 +1,67 @@
+services:
+  wallabag:
+    image: wallabag/wallabag:2.6.13
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - SYMFONY__ENV__DATABASE_DRIVER=pdo_mysql
+      - SYMFONY__ENV__DATABASE_HOST=dbm
+      - SYMFONY__ENV__DATABASE_PORT=3306
+      - SYMFONY__ENV__DATABASE_NAME=wallabag
+      - SYMFONY__ENV__DATABASE_USER=muser
+      - SYMFONY__ENV__DATABASE_PASSWORD=
+      - SYMFONY__ENV__DATABASE_CHARSET=utf8mb4
+      - SYMFONY__ENV__DATABASE_TABLE_PREFIX="wallabag_"
+      - SYMFONY__ENV__MAILER_DSN=wallabag
+      - SYMFONY__ENV__FROM_EMAIL=dgleba@gmail.com
+      - SYMFONY__ENV__DOMAIN_NAME=http://10.33.44.81:8087
+      - SYMFONY__ENV__SERVER_NAME="dg!"
+    ports:
+      - "8087:80"
+    volumes:
+      - waladata:/var/www/wallabag
+    depends_on:
+      dbm:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      
+      
+  dbm:
+    image: mariadb:12
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--innodb_initialized"]
+      interval: 20s
+      timeout: 3s
+      
+  redis:
+    image: redis:alpine
+    restart: unless-stopped    
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 20s
+      timeout: 3s
+
+
+  adminer:
+    # http://10.33.44.81:6613/  use dbm or ip:port for server while logging in.
+    image: adminer:5.3.0
+    restart: unless-stopped
+    ports:
+      - 6613:8080
+    # env_file:
+      # - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbm
+
+
+volumes:
+  waladata:
+  wala_img:
+  db_data:
+  

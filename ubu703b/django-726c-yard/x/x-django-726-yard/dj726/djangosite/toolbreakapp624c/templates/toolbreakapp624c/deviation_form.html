@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_Deviation_list' %}">
+    Deviation Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="created_at">created_at: </label>
+      <input class="form-control col-sm-10"
+         id="created_at" type="datetime-local"
+         name="created_at" value="{{ object.created_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="attach_photo_of_rid">attach_photo_of_rid: </label>
+      <input class="form-control col-sm-10"
+         id="attach_photo_of_rid" type="file"
+         name="attach_photo_of_rid" value="{{ object.attach_photo_of_rid }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="attempts_to_fix">attempts_to_fix: </label>
+      <input class="form-control col-sm-10"
+         id="attempts_to_fix" type="text"
+         name="attempts_to_fix" value="{{ object.attempts_to_fix }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="updated_at">updated_at: </label>
+      <input class="form-control col-sm-10"
+         id="updated_at" type="datetime-local"
+         name="updated_at" value="{{ object.updated_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="reason_for_deviation">reason_for_deviation: </label>
+      <input class="form-control col-sm-10"
+         id="reason_for_deviation" type="text"
+         name="reason_for_deviation" value="{{ object.reason_for_deviation }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="sign_off">sign_off: </label>
+      <input class="form-control col-sm-10"
+         id="sign_off" type="text"
+         name="sign_off" value="{{ object.sign_off }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="attach_photo_of_cmm">attach_photo_of_cmm: </label>
+      <input class="form-control col-sm-10"
+         id="attach_photo_of_cmm" type="file"
+         name="attach_photo_of_cmm" value="{{ object.attach_photo_of_cmm }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

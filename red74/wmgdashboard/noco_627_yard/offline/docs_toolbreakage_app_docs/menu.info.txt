@@ -1,0 +1,21 @@
+
+=================================================
+
+toolbreakage app
+
+nocodb
+2022-11-25
+
+
+http://10.4.71.231:9080/dashboard/#/projects
+
+
+table with data.
+http://10.4.71.231:9080/dashboard/#/nc/tooldevia624_syz0?name=tdbr_info&dbalias=&type=table&view=vw_tqtwz0jm8oq3un
+
+form link for  data entry
+http://10.4.71.231:9080/dashboard/#/nc/base/406f48b2-404f-4ec0-8721-8ac7c1389333
+
+
+=================================================
+

@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_PartNumber_list' %}">
+    PartNumber Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="part_name">part_name: </label>
+      <input class="form-control col-sm-10"
+         id="part_name" type="text"
+         name="part_name" value="{{ object.part_name }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="part_number">part_number: </label>
+      <input class="form-control col-sm-10"
+         id="part_number" type="text"
+         name="part_number" value="{{ object.part_number }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="updated_at">updated_at: </label>
+      <input class="form-control col-sm-10"
+         id="updated_at" type="datetime-local"
+         name="updated_at" value="{{ object.updated_at }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="created_at">created_at: </label>
+      <input class="form-control col-sm-10"
+         id="created_at" type="datetime-local"
+         name="created_at" value="{{ object.created_at }}" disabled>
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

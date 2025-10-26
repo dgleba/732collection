@@ -1,0 +1,22 @@
+# atheos ide
+
+version: "3"
+
+services:
+
+  # http://192.168.88.69:8081/
+  atheos:
+    #restart: always
+    build: .
+    #image: "illasoft/illa-builder:v3.5.3"
+    ports:
+      - "8081:80"
+    volumes:
+      - ./aa:/aa
+
+# volumes:
+  # illa_database:
+  # illa_drive:
+
+# admin  a  project=aa  folder /
+

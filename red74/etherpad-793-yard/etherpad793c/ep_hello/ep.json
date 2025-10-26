@@ -1,0 +1,9 @@
+{
+  "name": "ep_hello",
+  "hooks": {
+    "postToolbarInit": "ep_hello/hello.addButton"
+  },
+  "client_hooks": {
+    "postAceInit": "ep_hello/hello.onLoad"
+  }
+}

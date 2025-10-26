@@ -1,0 +1,50 @@
+
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-01-11[Jan-Sat]21-09PM 
+
+
+https://www.perplexity.ai/search/mosquitto-mqtt-docker-compose-NPIZvKdETjqe75Ag7h760Q
+
+
+mkdir config
+echo "listener 1883
+allow_anonymous false
+password_file /mosquitto/config/mosquitto.passwd" > config/mosquitto.conf
+
+
+touch config/mosquitto.passwd
+docker run --rm -v $(pwd)/config:/mosquitto/config eclipse-mosquitto mosquitto_passwd -b /mosquitto/config/mosquitto.passwd mquser 2430
+
+
+=================================================
+
+docker run --rm -v $(pwd)/config:/mosquitto/config eclipse-mosquitto mosquitto_passwd -b /mosquitto/config/mosquitto.passwd mquser 2430
+Unable to find image 'eclipse-mosquitto:latest' locally
+latest: Pulling from library/eclipse-mosquitto
+66a3d608f3fa: Pull complete
+03fe382c8a5e: Pull complete
+4c8fa0745f9b: Pull complete
+Digest: sha256:deae95623b9d5c6ca5e264380629db53b992106d436b56d42f7c8df46b41b96f
+Status: Downloaded newer image for eclipse-mosquitto:latest
+
+Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. 
+Future versions will refuse to load this file.
+
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+Warning: File /mosquitto/config/mosquitto.passwd owner is not root. 
+Future versions will refuse to load this file.To fix this, use `chown root /mosquitto/config/mosquitto.passwd`.
+Warning: File /mosquitto/config/mosquitto.passwd group is not root. 
+Future versions will refuse to load this file.
+
+(base) albe@del-7410:/ap/dkr/mosquitto-yard$
+
+
+=================================================
+
+
+
+

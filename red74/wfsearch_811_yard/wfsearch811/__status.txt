@@ -1,0 +1,27 @@
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-10-20[Oct-Mon]21-00PM 
+
+
+I have this legacy db.
+in django, write models and admin.py
+
+# Create SQLite DB
+conn = sqlite3.connect("./sqlitedb/wfsearch-files.db")
+cursor = conn.cursor()
+
+# Create table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS files (
+    path TEXT,
+    filename TEXT,
+    size INTEGER,
+    modified_ts TEXT
+)
+""")
+
+------------
+

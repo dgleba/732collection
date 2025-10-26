@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block extrahead %}
+<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+<script>
+  htmx.config.useTemplateFragments = true;
+</script>
+{% endblock %}
+{% block allcontent %}
+<div id="content" class="container">
+  <h2>Home: <a href="{% url 'index' %}">Project1233</a></h2>
+  <div class="container">
+    <div class="row">
+    
+      <div class="col col-lg-6">
+        <h5>Add A ToolsShopFloor</h5>
+        <div hx-get="{% url 'toolbreakapp624c_ToolsShopFloor_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>ToolsShopFloor List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_ToolsShopFloor_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A CompactIssue</h5>
+        <div hx-get="{% url 'toolbreakapp624c_CompactIssue_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>CompactIssue List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_CompactIssue_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PartNumber</h5>
+        <div hx-get="{% url 'toolbreakapp624c_PartNumber_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PartNumber List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_PartNumber_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Tool</h5>
+        <div hx-get="{% url 'toolbreakapp624c_Tool_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Tool List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_Tool_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Supervisor</h5>
+        <div hx-get="{% url 'toolbreakapp624c_Supervisor_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Supervisor List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_Supervisor_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PressSelect</h5>
+        <div hx-get="{% url 'toolbreakapp624c_PressSelect_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PressSelect List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_PressSelect_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PressInfo</h5>
+        <div hx-get="{% url 'toolbreakapp624c_PressInfo_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PressInfo List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_PressInfo_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Deviation</h5>
+        <div hx-get="{% url 'toolbreakapp624c_Deviation_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Deviation List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_Deviation_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Engineering</h5>
+        <div hx-get="{% url 'toolbreakapp624c_Engineering_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Engineering List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_Engineering_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A ToolRoom</h5>
+        <div hx-get="{% url 'toolbreakapp624c_ToolRoom_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>ToolRoom List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_ToolRoom_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A ToolBreakageReport</h5>
+        <div hx-get="{% url 'toolbreakapp624c_ToolBreakageReport_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>ToolBreakageReport List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_ToolBreakageReport_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Help</h5>
+        <div hx-get="{% url 'toolbreakapp624c_Help_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Help List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_Help_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A CoinIssue</h5>
+        <div hx-get="{% url 'toolbreakapp624c_CoinIssue_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>CoinIssue List</h4>
+        <div hx-get="{% url 'toolbreakapp624c_CoinIssue_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PostedFromTbl</h5>
+        <div hx-get="{% url 'blogappm2m_PostedFromTbl_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PostedFromTbl List</h4>
+        <div hx-get="{% url 'blogappm2m_PostedFromTbl_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A TagTbl</h5>
+        <div hx-get="{% url 'blogappm2m_TagTbl_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>TagTbl List</h4>
+        <div hx-get="{% url 'blogappm2m_TagTbl_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PostTbl</h5>
+        <div hx-get="{% url 'blogappm2m_PostTbl_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PostTbl List</h4>
+        <div hx-get="{% url 'blogappm2m_PostTbl_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+2025-07-18 22:08:55,180 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-18 22:08:55,182 INFO supervisord started with pid 14
+2025-07-18 22:08:56,184 INFO spawned: 'loop-script' with pid 15
+2025-07-18 22:08:57,199 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-18 22:11:48,519 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-18 22:11:48,521 INFO supervisord started with pid 14
+2025-07-18 22:11:49,525 INFO spawned: 'loop-script' with pid 15
+2025-07-18 22:11:50,566 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-18 22:12:52,836 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-18 22:12:52,837 INFO supervisord started with pid 14
+2025-07-18 22:12:53,843 INFO spawned: 'loop-script' with pid 15
+2025-07-18 22:12:54,861 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-19 07:34:20,185 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 07:34:20,187 INFO supervisord started with pid 14
+2025-07-19 07:34:21,193 INFO spawned: 'loop-script' with pid 15
+2025-07-19 07:34:22,238 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-19 23:05:53,376 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 23:05:53,378 INFO supervisord started with pid 14
+2025-07-19 23:05:54,383 INFO spawned: 'loop-script' with pid 15
+2025-07-19 23:05:55,428 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-19 23:06:38,576 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 23:06:38,578 INFO supervisord started with pid 14
+2025-07-19 23:06:39,583 INFO spawned: 'loop-script' with pid 15
+2025-07-19 23:06:40,601 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-19 23:13:10,824 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 23:13:10,825 INFO supervisord started with pid 14
+2025-07-19 23:13:11,830 INFO spawned: 'loop-script' with pid 15
+2025-07-19 23:13:12,849 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-19 23:23:24,496 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 23:23:24,498 INFO supervisord started with pid 14
+2025-07-19 23:23:25,501 INFO spawned: 'loop-script' with pid 15
+2025-07-19 23:23:25,538 WARN exited: loop-script (exit status 1; not expected)
+2025-07-19 23:23:26,539 INFO spawned: 'loop-script' with pid 16
+2025-07-19 23:23:26,574 WARN exited: loop-script (exit status 1; not expected)
+2025-07-19 23:23:28,577 INFO spawned: 'loop-script' with pid 17
+2025-07-19 23:23:28,609 WARN exited: loop-script (exit status 1; not expected)
+2025-07-19 23:23:31,613 INFO spawned: 'loop-script' with pid 18
+2025-07-19 23:23:31,646 WARN exited: loop-script (exit status 1; not expected)
+2025-07-19 23:23:32,647 INFO gave up: loop-script entered FATAL state, too many start retries too quickly
+2025-07-19 23:25:03,027 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-07-19 23:25:03,029 INFO supervisord started with pid 14
+2025-07-19 23:25:04,032 INFO spawned: 'loop-script' with pid 15
+2025-07-19 23:25:05,123 INFO success: loop-script entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

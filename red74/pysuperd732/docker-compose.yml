@@ -1,0 +1,35 @@
+#
+services:
+
+  pysupd:
+    hostname: pysupd.local
+    # http://10.4.71.231:16471/admin
+    build:
+      context: .
+      dockerfile: ./code/Dockerfile-ubu
+    working_dir: /code
+    command: bash /code/start_here.sh  
+    # command: ["supervisord", "-c", "supervisord.conf"] 
+    healthcheck:
+      test: ["CMD", "python", "healthcheck.py"]
+      interval: 30s
+      timeout: 10s
+      retries: 8    
+    volumes:
+      - ./code:/code
+      - ./log:/log
+      - /etc/localtime:/etc/localtime:ro
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    # user: "0:33"
+    # command: python manage.py runserver 0.0.0.0:8000 --noreload 
+    env_file:
+      - .env    
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "10"
+
+

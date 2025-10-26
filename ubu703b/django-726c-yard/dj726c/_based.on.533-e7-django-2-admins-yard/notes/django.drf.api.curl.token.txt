@@ -1,0 +1,140 @@
+
+swagger ui
+
+http://192.168.88.60:6461/blogapp/api/v1/Post/
+
+
+
+=================================================
+
+token..
+
+token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5NDc1NzkwLCJqdGkiOiI5MWQwZDI3OGYyY2E0YzNjOWMyMzMxNTNjNGE3MWJhNiIsInVzZXJfaWQiOjR9.upsjs8lciqplfgVaW6A6qqPRomU54wDf7c-qd5fOd40"
+
+
+albe@vamp398:/srv/dkr/532dkrcollection$ http post http://192.168.88.60:6461/api/token/ username=rr password=David1212@gmail.com
+HTTP/1.1 200 OK
+{
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5NDc1NzkwLCJqdGkiOiI5MWQwZDI3OGYyY2E0YzNjOWMyMzMxNTNjNGE3MWJhNiIsInVzZXJfaWQiOjR9.upsjs8lciqplfgVaW6A6qqPRomU54wDf7c-qd5fOd40",
+    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYwOTU1ODU5MCwianRpIjoiN2RiZmUxZDU3Y2I2NDk0ODhjYWMyYjEwZDgxZjY3ODYiLCJ1c2VyX2lkIjo0fQ.WNLT7A0xz6MCFcQrQuXMFfArjhB4dAkUo8lvymUoIhA"
+}
+
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+
+=================================================
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-12-30[Dec-Wed]20-13PM 
+
+
+albe@vamp398:/srv/dkr/532dkrcollection$ curl  -i -H "Content-Type: application/json"  \
+>       -X POST -D ./curldump -i\
+>       -d '{"username":"cc","password":"aa"}' \
+>       http://192.168.88.60:6461/api/token/
+HTTP/1.1 200 OK
+Date: Thu, 31 Dec 2020 01:12:39 GMT
+Server: WSGIServer/0.2 CPython/3.7.9
+Content-Type: application/json
+Vary: Accept
+Allow: POST, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 438
+
+{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYwOTQ2MzU1OSwianRpIjoiOTlkNTgyNmRkOTA0NGQ0ZmI5M2E2NDFiMWQwYjQzYmIiLCJ1c2VyX2lkIjozfQ.jYWAMuYGEKRra8-YRHGdPQJeVZqLz1Y6VrNNMbzSCuI",
+"access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc3NDU5LCJqdGkiOiJjNzBhNmJiMWVhYTk0MjRhYjA3MTY0NjIyNDljZjU0NSIsInVzZXJfaWQiOjN9.8ppZr9szq7wagckd53DCesqBnlmgW1Yutfx5POVNL5A"}
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+
+
+token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc3NDU5LCJqdGkiOiJjNzBhNmJiMWVhYTk0MjRhYjA3MTY0NjIyNDljZjU0NSIsInVzZXJfaWQiOjN9.8ppZr9szq7wagckd53DCesqBnlmgW1Yutfx5POVNL5A"
+
+
+=================================================
+
+
+albe@vamp398:/srv/dkr/532dkrcollection$ http post http://192.168.88.60:6461/api/token/ username=cc password=aa
+HTTP/1.1 200 OK
+Allow: POST, OPTIONS
+Content-Length: 438
+Content-Type: application/json
+Date: Thu, 31 Dec 2020 01:24:45 GMT
+Server: WSGIServer/0.2 CPython/3.7.9
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc4MTg1LCJqdGkiOiI4MWI4MWJmMWIwYzA0MDMwOGVmNzdlMzg4YmI3YTg1NiIsInVzZXJfaWQiOjN9.akLtNeXp3PE2p0bEwu8PGuBtGLXEksdeuzblMRqFITc",
+    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYwOTQ2NDI4NSwianRpIjoiODQzOTQ0YzRmMGYxNGY4MDliZjBlNTI0NDMzY2EyMDciLCJ1c2VyX2lkIjozfQ.oLQmzOHQ23GqZO11S-2jBNUYKrt7hvcrDZqJQGkBZ0U"
+}
+
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+
+
+=================================================
+
+token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc4MTg1LCJqdGkiOiI4MWI4MWJmMWIwYzA0MDMwOGVmNzdlMzg4YmI3YTg1NiIsInVzZXJfaWQiOjN9.akLtNeXp3PE2p0bEwu8PGuBtGLXEksdeuzblMRqFITc"
+
+http http://192.168.88.60:6461/blogapp/api/v1/Post/ "Authorization: Bearer $token"
+
+
+works..
+
+albe@vamp398:/srv/dkr/532dkrcollection$ token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc4MTg1LCJqdGkiOiI4MWI4MWJmMWIwYzA0MDMwOGVmNzdlMzg4YmI3YTg1NiIsInVzZXJfaWQiOjN9.akLtNeXp3PE2p0bEwu8PGuBtGLXEksdeuzblMRqFITc"
+albe@vamp398:/srv/dkr/532dkrcollection$ http http://192.168.88.60:6461/blogapp/api/v1/Post/ "Authorization: Bearer $token"
+HTTP/1.1 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 722
+Content-Type: application/json
+Date: Thu, 31 Dec 2020 01:25:40 GMT
+Server: WSGIServer/0.2 CPython/3.7.9
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+[
+    {
+        "body": "wewe",
+        "created": "2020-12-13T14:29:21.014671Z",
+        "last_updated": "2020-12-13T14:29:21.014774Z",
+        "title": "sleep.promise.only"
+    },
+...
+    {
+        "body": "wewe2",
+        "created": "2020-12-30T20:30:01.011999Z",
+        "last_updated": "2020-12-30T20:30:01.012039Z",
+        "title": "sleep.promise.only 03:29PM"
+    }
+]
+albe@vamp398:/srv/dkr/532dkrcollection$
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  update
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-12-30[Dec-Wed]20-37PM 
+
+works..
+
+http --json PUT http://192.168.88.60:6461/blogapp/api/v1/Post/4/ code="print(456)" "Authorization: Bearer $token" \
+     "body"="wewe2-08:39PM"  title='4 5 as rr'  
+
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-12-30[Dec-Wed]20-13PM 
+
+
+http post http://192.168.88.60:6461/api/token/ username=rr password=David1212@gmail.com
+

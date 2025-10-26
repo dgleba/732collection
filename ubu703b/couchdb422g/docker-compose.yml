@@ -1,0 +1,33 @@
+version: "3"
+
+# http://a.davidg.ml:46272
+# http://c.davidg.ml:46272/_utils/
+# http://couch429c.david462.tk:46272/_utils/
+# http://192.168.88.69:15984/_utils/
+
+# networks:
+  # sister:
+    # name: sister
+      # external:true
+
+volumes:
+  couchdata:
+  couchetc:
+
+services:
+  couchdb:
+    image: couchdb:3.3
+    volumes:
+      # # folder for exported data, etc.
+      # - ../data/home422couch/:/home
+      # - ../sysdata/couch422g/couchdb-settings/:/opt/couchdb/etc/local.d
+      #- ../sysdata/couch422g/couch-data/:/opt/couchdb/data
+      - couchdata:/opt/couchdb/data
+      - couchetc:/opt/couchdb/etc
+    ports:
+      - "15984:5984"
+    env_file: .env
+    restart: always
+    # networks:
+    #   - sister
+

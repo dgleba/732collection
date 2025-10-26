@@ -1,0 +1,68 @@
+
+Using django built-in permissions:
+==
+
+1.
+
+http://192.168.88.60:6461/admin/auth/group/
+
+SELECT *, rowid FROM "auth_group" LIMIT 50 (0.000 s) Edit
+```
+ Modify	id	name
+ edit	1	staff
+```
+
+2.
+
+http://192.168.88.60:6461/admin/auth/group/2/change/
+
+for staff:
+
+Chosen permissions 
+
+blogapp | post | Can change post.  
+blogapp | post | Can add post.  
+blogapp | post | Can view post
+
+
+3.
+
+staff user:
+
+- is Staff
+- not Superuser
+- is in group: staff
+
+4.
+
+Front html app:
+
+http://192.168.88.60:6461/blogapp/blogapp/Post/update/4/
+
+Simple example here:
+
+Regular user cannot edit post 
+
+- is not staff, so cannot django administration.
+
+- views.py update view: uses PermissionRequiredMixin, so it needs permission.  staff can 'blogapp.change_post'. Regular user cannot.
+
+
+        ```	
+		class PostUpdateView(LoginRequiredMixin,PermissionRequiredMixin,generic.UpdateView):
+			permission_required = ('blogapp.change_post',  )
+        ```
+
+5. 
+
+Typical usage:
+
+-	Regular user:
+-	Say Post is a main table for the app, so regular users can view,create,edit.
+-	Country table is a lookup table. Regular users can view only. This is so they can see countries in a select box for example.
+
+    ```	
+	Staff user:
+	can create,edit Country.
+    ```	
+	

@@ -1,0 +1,21 @@
+services:
+  perco:
+    hostname: pysuperd732.local
+    build:
+      context: .
+      dockerfile: ./code/Dockerfile
+    env_file:
+      - .env    
+    # entrypoint: bash /code/production-gfx-cron.sh  
+    command: bash /code/start_here.sh  
+    volumes:
+      - ./code:/code
+      - ./log:/log
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "10"
+    restart: always
+

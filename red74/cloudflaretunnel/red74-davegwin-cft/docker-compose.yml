@@ -1,0 +1,24 @@
+
+networks:
+  sister2:
+    name: sister9
+    external: true
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+services:
+
+  # Cloudflare Tunnel Container
+  cftunnel:
+    image: cloudflare/cloudflared
+    command: tunnel  --no-autoupdate  run  --token ${TUNNEL_TOKEN}
+    # volumes:
+    #   - ./cloudflared:/etc/cloudflared
+    restart: unless-stopped
+    environment:
+    #   TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
+      - TZ=America/New_York # Adjust to your timezone
+    user:  root
+    networks:
+      #- sister9
+      - cfnet_red74dgwin

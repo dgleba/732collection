@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="m-2"><h4>blogappm2m</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'blogappm2m_PostedFromTbl_list' %}">PostedFromTbl Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'blogappm2m_TagTbl_list' %}">TagTbl Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'blogappm2m_PostTbl_list' %}">PostTbl Listing</a></div>
+<div class='container'>
+<div class='card'>
+<div class='card-body'>
+<div><a href="{% url 'htmx' %}">HTMX UI</a></div>
+</div>
+</div>
+</div>
+
+{% endblock %}

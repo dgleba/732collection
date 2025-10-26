@@ -1,0 +1,58 @@
+
+networks:
+  sister2:
+    name: sister2
+    # external: true
+  cfnet1:
+    name: cfnet1
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+volumes:
+  mysqldatastore:
+
+services:
+
+  djdev:
+    # http://10.4.71.231:16461/admin
+    # http://192.168.88.60:6461/admin2323
+    # http://10.4.1.231:6461/
+    # http://192.168.88.60:6461/
+    # djdev:8000
+    build: ./docker
+    restart: on-failure
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    # user: "0:33"
+    ports:
+      - "16461:8000"
+    env_file:
+      # .env.dev sets debug=True
+      # - ./.env.dev
+      - ./.env
+    # entrypoint: sh /code/entrypoint.sh
+    # entrypoint: /code/entrypoint.sh
+    #
+    #  to avoid running apscheduler twice use --noreload   https://stackoverflow.com/questions/33814615/how-to-avoid-appconfig-ready-method-running-twice-in-django
+    command: python manage.py runserver 0.0.0.0:8000 --noreload 
+    #
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./djangosite:/code
+      # - ../data/djangosite:/data
+      # use pip cache to reduce startup time..
+      # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+      - ~/sysdata/python-dot-cache/pip/:/root/.cache/pip
+    # environment:
+      # - VIRTUAL_HOST=devdj.198.144.183.160.nip.io
+      # - VIRTUAL_PORT=8000
+      # - LETSENCRYPT_HOST=devdj.198.144.183.160.nip.io
+      # - xLETSENCRYPT_EMAIL=dgleba@gmail.com
+    # depends_on:
+      # - dbm
+    networks:
+      #- sister2
+      - cfnet1
+      - cfnet_red74dgwin
+

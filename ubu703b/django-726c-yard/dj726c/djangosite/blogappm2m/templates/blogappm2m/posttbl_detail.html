@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'blogappm2m_PostTbl_list' %}">
+    PostTbl Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>created_at</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>updated_at</td><td>{{ object.updated_at }}</td></tr>
+    <tr><td>body</td><td>{{ object.body }}</td></tr>
+    <tr><td>title</td><td>{{ object.title }}</td></tr>
+    <tr><td>pic</td><td>{{ object.pic }}</td></tr>
+    <tr><td>postedfrom</td><td>{{ object.postedfrom }}</td></tr>
+    <tr><td>tags</td><td>{{ object.tags }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

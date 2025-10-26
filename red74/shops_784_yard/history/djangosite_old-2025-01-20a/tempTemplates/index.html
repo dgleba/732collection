@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="m-2"><h4>menuapp</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'menuapp_Menu0_list' %}">Menu0 Listing</a></div>
+<div class="m-2"><h4>blogapp</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'blogapp_Post_list' %}">Post Listing</a></div>
+<div class="m-2"><h4>menu694app</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'menu94app_MenuItem_list' %}">Menu94 Listing</a></div>
+
+<!-- for blogapp-chatgpt 
+<div class="m-2"><a class="btn btn-light" href="{#  % url 'blogapp:post_list' %}">Post Listing</a></div> -->
+
+
+{% endblock %}

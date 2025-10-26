@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AcePad</title>
+  <style>
+    #editor {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
+</head>
+<body>
+  <div id="editor">function hello() { console.log("Hello from Ace!"); }</div>
+  <script>
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
+  </script>
+</body>
+</html>

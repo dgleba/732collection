@@ -1,0 +1,11 @@
+#!/bin/bash
+
+bse=../sysdata/couch422g
+
+sudo chmod -R 777 $bse 
+# /opt/couchdb/etc/local.d/docker.ini
+# mkdir -p ../sysdata/couch422g
+mkdir -p $bse/etc/local.d/
+touch    $bse/etc/local.d/docker.ini
+
+

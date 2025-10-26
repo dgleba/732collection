@@ -1,0 +1,79 @@
+
+
+
+status:  
+
+works.
+
+
+-2 or more admin sites
+-overide templates
+-css to hide breadcrumbs and adjust position of add button.
+
+I think everything on the admin can be overridden. So why not just use the admin.
+
+2021-09-26
+
+
+=================================================
+
+
+goal:
+
+customize layout of forms on second admin
+
+=================================================
+
+1.
+
+works:
+https://dev.to/rammyblog/how-to-create-multiple-independent-admin-sites-in-django-1klh
+
+
+
+
+=================================================
+
+
+3.
+
+django admin override add form template
+
+https://stackoverflow.com/questions/10040442/override-a-form-in-django-admin
+https://stackoverflow.com/questions/55385559/django-admin-overriding-form-for-only-add-object-view
+
+https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#overriding-admin-templates
+
+
+works.
+
+
+
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================
+
+
+2.
+
+noworky. but interesting.
+
+
+
+https://hakibenita.medium.com/how-to-add-custom-action-buttons-to-django-admin-8d266f5b0d41
+https://hakibenita.com/how-to-add-custom-action-buttons-to-django-admin
+
+
+sftp://192.168.88.60/srv/dkr/532dkrcollection/533-e6-django-2adminbutton-yard/533e6-dkrs-dj-admin/djangosite/blogapp/admin%20%289.25.2021%205.14.35%20PM%29.py
+
+error....
+ File "/code/blogapp/admin.py", line 71, in get_urls
+djdev_1     |     url(
+djdev_1     | NameError: name 'url' is not defined
+
+
+
+
+=================================================

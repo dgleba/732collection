@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!--     ver -- see below..
+    ref: topnav-no-bs.htm  - no bootstrap
+    https://www.w3schools.com/howto/howto_js_topnav_responsive.asp   
+-->
+
+<head>
+  <title>D.Gleba [gotodaveg.com]</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css01.css">
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div class="top1nav" id="topnv01">
+    <a href="/" class="active">Home</a>
+    <a href="https://google.com" target="blank">ggl..</a>
+    <a href="/">Two</a>
+    <a href="/">Three</a>
+    <a href="javascript:void(0);" class="icon" onclick="toggleDropmenu01()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+  <div class="alert alert-primary" role="alert">
+    <span style="font-size:24px">David Gleba</span> - https://gotodaveg.com
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <a href="https://sites.google.com/" target="blank">House </a>
+    </div>
+  </div>
+
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <hr />
+
+
+  <script>
+  const version=7;
+    function toggleDropmenu01() {
+      var x = document.getElementById("topnv01");
+      if (x.className === "top1nav") {
+        x.className += " responsive";
+      } else {
+        x.className = "top1nav";
+      }
+    }
+  </script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS
+      David Gleba removed. David Gleba. 2020-04-13_Mon_12.47-PM. -->
+
+</body>
+
+</html>

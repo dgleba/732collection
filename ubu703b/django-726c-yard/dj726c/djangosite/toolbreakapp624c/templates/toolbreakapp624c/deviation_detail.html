@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'toolbreakapp624c_Deviation_list' %}">
+    Deviation Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>created_at</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>attach_photo_of_rid</td><td>{{ object.attach_photo_of_rid }}</td></tr>
+    <tr><td>attempts_to_fix</td><td>{{ object.attempts_to_fix }}</td></tr>
+    <tr><td>updated_at</td><td>{{ object.updated_at }}</td></tr>
+    <tr><td>reason_for_deviation</td><td>{{ object.reason_for_deviation }}</td></tr>
+    <tr><td>sign_off</td><td>{{ object.sign_off }}</td></tr>
+    <tr><td>attach_photo_of_cmm</td><td>{{ object.attach_photo_of_cmm }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

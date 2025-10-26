@@ -1,0 +1,159 @@
+version: "3.6"
+
+networks:
+  sister573:
+    name: sister573
+
+volumes:
+  dbdatastore:
+
+services:
+  djdev:
+    # http://10.4.71.231:18461/
+    # http://10.5.1.129:18461/
+    # http://10.5.1.129:18461/admin/
+    # http://192.168.88.60:6461/
+    # http://192.168.88.60:6461/admin
+    build: ./docker
+    restart: on-failure
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    # problem is that they are read only for group www-data. Use make perm to make them writable.
+    # user: "0:33"
+    env_file:
+      # .env.dev sets debug=True
+      # - ./.env.dev
+      - ./.env
+    # entrypoint: sh /code/entrypoint.sh
+    # entrypoint: /code/entrypoint.sh
+    #
+    #  to avoid running apscheduler twice use --noreload   https://stackoverflow.com/questions/33814615/how-to-avoid-appconfig-ready-method-running-twice-in-django
+    command: python manage.py runserver 0.0.0.0:8000 --noreload 
+    #
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ./django-markdown-editor/martor_demo:/code
+      - ./djangosite:/code
+      # - ../data/djangosite:/data
+      # use pip cache to reduce startup time..
+      # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+      - ~/sysdata/python-dot-cache/pip/:/root/.cache/pip
+    ports:
+      - "18461:8000"
+    networks:
+      - sister573
+    # environment:
+      # - VIRTUAL_HOST=devdj.198.144.183.160.nip.io
+      # - VIRTUAL_PORT=8000
+      # - LETSENCRYPT_HOST=devdj.198.144.183.160.nip.io
+      # - xLETSENCRYPT_EMAIL=dgleba@gmail.com
+    # depends_on:
+      # - dbp
+
+  # adminerd:
+    # # http://192.168.88.60:14123/
+    # # http://10.5.1.129:14123/
+    # # image: adminer:4.7
+    # # image: dockette/adminer:full
+    # image: dgleba/adminer-sqlite:one
+    # # build: ./adminer-sqlite
+    # restart: always
+    # ports:
+      # - 14123:80
+      # # 8080 for regular adminer, 80 for dockette
+    # volumes:
+      # - ./djangosite3/db.sqlite3:/db.sq3
+      # - ./adminer-sqlite:/var/www/html
+    # environment:
+      # - ADMINER_DEFAULT_SERVER=srvr
+      # - DB_PATH=/db.sq3
+      # - DB_USER=user
+      # - DB_PASS=apass
+      # # - ADMINER_PLUGINS='tables-filter'
+
+
+# for redis, see django-select2 example.. https://github.com/codingjoe/django-select2/tree/master/example
+      # and  https://github.com/wildfish/wildfish-django-starter/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/dev-docker-compose.yml.default
+
+  # dbp:
+    # image: "postgres:15-alpine"
+    # restart: unless-stopped
+    # env_file:
+      # - ./.env
+    # ports:
+      # - "18432:5432"
+    # volumes:
+      # - dbdatastore:/var/lib/postgresql/data
+      # # - ../sysdata/postgres/data:/var/lib/postgresql/data
+      # # networks:
+        # # - net574
+
+
+  # dbm:
+    # image: mysql:8.0.23
+    # restart: always
+    # env_file:
+      # - .env
+    # command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    # ports:
+      # - "27608:3306"
+      # #- "6609:33060"
+    # volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # # folder for mysql's internal data files. permanent store on local folder.. 
+      # - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # # more easily destroyed docker named volume. 
+      # # - mysqldatastore:/var/lib/mysql/  
+      # - ./script:/script
+      # # folders for imported or exported data, etc.
+      # - ../sysdata/in-out/:/in-out
+      # - ../data/crib/:/crib
+      # - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    # # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    # logging:
+      # driver: "json-file"
+      # options:
+        # max-size: "100k"
+        # max-file: "5"
+    # # networks:
+    # #   - sister2
+    # # networks:
+      # # - sister
+
+
+  # adminer:
+    # # http://10.5.1.129:18433/  use dbm or ip:port for server while logging in.
+    # # http://192.168.88.60:6607/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    # # http://10.4.1.232:6607/  use dbm or ip:port for server while logging in.
+    # # http://10.4.71.231:36608/  use dbm or ip:port for server while logging in.
+    # image: adminer:4.7
+    # volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # # - ../turbotodorail7/apprails/db:/crib2
+    # restart: always
+    # env_file:
+      # - .env
+    # ports:
+      # - 18433:8080
+    # networks:
+    #   - sister2
+    # networks:
+      # - sister3
+      
+      
+  # htmvue:
+    # # serve vue code
+    # # http://10.4.71.231:9280/  
+    # image: "nginx:1.19-alpine"
+    # restart: on-failure
+    # # environment:
+    # # env_file:
+    # #   - ./.env
+    # #   - NODE_ENV=production
+    # # user: "0:33"
+    # # working_dir: /usr/share/nginx/html
+    # volumes:
+      # - ./htmvue/conf:/etc/nginx/conf.d
+      # - ./htmvue/htm:/usr/share/nginx/html
+    # ports:
+      # - "18462:80"

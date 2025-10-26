@@ -1,0 +1,10 @@
+#   rev  c23    /proc/1/fd/1 goes to docker log 
+SHELL=/bin/bash
+BASH_ENV=/root/project_env.sh
+#
+# *  *  *  *  *  bash /code/testcr21.sh >> /proc/1/fd/1  2>&1
+*  *  *  *  *  bash /code/testcr22.sh >> /proc/1/fd/1  2>&1
+#
+#
+# Not sure this is needed... This extra line makes it a valid cron
+
