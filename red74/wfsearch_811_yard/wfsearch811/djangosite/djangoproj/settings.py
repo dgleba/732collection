@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,4 +153,71 @@ CHANNEL_LAYERS = {
         # "BACKEND": "channels_redis.core.RedisChannelLayer",
         # "CONFIG": {"hosts": [("127.0.0.1", 6379)],},
     },
+}
+
+
+
+# --- Optional JAZZMIN_SETTINGS (Highly Recommended) ---
+
+JAZZMIN_SETTINGS = {
+    # Title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Blog Admin",
+
+    # Title on the brand (19 chars max)
+    "site_header": "My Blog",
+
+    # Welcome sign on the login page
+    "welcome_sign": "Welcome to the Blog Administration",
+
+    # Custom icons for the side menu (optional)
+    "icons": {
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "blogapp.article": "fas fa-newspaper", # Use your app name and model name in lowercase
+    },
+    
+    # Links to put in the top menu
+    "topmenu_links": [
+
+        # Url that opens in a new window/tab (optional)
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        
+        # model admin to link to (optional non-hierarchical link)
+        {"model": "blogapp.Article"},
+    ],
+
+    # The UI elements to control the look and feel which are enabled by default
+    "changeform_format": "horizontal_tabs", # e.g. "horizontal_tabs", "vertical_tabs", "collapsible", "single"
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small": False,
+    "body_small": False,
+    "brand_small": False,
+    "brand_colour": False,
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-info",
+    "sidebar_nav_small": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "united", # You can choose from many themes like 'solar', 'cerulean', 'darkly', etc.
+    "dark_mode_vars": {
+        "success": "#00bc8c",
+    },
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger"
+    }
 }

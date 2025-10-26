@@ -1,4 +1,17 @@
 
+
+------------
+
+2025-10-26
+
+cron runs to update sqlite db
+
+see /ap/dkr/732collection/red74/wfsearch_811_yard/wfsearch811/djangosite/wfsearch.py
+
+
+------------
+
+
 #################################################################
 #@  
 #@  

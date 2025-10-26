@@ -3,6 +3,11 @@
 
 ------------
 
+"C:\asink\koofry\aksink2\code25\django-726-yard_2023t-template.zip"
+
+
+------------
+
 
 
 _based.on.533-e7-django-2-admins-yard
