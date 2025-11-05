@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FileBag</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        nav { margin-bottom: 1em; }
+        .CodeMirror { border: 1px solid #ccc; height: 400px; }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <a href="{% url 'filebag:list' %}">File List</a> |
+        <a href="{% url 'filebag:create' %}">New File</a> |
+        <a href="{% url 'admin:index' %}">Admin</a>
+    </nav>
+    <h1>{% block title %}{% endblock %}</h1>
+    {% block content %}{% endblock %}
+</body>
+</html>

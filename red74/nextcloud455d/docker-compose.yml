@@ -1,4 +1,4 @@
-#
+
 # /am/cruc4tb/koofry/volums/seafileall/sflarge/sysdata/bakup/ubu398e-redek446code/srv/dkr/422dkrcol/nextcloud455
 
 services:
@@ -15,21 +15,10 @@ services:
       - nc_data:/var/www/html
       - ./customapps:/var/www/html/custom_apps 
       # - ../datasys/nextcl-1500/:/var/www/html
-    # networks:
-      # - redisnet
-      # - dbnet
+    networks:
+      - default
     # environment:
-        # - VIRTUAL_HOST=nc1500-104-193-61-58.nip.io
-        # - LETSENCRYPT_HOST=nc1500-104-193-61-58.nip.io
-        # - VIRTUAL_PORT=80
         # - LETSENCRYPT_EMAIL=dgleba@gmail.com
-        # https://github.com/nextcloud/docker/issues/593 mysql_pass is not in docs for example.
-        # labels:
-        #   # caddy-gen info..
-        #   - "virtual.host=nc.dg24.tk nc-108-168-7-24.nip.io"
-        #   - "virtual.port=80"
-        #   - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
-        #   - "virtual.websockets" # enable websocket passthrough
     logging:
       driver: "json-file"
       options:
@@ -53,15 +42,14 @@ services:
       options:
         max-size: "1m"
         max-file: "50"
-    # networks:
-      # - sister
-      # - dbnet
+    networks:
+      - default
 
   redis:
     image: redis:alpine
     restart: always
-    # networks:
-      # - redisnet
+    networks:
+      - default
     expose:
       - 6379
       
@@ -71,21 +59,17 @@ services:
     restart: always
     ports:
       - 8089:8080
-    # networks:
-      # - sister
-    #   labels:
-    #     # caddy-gen info..  t.dg24.tk t.david23.tk
-    #     - "virtual.host=admr.dg24.tk"
-    #     - "virtual.port=8080"
-    #     - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
-    #     - "virtual.websockets" # enable websocket passthrough
+    networks:
+      - default
 
 volumes:
   db_data:
   nc_data:
+
 networks:
-  dbnet:
-  redisnet:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+      external: true
 
 # networks:
   # sister:

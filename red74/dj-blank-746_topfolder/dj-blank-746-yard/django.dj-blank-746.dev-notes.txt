@@ -1,0 +1,89 @@
+
+=================================================
+
+
+https://github.com/dgleba/620dkrcollection/blob/main/django-726-yard/dj726/README.md
+
+C:\prg\python128\python.exe -m pip list
+
+C:\prg\python128\python.exe -m pip install django==4.2
+
+d:
+mkdir c:\code\pyprj\dj-blank-746
+cd    c:\code\pyprj\dj-blank-746
+
+
+mkdir djangosite
+cd djangosite
+  ::# creates djangoproject folder within djangosite folder..
+  C:\prg\python128\Scripts\django-admin.exe  startproject djangoproject .
+  
+  git init
+  git add -A
+  git commit -am "initial"
+
+
+ C:\prg\python128\python.exe  manage.py startapp blogapp
+ 
+ :: C:\prg\python128\python.exe  manage.py startapp tagtestapp
+ 
+
+ C:\prg\python128\python.exe  manage.py makemigrations blogapp
+ :: C:\prg\python128\python.exe  manage.py makemigrations tagtestapp
+ C:\prg\python128\python.exe  manage.py makemigrations
+  
+   C:\prg\python128\python.exe  manage.py migrate 
+
+set DJANGO_SUPERUSER_PASSWORD=aa
+   C:\prg\python128\python.exe manage.py createsuperuser --noinput --username aa  --email=a2@a.com
+
+   C:\prg\python128\python.exe  manage.py runserver 
+
+
+http://127.0.0.1:8000
+
+
+=================================================
+
+
+
+=================================================
+
+
+https://github.com/dgleba/620dkrcollection/blob/main/django-726-yard/dj726/README.md
+
+C:\prg\python128\python.exe -m pip list
+
+C:\prg\python128\python.exe -m pip install django==4.2
+
+d:
+mkdir D:\code\pyprj\tag506
+cd    D:\code\pyprj\tag506
+
+
+mkdir djangosite
+cd djangosite
+  ::# creates djangoproject folder within djangosite folder..
+  C:\prg\python128\Scripts\django-admin.exe  startproject djangoproject .
+  
+ C:\prg\python128\python.exe  manage.py startapp blogapp
+ 
+ :: C:\prg\python128\python.exe  manage.py startapp tagtestapp
+  
+ 
+ C:\prg\python128\python.exe  manage.py makemigrations blogapp
+ :: C:\prg\python128\python.exe  manage.py makemigrations tagtestapp
+ C:\prg\python128\python.exe  manage.py makemigrations
+  
+   C:\prg\python128\python.exe  manage.py migrate 
+
+set DJANGO_SUPERUSER_PASSWORD=a2
+   C:\prg\python128\python.exe manage.py createsuperuser --noinput --username a2  --email=a2@a.com
+
+   C:\prg\python128\python.exe  manage.py runserver 
+
+
+http://127.0.0.1:8000
+
+=================================================
+

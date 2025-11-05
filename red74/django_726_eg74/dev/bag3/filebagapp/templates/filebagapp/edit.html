@@ -1,0 +1,13 @@
+<h2>Edit {{ filebag.name }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<script src="{% static 'filebagapp/codemirror/codemirror.js' %}"></script>
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
+    lineNumbers: true,
+    mode: "text/plain"
+  });
+</script>

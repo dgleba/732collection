@@ -16,3 +16,7 @@ channels
 channels_redis
 django-htmx
 Pillow
+
+#python-magic-bin~=0.4.14  # For robust file type detection on Windows/Linux
+python-magic
+

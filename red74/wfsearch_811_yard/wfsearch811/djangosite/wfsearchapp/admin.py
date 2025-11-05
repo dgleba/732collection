@@ -13,5 +13,4 @@ class FileAdmin(admin.ModelAdmin):
     
     # ----------------------------------------
     # ADD THIS LINE TO DISABLE BULK ACTIONS
-    # ----------------------------------------
     actions = None

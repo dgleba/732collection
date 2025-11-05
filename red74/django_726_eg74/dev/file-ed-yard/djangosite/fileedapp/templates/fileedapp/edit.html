@@ -1,0 +1,160 @@
+{% extends "fileedapp/base.html" %}
+
+{% block title %}Edit: {{ filer.filename }}{% endblock %}
+
+{% block extra_head %}
+    <!-- CodeMirror Assets (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+    <style>
+        .CodeMirror {
+            border: 1px solid #ddd;
+            height: 70vh; /* Set a fixed height for the editor area */
+            border-radius: 0.75rem; /* rounded-xl */
+            font-size: 14px;
+        }
+        .CodeMirror-vscrollbar {
+            border-radius: 0 0.75rem 0.75rem 0; /* Match rounded-xl corners */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Editing: <span class="text-indigo-600">{{ filer.filename }}</span></h1>
+    <p class="text-sm text-gray-500 mb-6">File Type: {{ filer.filetype }} | Current Size: {{ filer.length_kb }} KB</p>
+
+    {% if filer.body is None %}
+        <div class="p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-lg">
+            <p class="font-bold">Cannot Edit In-Browser</p>
+            <p>This file is either not a text file or its content could not be decoded. Please use the "External Edit/Download" feature from the file list.</p>
+        </div>
+    {% else %}
+        <!-- The Textarea that Codemirror attaches to -->
+        <textarea id="code" name="body" class="hidden">{{ filer.body }}</textarea>
+
+        <div class="flex justify-end space-x-4 mb-4">
+            <button id="saveButton" 
+                    class="py-3 px-6 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-150 shadow-md disabled:bg-green-400">
+                Save Changes (Ctrl+S / Cmd+S)
+            </button>
+            <a href="{% url 'file_list' %}" 
+            class="py-3 px-6 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition duration-150 shadow-md flex items-center">
+                Back to List
+            </a>
+        </div>
+
+        <!-- Message area for save status -->
+        <div id="statusMessage" class="hidden p-3 rounded-lg font-medium text-center"></div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only initialize CodeMirror if the body is editable
+        if ("{{ filer.body|default:'null' }}" !== 'null') {
+            const textarea = document.getElementById('code');
+            const saveButton = document.getElementById('saveButton');
+            const statusMessage = document.getElementById('statusMessage');
+
+            // Determine the mode based on file type (a simplified mapping)
+            let mode = 'text/plain';
+            const filetype = "{{ filer.filetype }}";
+            if (filetype.includes('html') || filetype.includes('xml')) {
+                mode = 'text/html';
+            } else if (filetype.includes('css')) {
+                mode = 'text/css';
+            } else if (filetype.includes('javascript') || filetype.includes('json')) {
+                mode = 'text/javascript';
+            } else if (filetype.includes('python')) {
+                mode = 'text/x-python';
+            } else if (filetype.includes('markdown')) {
+                mode = 'text/x-markdown';
+            } else if (filetype.includes('text/')) {
+                mode = 'text/plain';
+            }
+
+            // Initialize CodeMirror
+            const editor = CodeMirror.fromTextArea(textarea, {
+                lineNumbers: true,
+                mode: mode,
+                indentUnit: 4,
+                theme: 'default', // You can load more themes
+                autofocus: true,
+                lineWrapping: true
+            });
+
+            // Track changes to enable/disable the save button
+            editor.on('change', function() {
+                saveButton.disabled = false;
+                statusMessage.classList.add('hidden');
+            });
+
+            // Function to display status messages
+            function displayStatus(message, isSuccess) {
+                statusMessage.textContent = message;
+                statusMessage.classList.remove('hidden', 'bg-red-100', 'bg-green-100', 'text-red-700', 'text-green-700');
+                if (isSuccess) {
+                    statusMessage.classList.add('bg-green-100', 'text-green-700');
+                } else {
+                    statusMessage.classList.add('bg-red-100', 'text-red-700');
+                }
+            }
+            
+            // Save logic
+            async function saveContent() {
+                saveButton.disabled = true;
+                saveButton.textContent = 'Saving...';
+                
+                const newContent = editor.getValue();
+                const url = "{% url 'file_save_body' filer.pk %}";
+                
+                const formData = new URLSearchParams();
+                formData.append('body', newContent);
+                formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.status === 'success') {
+                        displayStatus(data.message, true);
+                    } else {
+                        displayStatus('Save failed: ' + data.message, false);
+                    }
+
+                } catch (error) {
+                    console.error('Save failed due to network or system error:', error);
+                    displayStatus('An unexpected error occurred during save.', false);
+                } finally {
+                    saveButton.textContent = 'Save Changes (Ctrl+S / Cmd+S)';
+                }
+            }
+
+            saveButton.addEventListener('click', saveContent);
+
+            // Bind Ctrl+S / Cmd+S for quick save
+            editor.addKeyMap({
+                "Cmd-S": function(cm) { saveContent(); },
+                "Ctrl-S": function(cm) { saveContent(); }
+            });
+            
+            // Disable initially if no changes have been made
+            saveButton.disabled = true;
+        }
+    });
+</script>
+{% endblock %}

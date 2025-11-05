@@ -21,6 +21,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #path('toolbreakapp624c/', include('toolbreakapp624c.urls')),
@@ -31,6 +32,19 @@ urlpatterns = [
     path('htmx/', views.htmx_home, name='htmx'),
     path('admin/', admin.site.urls),
 
-    path('', include(static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT))),
+    # path('', include(static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT))),
+
+    # Built-in Auth URLs
+    path('login/', auth_views.LoginView.as_view(template_name='fileedapp/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    # App URLs
+    # path('', include('fileedapp.urls')),
+    # path('', include('filebagapp.urls')),
 
 ]
+
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

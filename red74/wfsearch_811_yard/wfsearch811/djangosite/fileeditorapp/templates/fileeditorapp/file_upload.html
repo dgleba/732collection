@@ -1,0 +1,7 @@
+<h2>Upload Files</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="file" multiple>
+  <button type="submit">Upload</button>
+</form>
+<a href="{% url 'file_list' %}">Back to list</a>

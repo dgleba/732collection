@@ -1,0 +1,10 @@
+<h2>Files</h2>
+<ul>
+  {% for f in files %}
+    <li>{{ f.name }} —
+      <a href="{% url 'filebag-edit' f.pk %}">Edit</a> |
+      <a href="{% url 'filebag-local-edit' f.pk %}">Local Edit</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'filebag-upload' %}">Upload New</a>

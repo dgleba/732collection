@@ -1,0 +1,7 @@
+<h2>Edit File Name: {{ file_obj.file.name }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'file_list' %}">Cancel</a>

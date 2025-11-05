@@ -1,0 +1,83 @@
+#
+# /am/cruc4tb/koofry/volums/seafileall/sflarge/sysdata/bakup/ubu398e-redek446code/srv/dkr/422dkrcol/nextcloud455
+
+services:
+
+  nc455e:
+    # http://10.33.44.81:6219
+    image: nextcloud:latest
+    restart: always
+    ports:
+      - 6219:80
+    env_file:
+      - .env
+    volumes:
+      #- nc_data:/var/www/html
+      - ./sysdata/ncdata:/var/www/html
+      - ./customapps:/var/www/html/custom_apps 
+      # - ../datasys/nextcl-1500/:/var/www/html
+    networks:
+       - default
+       - cfnet_red74dgwin
+    # environment:
+        # - VIRTUAL_HOST=nc1500-104-193-61-58.nip.io
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "850k"
+        max-file: "10"
+
+  db:      
+    image: mariadb:12
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    env_file: .env
+    ports:
+      - "6307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      #- ../sysdata/maria/:/var/lib/mysql/ # folder for mysql's internal data files.
+      # - .:/root # folder for scripts, etc.
+      # - ../data/maria429/:/home # folder for exported data, etc.
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "10"
+    networks:
+      - default
+      # - dbnet
+
+  # cpncdata:
+    # # docker compose run --rm cpncdata
+    # image: alpine
+    # command: sh -c "cp -a /from/. /to/"
+    # volumes:
+      # - nc_data:/from
+      # - /ap/tmp/nc:/to
+    # restart: "no"
+    
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - default
+    expose:
+      - 6379
+      
+  #adminer:
+    ## http://192.168.88.103:8089
+    #image: adminer:5
+    #restart: always
+    #ports:
+      #- 8089:8080
+    #networks:
+      #- sister
+
+volumes:
+  db_data:
+  # nc_data:
+networks:
+  cfnet_red74dgwin:
+    external: true
+   

@@ -1,0 +1,61 @@
+{% extends "filebagapp/_base.html" %}
+
+{% block title %}{% if object %}Edit {{ object.title }}{% else %}Create New File{% endif %}{% endblock %}
+
+{% block head %}
+    {% if is_text_file or not object %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/xml/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/javascript/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/css/css.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/python/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/markdown/markdown.min.js"></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <p>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </p>
+
+        {% if not object or not object.file %}
+        <p>
+            <label for="{{ form.file.id_for_label }}">Or Upload File:</label>
+            {{ form.file }}
+        </p>
+        {% endif %}
+
+        {% if is_text_file or not object %}
+            <p>File Content (for text files):</p>
+            {{ form.content }}
+        {% else %}
+            <p>
+                <strong>This is not a text file.</strong>
+                <a href="{{ object.file.url }}" download>Download</a> to edit locally.
+            </p>
+            <p>
+                <label for="{{ form.file.id_for_label }}">Upload new version:</label>
+                {{ form.file }}
+            </p>
+        {% endif %}
+        
+        <br>
+        <button type="submit">Save</button>
+    </form>
+
+    {% if is_text_file or not object %}
+    <script>
+        // Initialize CodeMirror on our textarea
+        var editor = CodeMirror.fromTextArea(document.getElementById('codemirror-editor'), {
+            lineNumbers: true,
+            mode: "python" // You can dynamically set this based on file extension
+        });
+    </script>
+    {% endif %}
+
+{% endblock %}

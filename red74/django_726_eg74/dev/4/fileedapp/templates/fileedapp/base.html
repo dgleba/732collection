@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}File Editor App{% endblock %}</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'file_list' %}" class="text-white text-2xl font-bold rounded-lg p-2 hover:bg-indigo-700 transition">FileEdApp</a>
+            <div>
+                {% if user.is_authenticated %}
+                    <span class="text-white mr-4">Welcome, {{ user.username }} ({% for group in user.groups.all %}{{ group.name }}{% if not forloop.last %}, {% endif %}{% endfor %})</span>
+                    <a href="{% url 'logout' %}" class="text-white hover:bg-indigo-700 py-2 px-4 rounded-lg transition border border-white">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white hover:bg-indigo-700 py-2 px-4 rounded-lg transition border border-white">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content and Messages -->
+    <main class="container mx-auto p-4 flex-grow">
+        {% if messages %}
+            <div class="space-y-3 mb-6">
+                {% for message in messages %}
+                    <div class="p-4 rounded-lg text-white font-medium 
+                        {% if message.tags == 'error' %}bg-red-500{% endif %}
+                        {% if message.tags == 'success' %}bg-green-500{% endif %}
+                        {% if message.tags == 'warning' %}bg-yellow-500{% endif %}
+                        {% if message.tags == 'info' or message.tags == '' %}bg-blue-500{% endif %}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer class="p-4 bg-gray-200 text-center text-gray-600 mt-auto">
+        &copy; 2025 File Editor App. User ID: {{ user.pk|default:'N/A' }}
+    </footer>
+</body>
+</html>

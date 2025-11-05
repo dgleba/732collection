@@ -9,8 +9,8 @@
 
 
 networks:
-  sister2:
-    name: sister2
+  # sister2:
+    # name: sister2
     # external: true
   cfnet1:
     name: cfnet1
@@ -42,7 +42,7 @@ services:
     healthcheck:
       disable: false
     networks:
-      - sister2
+      - default
       - cfnet1
       - cfnet_red74dgwin
       
@@ -62,7 +62,7 @@ services:
     healthcheck:
       disable: false
     networks:
-      - sister2
+      - default
 
   redis:
     #container_name: immich_redis
@@ -71,7 +71,7 @@ services:
       test: redis-cli ping || exit 1
     restart: always
     networks:
-      - sister2
+      - default
 
   database:
     #container_name: immich_postgres
@@ -89,7 +89,7 @@ services:
     shm_size: 128mb
     restart: always
     networks:
-      - sister2
+      - default
 
 volumes:
   model-cache:

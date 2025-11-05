@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'channels',
     'django_htmx',
     'blogappm2m',
-    #'toolbreakapp624c',
+    # 'fileedapp',
+    # 'filebagapp',
 ]
 
 
@@ -130,7 +131,14 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 
-
+# 2025-10-28 fileed
+# # Configuration for static files (CSS, JS, Images)
+# STATIC_URL = 'static/'
+# # Configuration for user-uploaded media (files)
+# MEDIA_URL = '/media/'
+# # IMPORTANT: Files are stored in the 'upload' folder at the project root level.
+# MEDIA_ROOT = BASE_DIR / 'upload' 
+# =
 
 
 # Default primary key field type
