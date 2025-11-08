@@ -27,12 +27,9 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    # networks:
-      # - sister
-      # - sister2
-      # - basenet1
-      # - cfnet1
-      #- sister3
+    networks:
+       - default
+       - cfnet_red74dgwin
 
   dbm:
     image: mariadb:12
@@ -54,6 +51,8 @@ services:
       options:
         max-size: "100k"
         max-file: "5"
+    networks:
+       - default
 
   redis:
     image: redis:alpine
@@ -69,6 +68,8 @@ services:
       options:
         max-size: "100k"
         max-file: "5"
+    networks:
+       - default
 
   adminer:
     # http://10.33.44.81:6613/  use dbm or ip:port for server while logging in.
@@ -85,22 +86,15 @@ services:
       options:
         max-size: "100k"
         max-file: "5"
+    networks:
+       - default
 
 volumes:
   waladata:
   wala_img:
   db_data:
-  
+    
 networks:
-  sister:
-    name: sister
-  sister2:
-    #external: true
-    name: sister2
-  basenet1:
-    name: basenet1
-  cfnet1:
-    #external: true
-    name: cfnet1
-  # sister4:
-    # name: sister4  
+  cfnet_red74dgwin:
+    external: true
+   
