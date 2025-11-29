@@ -6,12 +6,13 @@
 #       docker-compose up adminerd -d
 
 networks:
-  sister2:
-    name: sister2
+  # sister2:
+    # name: sister2
     # external: true
   cfnet1:
     name: cfnet1
-
+  cfnet_r74_daveg2online:
+    name: cfnet_r74_daveg2online
 
 volumes:
   uptime-kuma-data:
@@ -31,8 +32,8 @@ services:
     depends_on:
       - dbm
     networks:
-      - sister2
-      - cfnet1
+      - default
+      - cfnet_r74_daveg2online
       
   dbm:
     # image: mysql:8.0.23
@@ -62,5 +63,5 @@ services:
        retries: 5
        start_period: 240s
     networks:
-      - sister2
-      - cfnet1
+      - default
+      #- cfnet_r74_daveg2online

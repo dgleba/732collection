@@ -1,10 +1,13 @@
 
 networks:
-  sister2:
-    name: sister2
-    external: true
-  cfnet1:
-    name: cfnet1
+  # sister2:
+    # name: sister2
+    # external: true
+  cfnet_r74_daveg2online:
+    name: cfnet_r74_daveg2online
+  #cfnet1:
+    # phase next line out..
+    # name: cfnet1
 
 services:
 
@@ -16,9 +19,10 @@ services:
     #   - ./cloudflared:/etc/cloudflared
     restart: unless-stopped
     environment:
-    #   TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
+      # TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
       - TZ=America/New_York # Adjust to your timezone
     user:  root
     networks:
       #- sister2
-      - cfnet1
+      #- cfnet1
+      - cfnet_r74_daveg2online

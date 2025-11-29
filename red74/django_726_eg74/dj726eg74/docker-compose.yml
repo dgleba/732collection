@@ -1,19 +1,24 @@
 
 networks:
-  sister2:
-    name: sister2
+  # sister2:
+    # name: sister2
     # external: true
-  cfnet1:
-    name: cfnet1
+  # cfnet1:
+    # name: cfnet1
   cfnet_red74dgwin:
     name: cfnet_red74dgwin
-
+    external: true
+  cfnet_r74_daveg2online:
+    external: true
+    
 volumes:
   mysqldatastore:
 
 services:
 
-  djdev:
+  dj726eg74:
+  #djdev:
+    # http://dj726eg74.daveg2.online/admin
     # http://10.33.44.81:16461/admin
     # http://192.168.88.60:6461/admin2323
     # djdev:8000
@@ -51,6 +56,7 @@ services:
       # - dbm
     networks:
       #- sister2
-      - cfnet1
+      #- cfnet1
+      - cfnet_r74_daveg2online
       - cfnet_red74dgwin
 
