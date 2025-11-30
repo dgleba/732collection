@@ -1,0 +1,417 @@
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-11-30[Nov-Sun]15-52PM 
+
+
+
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44936 - cid:38 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Ocs-Apirequest" allowed_methods=GET allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=userlog
+opencloud-1  | 2025-11-30T19:44:05Z DBG setup cors middleware allow_credentials=false allowed_headers= allowed_methods= allowed_origins=https://cloud.opencloud.test line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=webfinger
+opencloud-1  | 2025-11-30T19:44:05Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF registering external service eu.opencloud.api.ocm-35f40791-083d-4ce2-8810-d5dbff55dbc1@127.0.0.1:9282 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF registering external service eu.opencloud.web.ocm-35f40791-083d-4ce2-8810-d5dbff55dbc1@127.0.0.1:9280 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: authprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44944 - cid:39 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44968 - cid:40 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44956 - cid:41 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: ocminvitemanager host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: ocmproviderauthorizer host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: ocmshareprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44968 - cid:40 - "v1.47.0:go" - Client connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: ocmcore host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: storageprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http service enabled: sciencemesh@/sciencemesh host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF grpc server listening at tcp:127.0.0.1:9282 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http service enabled: ocmd@/ocm host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z WRN missing or incomplete nats configuration. Events will not be published. host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/services/dataprovider/dataprovider.go:84 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http service enabled: dataprovider@/data host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http service enabled: wellknown@/ host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44982 - cid:42 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF http middleware enabled: prometheus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:193 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http middleware enabled: cors host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:193 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http middleware enabled: requestid host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:193 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF chaining http middleware cors with priority  200 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:273 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF chaining http middleware prometheus with priority  100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:273 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF chaining http middleware requestid with priority  100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:273 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /ocm/invite-accepted host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /ocm/shares host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /ocm/notifications host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /data/tus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44982 - cid:42 - "v1.47.0:go" - Client connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: / host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44988 - cid:43 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /.well-known/ocm host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF unprotected URL: /ocm-provider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF http server listening at http://127.0.0.1:9280 '' '' host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:124 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Purge, Restore" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=graph
+opencloud-1  | 2025-11-30T19:44:05Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Cache-Control" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=thumbnails
+opencloud-1  | 2025-11-30T19:44:05Z INF skipping auth check for: / host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/auth/auth.go:195 pkg=rhttp service=ocm traceid=f2cce29e15e1af040a1df0db73715ab0
+opencloud-1  | 2025-11-30T19:44:05Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/thumbnails/pkg/service/http/v0/service.go:72 method=GET middlewares=7 route=/thumbnails/data service=thumbnails
+opencloud-1  | 2025-11-30T19:44:05Z WRN core access token not set host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/auth/auth.go:248 pkg=rhttp service=ocm traceid=f2cce29e15e1af040a1df0db73715ab0
+opencloud-1  | 2025-11-30T19:44:05Z DBG Error reading CA error="open /var/lib/opencloud/idm/ldap.crt: no such file or directory" LDAP CACert=/var/lib/opencloud/idm/ldap.crt line=github.com/opencloud-eu/opencloud/pkg/ldap/ldap.go:28 service=graph
+opencloud-1  | 2025-11-30T19:44:05Z INF skipping provider authorizer check for: / host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/providerauthorizer/providerauthorizer.go:83 pkg=rhttp service=ocm traceid=f2cce29e15e1af040a1df0db73715ab0
+opencloud-1  | 2025-11-30T19:44:05Z DBG http routing: head= tail=/ svc= host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:248 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z INF skipping auth check for: / host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/auth/auth.go:195 pkg=rhttp service=ocm traceid=b3d39e2390f6dc0f624f2948367dbe14
+opencloud-1  | 2025-11-30T19:44:05Z WRN core access token not set host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/auth/auth.go:248 pkg=rhttp service=ocm traceid=b3d39e2390f6dc0f624f2948367dbe14
+opencloud-1  | 2025-11-30T19:44:05Z DBG .well-known routing host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/services/wellknown/wellknown.go:86 path=/ pkg=rhttp request-id=95bff279320b/M3dZwxQzf2-000005 service=ocm traceid=f2cce29e15e1af040a1df0db73715ab0
+opencloud-1  | 2025-11-30T19:44:05Z INF skipping provider authorizer check for: / host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/providerauthorizer/providerauthorizer.go:83 pkg=rhttp service=ocm traceid=b3d39e2390f6dc0f624f2948367dbe14
+opencloud-1  | 2025-11-30T19:44:05Z DBG http routing: head= tail=/ svc= host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:248 pkg=rhttp service=ocm
+opencloud-1  | 2025-11-30T19:44:05Z DBG .well-known routing host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/services/wellknown/wellknown.go:86 path=/ pkg=rhttp request-id=95bff279320b/M3dZwxQzf2-000006 service=ocm traceid=b3d39e2390f6dc0f624f2948367dbe14
+opencloud-1  | 2025-11-30T19:44:05Z WRN http end="30/Nov/2025:19:44:05 +0000" host=127.0.0.1 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/log/log.go:112 method=GET pkg=rhttp proto=HTTP/1.1 service=ocm size=19 start="30/Nov/2025:19:44:05 +0000" status=404 time_ns=363378 traceid=f2cce29e15e1af040a1df0db73715ab0 uri=/ url=/
+opencloud-1  | 2025-11-30T19:44:05Z WRN http end="30/Nov/2025:19:44:05 +0000" host=127.0.0.1 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/interceptors/log/log.go:112 method=GET pkg=rhttp proto=HTTP/1.1 service=ocm size=19 start="30/Nov/2025:19:44:05 +0000" status=404 time_ns=343721 traceid=b3d39e2390f6dc0f624f2948367dbe14 uri=/ url=/
+opencloud-1  | 2025-11-30T19:44:05Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF registering external service eu.opencloud.api.auth-app-35f40791-083d-4ce2-8810-d5dbff55dbc1@127.0.0.1:9246 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Ocs-Apirequest" allowed_methods="GET, POST, DELETE" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: authprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: applicationauth host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z INF grpc server listening at tcp:127.0.0.1:9246 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:05Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z INF registering external service eu.opencloud.api.auth-machine-35f40791-083d-4ce2-8810-d5dbff55dbc1@127.0.0.1:9166 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z DBG 127.0.0.1:44996 - cid:44 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: grpc service enabled: authprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=auth-machine
+opencloud-1  | 2025-11-30T19:44:05Z INF grpc server listening at tcp:127.0.0.1:9166 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=auth-machine
+opencloud-1  | The password of service user admin has not been set properly in your config for idm. Make sure your /etc/opencloud config contains the proper values (e.g. by using 'opencloud init --diff' and applying the patch or setting a value manually in the config/corresponding environment variable).
+opencloud-1 exited with code 1
+opencloud-1  | 2025/11/30 19:44:06 Could not create config: config file already exists, use --force-overwrite to overwrite or --diff to show diff
+opencloud-1  | 2025-11-30T19:44:07Z INF Starting nats-server line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Version:  2.12.1 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Git:      [a487621] line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG   Go build: go1.25.4 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Cluster:  opencloud-cluster line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Name:     ND6H75U5OYQJDLDSA23KLWMTPLD37W7MTYXDAMRH53DPSKPK5L22XP37 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Node:     0QfkhvYx line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   ID:       ND6H75U5OYQJDLDSA23KLWMTPLD37W7MTYXDAMRH53DPSKPK5L22XP37 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG Created system account: "$SYS" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF Starting JetStream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG JetStream creating dynamic configuration - 11.47 GB memory, 24.32 GB disk line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF     _ ___ _____ ___ _____ ___ ___   _   __  __ line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF  _ | | __|_   _/ __|_   _| _ \ __| /_\ |  \/  | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF | || | _|  | | \__ \ | | |   / _| / _ \| |\/| | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF  \__/|___| |_| |___/ |_| |_|_\___/_/ \_\_|  |_| line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF          https://docs.nats.io/jetstream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF ---------------- JETSTREAM ---------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Strict:          true line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Max Memory:      11.47 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Max Storage:     24.32 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Store Directory: "/var/lib/opencloud/nats/jetstream" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   API Level:       2 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF ------------------------------------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG   Exports: line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG      $JS.API.> line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG Enabled JetStream for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG   Max Memory:      -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG   Max Storage:     -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG Recovering JetStream state for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Starting restore for stream '$G > KV_graph' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Restored 0 messages for stream '$G > KV_graph' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Starting restore for stream '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Restored 0 messages for stream '$G > main-queue' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF   Recovering 9 consumers for stream - '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG JetStream state for account "$G" recovered line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF Listening for client connections on 127.0.0.1:9233 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF Server is ready line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46382 - cid:29 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46392 - cid:30 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.gateway-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9142 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: gateway host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: authregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z DBG JETSTREAM - JetStream connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG JETSTREAM - JetStream connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: storageregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF grpc server listening at tcp:127.0.0.1:9142 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.storage-users-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9157 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46404 - cid:36 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46410 - cid:37 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46416 - cid:38 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46428 - cid:39 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46446 - cid:40 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46442 - cid:41 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Purge, Restore" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=graph
+opencloud-1  | 2025-11-30T19:44:07Z DBG Error reading CA error="open /var/lib/opencloud/idm/ldap.crt: no such file or directory" LDAP CACert=/var/lib/opencloud/idm/ldap.crt line=github.com/opencloud-eu/opencloud/pkg/ldap/ldap.go:28 service=graph
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Ocs-Apirequest" allowed_methods=GET allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=sse
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=false allowed_headers= allowed_methods= allowed_origins=https://cloud.opencloud.test line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=webfinger
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: storageprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF http service enabled: dataprovider@/data host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF http middleware enabled: requestid host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:193 pkg=rhttp service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46450 - cid:44 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF chaining http middleware requestid with priority  100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:273 pkg=rhttp service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF unprotected URL: /data/tus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF http server listening at http://127.0.0.1:9158 '' '' host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:124 pkg=rhttp service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: chaining grpc unary interceptor eventsmiddleware with priority 200 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF grpc server listening at tcp:127.0.0.1:9157 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=storage-users
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.storage-system-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9215 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.web.storage-system-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9216 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z DBG Error reading CA error="open /var/lib/opencloud/idm/ldap.crt: no such file or directory" LDAP CACert=/var/lib/opencloud/idm/ldap.crt line=github.com/opencloud-eu/opencloud/pkg/ldap/ldap.go:28 service=users
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: authprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: permissions host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z WRN missing or incomplete nats configuration. Events will not be published. host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/internal/http/services/dataprovider/dataprovider.go:84 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: storageregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: storageprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF http service enabled: dataprovider@/data host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:220 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: gateway host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF http middleware enabled: prometheus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:193 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF chaining http middleware prometheus with priority  100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:273 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF unprotected URL: /data/tus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:278 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: userprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF http server listening at http://127.0.0.1:9216 '' '' host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rhttp/rhttp.go:124 pkg=rhttp service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: authregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z DBG failed to load application error="invalid app" line=github.com/opencloud-eu/opencloud/services/web/pkg/apps/apps.go:95 path=.keep service=web
+opencloud-1  | 2025-11-30T19:44:07Z INF grpc server listening at tcp:127.0.0.1:9215 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=storage-system
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=false allowed_headers="Origin, Accept, Content-Type, Depth, Authorization, Ocs-Apirequest, If-None-Match, If-Match, Destination, Overwrite, X-Request-Id, X-Requested-With, Tus-Resumable, Tus-Checksum-Algorithm, Upload-Concat, Upload-Length, Upload-Metadata, Upload-Defer-Length, Upload-Expires, Upload-Checksum, Upload-Offset, X-HTTP-Method-Override" allowed_methods="OPTIONS, HEAD, GET, PUT, PATCH, POST, DELETE, MKCOL, PROPFIND, PROPPATCH, MOVE, COPY, REPORT, SEARCH" allowed_origins=https://cloud.opencloud.test line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=HEAD middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PUT middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=CONNECT middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-add service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-list service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-list-filtered service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-remove service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundle-get service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundle-save service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-add-setting service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-list service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-remove-setting service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-get-by-id service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-list service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-list-by-resource service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/roles-list service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-get service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-get-by-unique-identifiers service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-list service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-save service=settings
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PATCH middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=DELETE middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Cache-Control" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=thumbnails
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=TRACE middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/thumbnails/pkg/service/http/v0/service.go:72 method=GET middlewares=7 route=/thumbnails/data service=thumbnails
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=GET middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=OPTIONS middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=POST middlewares=8 route=/assets/apps/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=DELETE middlewares=9 route=/branding/logo/ service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=POST middlewares=9 route=/branding/logo/ service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=GET middlewares=8 route=/config.json service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=GET middlewares=8 route=/themes/{id}/theme.json service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=POST middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=CONNECT middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PUT middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=GET middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=DELETE middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PATCH middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=HEAD middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=TRACE middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.auth-app-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9246 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=OPTIONS middlewares=8 route=/themes/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PATCH middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=TRACE middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=HEAD middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=PUT middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=GET middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=DELETE middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=POST middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=OPTIONS middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/web/pkg/service/v0/service.go:101 method=CONNECT middlewares=8 route=/* service=web
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46456 - cid:45 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Ocs-Apirequest" allowed_methods="GET, POST, DELETE" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: authprovider host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: grpc service enabled: applicationauth host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z INF grpc server listening at tcp:127.0.0.1:9246 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=auth-app
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46464 - cid:46 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=sharing
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=sharing
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.sharing-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9150 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=sharing
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46468 - cid:47 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:07Z DBG Error reading CA error="open /var/lib/opencloud/idm/ldap.crt: no such file or directory" LDAP CACert=/var/lib/opencloud/idm/ldap.crt line=github.com/opencloud-eu/opencloud/pkg/ldap/ldap.go:28 service=groups
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=ocm
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=ocm
+opencloud-1  | 2025-11-30T19:44:07Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=storage-publiclink
+opencloud-1  | The password of service user admin has not been set properly in your config for idm. Make sure your /etc/opencloud config contains the proper values (e.g. by using 'opencloud init --diff' and applying the patch or setting a value manually in the config/corresponding environment variable).
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.ocm-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9282 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=ocm
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=storage-publiclink
+opencloud-1  | 2025-11-30T19:44:07Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=storage-publiclink
+opencloud-1  | 2025-11-30T19:44:07Z INF registering external service eu.opencloud.api.storage-publiclink-91c5c4b3-13ef-4942-bbbd-2800c4933407@127.0.0.1:9178 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=storage-publiclink
+opencloud-1  | 2025-11-30T19:44:07Z DBG 127.0.0.1:46486 - cid:50 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1 exited with code 1
+opencloud-1  | 2025/11/30 19:44:09 Could not create config: config file already exists, use --force-overwrite to overwrite or --diff to show diff
+opencloud-1  | 2025-11-30T19:44:09Z INF Starting nats-server line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Version:  2.12.1 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Git:      [a487621] line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG   Go build: go1.25.4 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Cluster:  opencloud-cluster line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Name:     NDRTBNE7B3R53ZFHJ636GLELJQINKYPZWO3M6RSGEQZXA7YLD5R7ZSEM line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Node:     lBHN0CHC line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   ID:       NDRTBNE7B3R53ZFHJ636GLELJQINKYPZWO3M6RSGEQZXA7YLD5R7ZSEM line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG Created system account: "$SYS" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF Starting JetStream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG JetStream creating dynamic configuration - 11.47 GB memory, 24.32 GB disk line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF     _ ___ _____ ___ _____ ___ ___   _   __  __ line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF  _ | | __|_   _/ __|_   _| _ \ __| /_\ |  \/  | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF | || | _|  | | \__ \ | | |   / _| / _ \| |\/| | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF  \__/|___| |_| |___/ |_| |_|_\___/_/ \_\_|  |_| line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF          https://docs.nats.io/jetstream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF ---------------- JETSTREAM ---------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Strict:          true line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Max Memory:      11.47 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Max Storage:     24.32 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Store Directory: "/var/lib/opencloud/nats/jetstream" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   API Level:       2 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF ------------------------------------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG   Exports: line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG      $JS.API.> line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG Enabled JetStream for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG   Max Memory:      -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG   Max Storage:     -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG Recovering JetStream state for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Starting restore for stream '$G > KV_graph' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Restored 0 messages for stream '$G > KV_graph' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Starting restore for stream '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Restored 0 messages for stream '$G > main-queue' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF   Recovering 11 consumers for stream - '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z DBG JetStream state for account "$G" recovered line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF Listening for client connections on 127.0.0.1:9233 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:09Z INF Server is ready line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46514 - cid:33 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46524 - cid:34 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF registering external service eu.opencloud.api.gateway-d05596b4-b471-4e9f-8e36-9de7a03d9fb6@127.0.0.1:9142 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF rgrpc: grpc service enabled: gateway host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF rgrpc: grpc service enabled: authregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z DBG JETSTREAM - JetStream connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG JETSTREAM - JetStream connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z INF rgrpc: grpc service enabled: storageregistry host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:228 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF rgrpc: chaining grpc unary interceptor prometheus with priority 100 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:343 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF grpc server listening at tcp:127.0.0.1:9142 host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/rgrpc/rgrpc.go:192 pkg=rgrpc service=gateway
+opencloud-1  | 2025-11-30T19:44:10Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=sharing
+opencloud-1  | 2025-11-30T19:44:10Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=sharing
+opencloud-1  | 2025-11-30T19:44:10Z INF registering external service eu.opencloud.api.sharing-d05596b4-b471-4e9f-8e36-9de7a03d9fb6@127.0.0.1:9150 line=github.com/opencloud-eu/opencloud/pkg/registry/register.go:19 service=sharing
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/status.php
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/status
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/remote.php/dav/public-files/
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/apps/files/
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/index.php/f/
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/index.php/s/
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/remote.php/dav/ocm/
+opencloud-1  | 2025-11-30T19:44:10Z INF unprotected URL line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:164 name=eu.opencloud.web.ocdav service=ocdav url=/dav/ocm/
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46538 - cid:40 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46544 - cid:41 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=GET middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=POST middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=CONNECT middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=HEAD middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=TRACE middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=PUT middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=DELETE middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=OPTIONS middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/reva/v2@v2.39.3/pkg/micro/ocdav/service.go:116 method=PATCH middlewares=7 name=eu.opencloud.web.ocdav route=/* service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z INF no probe provided, reverting to default (OK) endpoint=/healthz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z INF no probe provided, reverting to default (OK) endpoint=/readyz line=github.com/opencloud-eu/opencloud/pkg/service/debug/service.go:27 service=ocdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-add service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-list service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-list-filtered service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/assignments-remove service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundle-get service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundle-save service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-add-setting service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-list service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/bundles-remove-setting service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-get-by-id service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-list service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/permissions-list-by-resource service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/roles-list service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-get service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-get-by-unique-identifiers service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-list service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/settings/pkg/server/http/server.go:86 method=POST middlewares=8 route=/api/v0/settings/values-save service=settings
+opencloud-1  | 2025-11-30T19:44:10Z DBG setup cors middleware allow_credentials=true allowed_headers="Authorization, Origin, Content-Type, Accept, X-Requested-With, X-Request-Id, Cache-Control" allowed_methods="GET, POST, PUT, PATCH, DELETE, OPTIONS" allowed_origins=* line=github.com/opencloud-eu/opencloud/pkg/middleware/header.go:33 service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46552 - cid:42 - Client connection created line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/dav/files/{id} service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/dav/files/{id}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG 127.0.0.1:46544 - cid:41 - "v1.47.0:go" - Client connection closed: Client Closed line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=HEAD middlewares=2 route=/dav/public-files/{token}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/dav/public-files/{token}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/dav/spaces/{id} service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/dav/spaces/{id}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/remote.php/dav/files/{id} service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/remote.php/dav/files/{id}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/remote.php/dav/public-files/{token}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=HEAD middlewares=2 route=/remote.php/dav/public-files/{token}/* service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z FTL Failed to load CSP configuration. error="read /etc/opencloud/csp.yaml: is a directory" line=github.com/opencloud-eu/opencloud/services/proxy/pkg/command/server.go:331 service=proxy
+opencloud-1  | 2025-11-30T19:44:10Z DBG serving endpoint line=github.com/opencloud-eu/opencloud/services/webdav/pkg/service/v0/service.go:143 method=GET middlewares=2 route=/remote.php/dav/spaces/{id} service=webdav
+opencloud-1  | 2025-11-30T19:44:10Z INF running on 8 cpus host.name=95bff279320b line=github.com/opencloud-eu/reva/v2@v2.39.3/cmd/revad/runtime/runtime.go:179 service=auth-service
+opencloud-1 exited with code 1
+opencloud-1  | 2025/11/30 19:44:13 Could not create config: config file already exists, use --force-overwrite to overwrite or --diff to show diff
+opencloud-1  | 2025-11-30T19:44:13Z INF Starting nats-server line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Version:  2.12.1 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Git:      [a487621] line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG   Go build: go1.25.4 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Cluster:  opencloud-cluster line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Name:     NDDBK46DQPFIKQH47TX5UNBAKL2YGKCLAKKWU2NXLRAORNVWBLYN7ZCK line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Node:     zrK1by74 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   ID:       NDDBK46DQPFIKQH47TX5UNBAKL2YGKCLAKKWU2NXLRAORNVWBLYN7ZCK line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG Created system account: "$SYS" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF Starting JetStream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG JetStream creating dynamic configuration - 11.47 GB memory, 24.32 GB disk line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF     _ ___ _____ ___ _____ ___ ___   _   __  __ line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF  _ | | __|_   _/ __|_   _| _ \ __| /_\ |  \/  | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF | || | _|  | | \__ \ | | |   / _| / _ \| |\/| | line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF  \__/|___| |_| |___/ |_| |_|_\___/_/ \_\_|  |_| line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF          https://docs.nats.io/jetstream line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF ---------------- JETSTREAM ---------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Strict:          true line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Max Memory:      11.47 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Max Storage:     24.32 GB line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Store Directory: "/var/lib/opencloud/nats/jetstream" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   API Level:       2 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF ------------------------------------------- line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG   Exports: line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG      $JS.API.> line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG Enabled JetStream for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG   Max Memory:      -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG   Max Storage:     -1 B line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG Recovering JetStream state for account "$G" line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Starting restore for stream '$G > KV_graph' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Restored 0 messages for stream '$G > KV_graph' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Starting restore for stream '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Restored 0 messages for stream '$G > main-queue' in 0s line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF   Recovering 11 consumers for stream - '$G > main-queue' line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z DBG JetStream state for account "$G" recovered line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:45 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF Listening for client connections on 127.0.0.1:9233 line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+opencloud-1  | 2025-11-30T19:44:13Z INF Server is ready line=github.com/opencloud-eu/opencloud/services/nats/pkg/logging/nats.go:21 service=nats
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 1/1
+ ✔ Container opencloud817a-opencloud-1  Stopped                                                                                                                                                      10.1s 
+[14:44:24] albe@del-7410:/ap/dkr/732collection/red74/opencloud_817_yard/817__a/opencloud817a$ ^C
+[15:51:22] albe@del-7410:/ap/dkr/732collection/red74/opencloud_817_yard/817__a/opencloud817a$ 

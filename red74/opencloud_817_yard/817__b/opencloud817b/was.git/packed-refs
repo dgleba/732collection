@@ -1,0 +1,20 @@
+# pack-refs with: peeled fully-peeled sorted 
+6d39f1f5fa1bd607709da780e20cde2c657a7ded refs/remotes/origin/add-custom-js-to-keycloak-oc-design
+6be2c824eac5d2485884ce1d58c94add35318c37 refs/remotes/origin/add-update-server-to-csp.yaml
+73e50bca60634e0952b480eb462a87570691b64a refs/remotes/origin/add_minio
+94c3703acad1dae35ce7fddace217684cef7e203 refs/remotes/origin/admin-password
+eba7ee156ed7898252844cf52854d00ec89c216b refs/remotes/origin/bump-collabora-to-25.04.4.2.1
+39f40fa0f71c3505367e02a7e92066efef5df7b2 refs/remotes/origin/bump-maps-1.0.2
+c5f7c6bb24ed3a16874b64f3bf4bd69c269c70be refs/remotes/origin/disable-dcr
+dc3044868eabbcd01f110540e68a3f5dcad4e893 refs/remotes/origin/enable-ocm
+8c963015232042d298c5fd0d6427b9a8a4080cbb refs/remotes/origin/fix-cert.yml-example
+7543aa2eec98ba7e0a1227cf537b181a644d3832 refs/remotes/origin/fix-secure-view
+6b3a1e36e1f11943fea29e3fc0ae79121a0581a5 refs/remotes/origin/fix-tika-image
+29b44b0c78d9aff70a691e51cd668cd93a06125b refs/remotes/origin/keycloak-26
+497f09669c34c3c842792bf40fdb7d9f2d58512f refs/remotes/origin/main
+b501311d0fa8c5ef9f4eb6e4a6774b643830f83b refs/remotes/origin/mount-local-fonts-to-collabora
+f3c5f8f591acc93a9921b11d9b3a0e8025c7c871 refs/remotes/origin/move_production_to_docs
+27aa8f40f16f80b47c779ca04638cd469b887b17 refs/remotes/origin/pin_postgres_version
+ab8def29ba9dabfabeec1978aff608a80a277ee2 refs/remotes/origin/refactor-collaboration
+1c1ccef59c6f886a252b84c3e4c996d9e2b2f877 refs/remotes/origin/setDefaultAdminPass
+d3f0044fe39398e193d1c95016c37c694cd20180 refs/remotes/origin/web/704
