@@ -19,10 +19,17 @@ datasys/
 data/
 log/
 x/
+baks/
+
 zip/
+
+*.tgz
+*.tar.gz
+*.zip
 
 
 #*.sqlite3
+
 
 # too large..
 dbeaver-ce-21.zip

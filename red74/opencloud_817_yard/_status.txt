@@ -1,0 +1,37 @@
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-01-04[Jan-Sun]10-29AM 
+
+2026-01-04_Sun_11.00-AM
+use 817__e
+
+
+# urls and ports..
+
+opencld.daveg.win http://opencloud:9200
+9
+collaopencld.daveg.win http://collabora:9980
+10
+wopiopencld.daveg.win http://collaboration:9300
+
+opencloud817e-collabora-1          0.0.0.0:9980->9980/tcp               
+opencloud817e-collaboration-1      9200/tcp, 0.0.0.0:9300->9300/tcp     
+opencloud817e-opencloud-1          0.0.0.0:9200->9200/tcp               
+
+
+# see first time init in..  /ap/dkr/732collection/red74/opencloud_817_yard/817__e/note.opencloud817e2-notes2.sh 
+# ref:  https://docs.opencloud.eu/docs/admin/getting-started/container/docker#initialize-opencloud-first-time-setup
+
+
+cd
+/ap/dkr/732collection/red74/opencloud_817_yard/817__e/opencloud817e
+dc up
+
+
+
+
+#################################################################
+
