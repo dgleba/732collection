@@ -1,0 +1,11 @@
+
+networks:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+services:
+
+  cftunnel:
+    networks:
+      - cfnet_red74dgwin
+

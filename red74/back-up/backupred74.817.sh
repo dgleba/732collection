@@ -21,9 +21,27 @@ docker ps > /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_sys/lastbak/dockerps-
 docker ps -a > /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_sys/lastbak/dockerps-a_red74.bak
 
 
+# -------------------------------------------------
+# red74_814_dkr
+
+#/usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
+# 14 3,12  * * * /usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
+/usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr/ /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr/ --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
+
+
+# -------------------------------------------------
 # /ap/dkr
 /usr/bin/rclone sync /ap/dkr /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_ap_dkr/ap-dkr --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_ap_dkr.log
 
+/usr/bin/rsync -aHAX --delete   --info=stats2,progress2 \
+  /ap/dkr/    /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_ap_dkr/ap-dkr/     >> /ap/log/rclone-bak_red74_ap_dkr.log 2>&1
 
 
-#
+# -------------------------------------------------
+# wfsearch_811
+
+# 58 4,12 * * * bash -c "cd /ap/dkr/732collection/red74/wfsearch_811_yard/wfsearch811/djangosite && /usr/bin/python3 wfsearch.py"
+bash -c "cd /ap/dkr/732collection/red74/wfsearch_811_yard/wfsearch811/djangosite && /usr/bin/python3 wfsearch.py"
+
+# -------------------------------------------------
+

@@ -1,0 +1,30 @@
+
+
+
+i could not get this to work.
+see notes..
+
+
+---
+services:
+
+
+  ocinit:
+    image: opencloudeu/opencloud-rolling:latest
+    command: init
+    environment:
+      - IDM_ADMIN_PASSWORD=${IDM_ADMIN_PASSWORD}
+    volumes:
+      - ${OC_CONFIG_DIR}:/etc/opencloud
+      - ${OC_DATA_DIR}:/var/lib/opencloud
+    stdin_open: true
+    tty: true
+    restart: "no"
+    user: 1000:1000
+    env_file:
+        - .env
+    networks:
+      opencloud-net:
+
+networks:
+  opencloud-net:

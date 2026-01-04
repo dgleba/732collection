@@ -12,8 +12,8 @@ services:
   cftunnel:
     image: cloudflare/cloudflared
     command: tunnel  --no-autoupdate  run  --token ${TUNNEL_TOKEN}
-    # volumes:
-    #   - ./cloudflared:/etc/cloudflared
+    volumes:
+      - ./cloudflared:/etc/cloudflared
     restart: unless-stopped
     environment:
     #   TUNNEL_TOKEN: ${TUNNEL_TOKEN} 

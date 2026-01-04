@@ -1,0 +1,152 @@
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-12-27[Dec-Sat]13-31PM 
+
+
+
+------------
+
+I got onboarding screen.
+i knew all data was there from months ago.
+permissions were wrong.
+
+I had to run 
+`sudo chown -R 1000:1000 data/haconfig`
+insde the container.
+
+
+------------
+
+
+#################################################################
+#@  
+#@  
+#@  
+####################################   2025-12-27[Dec-Sat]13-30PM 
+
+
+Here is the structured Page artifact based on the group chat conversation:
+
+## 🗂️ Home Assistant Recovery Plan
+
+## Context
+
+David attempted to access his Home Assistant instance after a long break. Despite having a populated configuration directory with months of data, the system presented the onboarding screen and reported zero users. Investigation revealed that the container was not properly reading the existing configuration due to file ownership mismatches.
+
+## Problem Statement
+
+-   Home Assistant shows onboarding instead of loading the existing setup.
+    
+-   Password reset attempts fail because the system reports **Total users: 0**.
+    
+-   The configuration directory exists and contains valid data, but Home Assistant cannot read it.
+    
+
+## Diagnosis
+
+1.  **Config directory intact**
+    
+    -   Contains `.storage/auth`, `.storage/core.config_entries`, integrations, HACS repos, Sonoff, scheduler, logs, etc.
+        
+    -   Timestamps confirm data up to June 2025.
+        
+2.  **Onboarding triggered**
+    
+    -   Happens when Home Assistant cannot read `.storage/auth` and related files.
+        
+3.  **Ownership mismatch**
+    
+    -   Many files are owned by `root:root`.
+        
+    -   Newer Home Assistant containers run the application as **UID 1000**, not root.
+        
+    -   Result: HA process cannot read root-owned files → onboarding → zero users.
+        
+4.  **Container behavior clarified**
+    
+    -   Interactive shell (`docker exec bash`) runs as root.
+        
+    -   Home Assistant process itself runs as UID 1000.
+        
+    -   Confirmable via `ps aux | grep homeassistant`.
+        
+
+## Resolution Path
+
+### Step 1 — Stop the container
+
+    docker compose down
+
+### Step 2 — Snapshot config directory (optional)
+
+    tar -cvf haconfig_before_chown_$(date +%F).tar data/haconfig
+
+### Step 3 — Fix ownership
+
+    sudo chown -R 1000:1000 data/haconfig
+
+### Step 4 — Restart container
+
+    docker compose up -d
+
+### Step 5 — Verify users
+
+    docker compose exec hasst python3 -m homeassistant --script auth list
+
+Expected: Original users reappear.
+
+### Step 6 — Reset password if needed
+
+    python3 -m homeassistant --script auth change_password yourusername
+
+## Expected Outcomes
+
+-   Home Assistant skips onboarding.
+    
+-   Original users restored.
+    
+-   Password reset possible.
+    
+-   Dashboards, integrations (Sonoff, scheduler, HACS), and logs load normally.
+    
+-   No data loss — only permissions adjustment required.
+    
+
+## Future Considerations
+
+-   **Ownership consistency:** Ensure all future config files are owned by UID 1000.
+    
+-   **Upgrade awareness:** Document that newer HA containers run as non-root.
+    
+-   **Backup strategy:** Regular snapshots of `/config` before upgrades.
+    
+-   **Verification script:** Automate checks for file ownership and integrity before container restarts.
+    
+
+## Appendix
+
+### Key Commands
+
+-   Inspect mounts:
+    
+        docker inspect homeassistant | grep -i mount -A 5
+    
+-   Check container config view:
+    
+        docker exec -it homeassistant ls -al /config
+    
+-   Confirm HA process UID:
+    
+        ps aux | grep homeassistant
+    
+
+✅ This document provides a clear, reproducible recovery plan for restoring David’s Home Assistant instance to its prior state.
+
+
+
+
+------------
+

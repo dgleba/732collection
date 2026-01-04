@@ -1,0 +1,917 @@
+
+tar -cvf backup_haconfig_$(date +%F).tar data/haconfig
+
+
+------------
+
+[12:40:57] albe@del-7410:/ap/dkr/732collection/red74/hassist708yard$ pwd
+/ap/dkr/732collection/red74/hassist708yard
+[12:41:50] albe@del-7410:/ap/dkr/732collection/red74/hassist708yard$ 
+
+------------
+
+# =================================================
+# docker-compose.yaml
+
+version: '3'
+services:
+  hasst:
+    # http://192.168.88.77:8123
+    # container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:2023.6"
+    volumes:
+      - ./data/haconfig:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host
+
+
+------------
+
+ll -R
+
+.:
+total 16
+drwxrwxrwx  3 albe albe  4096 Dec 27 12:40 .
+drwxrwxr-x 44 albe albe  4096 Dec 27 11:50 ..
+drwxrwxrwx  3 albe albe  4096 Dec 27 11:55 hasst708b
+-rw-rw-r--  1 albe staff    0 Dec 27 12:40 ll.txt
+-rw-r--r--  1 albe staff  250 Dec 27 11:52 tarit
+
+./hasst708b:
+total 20
+drwxrwxrwx 3 albe albe  4096 Dec 27 11:55 .
+drwxrwxrwx 3 albe albe  4096 Dec 27 12:40 ..
+drwxrwxrwx 3 albe albe  4096 Jun  4  2023 data
+-rwxrwxrwx 1 albe staff  382 Dec 27 11:55 docker-compose.yml
+-rw-r--r-- 1 albe staff   65 Apr 30  2025 .env
+
+./hasst708b/data:
+total 12
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 3 albe albe 4096 Dec 27 11:55 ..
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 haconfig
+
+./hasst708b/data/haconfig:
+total 251244
+drwxrwxrwx 9 albe albe      4096 Jun 14  2025 .
+drwxrwxrwx 3 albe albe      4096 Jun  4  2023 ..
+-rwxrwxrwx 1 albe albe         2 Jun  4  2023 automations.yaml
+drwxrwxrwx 4 albe albe      4096 Jun  4  2023 blueprints
+drwxrwxrwx 2 albe albe      4096 Jun  4  2023 .cloud
+-rwxrwxrwx 1 albe albe       319 Jun  4  2023 configuration.yaml
+drwxrwxr-x 5 albe albe      4096 May  1  2024 custom_components
+drwxrwxrwx 2 albe albe      4096 Jun  4  2023 deps
+-rwxrwxrwx 1 albe albe         8 May  1  2024 .HA_VERSION
+-rw-r--r-- 1 root root  29679109 Jun 14  2025 home-assistant.log
+-rw-r--r-- 1 root root      1580 May 15  2025 home-assistant.log.1
+-rwxrwxrwx 1 albe albe 227528704 Jun 14  2025 home-assistant_v2.db
+-rwxrwxrwx 1 albe albe         0 Jun  4  2023 scenes.yaml
+-rwxrwxrwx 1 albe albe         0 Jun  4  2023 scripts.yaml
+-rwxrwxrwx 1 albe albe       161 Jun  4  2023 secrets.yaml
+drwxrwxrwx 3 albe albe      4096 Jun 14  2025 .storage
+drwxrwxrwx 2 albe albe      4096 Jun  4  2023 tts
+drwxr-xr-x 3 albe albe      4096 Jun 11  2023 www
+
+./hasst708b/data/haconfig/blueprints:
+total 16
+drwxrwxrwx 4 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 ..
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 automation
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 script
+
+./hasst708b/data/haconfig/blueprints/automation:
+total 12
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 4 albe albe 4096 Jun  4  2023 ..
+drwxrwxrwx 2 albe albe 4096 May 23  2023 homeassistant
+
+./hasst708b/data/haconfig/blueprints/automation/homeassistant:
+total 16
+drwxrwxrwx 2 albe albe 4096 May 23  2023 .
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 ..
+-rwxrwxrwx 1 albe albe 1420 May 23  2023 motion_light.yaml
+-rwxrwxrwx 1 albe albe 1606 May 23  2023 notify_leaving_zone.yaml
+
+./hasst708b/data/haconfig/blueprints/script:
+total 12
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 4 albe albe 4096 Jun  4  2023 ..
+drwxrwxrwx 2 albe albe 4096 May 23  2023 homeassistant
+
+./hasst708b/data/haconfig/blueprints/script/homeassistant:
+total 12
+drwxrwxrwx 2 albe albe 4096 May 23  2023 .
+drwxrwxrwx 3 albe albe 4096 Jun  4  2023 ..
+-rwxrwxrwx 1 albe albe 2575 May 23  2023 confirmable_notification.yaml
+
+./hasst708b/data/haconfig/.cloud:
+total 8
+drwxrwxrwx 2 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 ..
+
+./hasst708b/data/haconfig/custom_components:
+total 20
+drwxrwxr-x  5 albe albe 4096 May  1  2024 .
+drwxrwxrwx  9 albe albe 4096 Jun 14  2025 ..
+drwxrwxr-x 10 albe albe 4096 Jun  4  2023 hacs
+drwxr-xr-x  3 albe albe 4096 Jun 11  2023 scheduler
+drwxr-xr-x  5 root root 4096 May  1  2024 sonoff
+
+./hasst708b/data/haconfig/custom_components/hacs:
+total 168
+drwxrwxr-x 10 albe albe  4096 Jun  4  2023 .
+drwxrwxr-x  5 albe albe  4096 May  1  2024 ..
+-rw-r--r--  1 albe albe 44163 Apr  8  2023 base.py
+-rw-r--r--  1 albe albe  7237 Apr  8  2023 config_flow.py
+-rw-r--r--  1 albe albe  3494 Apr  8  2023 const.py
+-rw-r--r--  1 albe albe  1963 Apr  8  2023 data_client.py
+-rw-r--r--  1 albe albe  2762 Apr  8  2023 diagnostics.py
+-rw-r--r--  1 albe albe  3559 Apr  8  2023 entity.py
+-rw-r--r--  1 albe albe  2154 Apr  8  2023 enums.py
+-rw-r--r--  1 albe albe  1363 Apr  8  2023 exceptions.py
+-rw-r--r--  1 albe albe  2640 Apr  8  2023 frontend.py
+drwxr-xr-x  3 albe albe  4096 Apr  8  2023 hacs_frontend
+drwxr-xr-x  3 albe albe 12288 Apr  8  2023 hacs_frontend_experimental
+-rw-r--r--  1 albe albe  3842 Apr  8  2023 iconset.js
+-rw-r--r--  1 albe albe  9233 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe   531 Apr  8  2023 manifest.json
+drwxr-xr-x  2 albe albe  4096 Jun  8  2023 __pycache__
+-rw-r--r--  1 albe albe  1765 Apr  8  2023 repairs.py
+drwxr-xr-x  3 albe albe  4096 Jun  4  2023 repositories
+-rw-r--r--  1 albe albe  1949 Apr  8  2023 sensor.py
+-rw-r--r--  1 albe albe  1788 Apr  8  2023 system_health.py
+drwxr-xr-x  2 albe albe  4096 Apr  8  2023 translations
+-rw-r--r--  1 albe albe  5724 Apr  8  2023 update.py
+drwxr-xr-x  3 albe albe  4096 Jun  4  2023 utils
+drwxr-xr-x  2 albe albe  4096 Apr  8  2023 validate
+drwxr-xr-x  3 albe albe  4096 Jun  4  2023 websocket
+
+./hasst708b/data/haconfig/custom_components/hacs/hacs_frontend:
+total 5272
+drwxr-xr-x  3 albe albe    4096 Apr  8  2023 .
+drwxrwxr-x 10 albe albe    4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe    7628 Apr  8  2023 c.004a7b01.js
+-rw-r--r--  1 albe albe    2391 Apr  8  2023 c.004a7b01.js.gz
+-rw-r--r--  1 albe albe    1246 Apr  8  2023 c.0a1cf8d0.js
+-rw-r--r--  1 albe albe     557 Apr  8  2023 c.0a1cf8d0.js.gz
+-rw-r--r--  1 albe albe    2806 Apr  8  2023 c.0ca5587f.js
+-rw-r--r--  1 albe albe    1045 Apr  8  2023 c.0ca5587f.js.gz
+-rw-r--r--  1 albe albe   20007 Apr  8  2023 c.0f6bb17e.js
+-rw-r--r--  1 albe albe    4728 Apr  8  2023 c.0f6bb17e.js.gz
+-rw-r--r--  1 albe albe  295571 Apr  8  2023 c.10c7d0ce.js
+-rw-r--r--  1 albe albe   89795 Apr  8  2023 c.10c7d0ce.js.gz
+-rw-r--r--  1 albe albe    1399 Apr  8  2023 c.11ad1623.js
+-rw-r--r--  1 albe albe     648 Apr  8  2023 c.11ad1623.js.gz
+-rw-r--r--  1 albe albe   36593 Apr  8  2023 c.14dc9dca.js
+-rw-r--r--  1 albe albe   10332 Apr  8  2023 c.14dc9dca.js.gz
+-rw-r--r--  1 albe albe      66 Apr  8  2023 c.21c042d4.js
+-rw-r--r--  1 albe albe    8716 Apr  8  2023 c.24bd2446.js
+-rw-r--r--  1 albe albe    2716 Apr  8  2023 c.24bd2446.js.gz
+-rw-r--r--  1 albe albe     544 Apr  8  2023 c.25ed1ae4.js
+-rw-r--r--  1 albe albe     368 Apr  8  2023 c.25ed1ae4.js.gz
+-rw-r--r--  1 albe albe    1181 Apr  8  2023 c.2645c235.js
+-rw-r--r--  1 albe albe     612 Apr  8  2023 c.2645c235.js.gz
+-rw-r--r--  1 albe albe    2189 Apr  8  2023 c.2d5ed670.js
+-rw-r--r--  1 albe albe     798 Apr  8  2023 c.2d5ed670.js.gz
+-rw-r--r--  1 albe albe    4979 Apr  8  2023 c.2ee83bd0.js
+-rw-r--r--  1 albe albe    1552 Apr  8  2023 c.2ee83bd0.js.gz
+-rw-r--r--  1 albe albe    2690 Apr  8  2023 c.3243a8b0.js
+-rw-r--r--  1 albe albe     997 Apr  8  2023 c.3243a8b0.js.gz
+-rw-r--r--  1 albe albe    2916 Apr  8  2023 c.3da15c48.js
+-rw-r--r--  1 albe albe     981 Apr  8  2023 c.3da15c48.js.gz
+-rw-r--r--  1 albe albe   86699 Apr  8  2023 c.3f859915.js
+-rw-r--r--  1 albe albe   13517 Apr  8  2023 c.3f859915.js.gz
+-rw-r--r--  1 albe albe    9189 Apr  8  2023 c.4204ca09.js
+-rw-r--r--  1 albe albe    2392 Apr  8  2023 c.4204ca09.js.gz
+-rw-r--r--  1 albe albe     426 Apr  8  2023 c.4266acdb.js
+-rw-r--r--  1 albe albe     284 Apr  8  2023 c.4266acdb.js.gz
+-rw-r--r--  1 albe albe   69747 Apr  8  2023 c.42d6aebd.js
+-rw-r--r--  1 albe albe   11259 Apr  8  2023 c.42d6aebd.js.gz
+-rw-r--r--  1 albe albe   63388 Apr  8  2023 c.456b65b4.js
+-rw-r--r--  1 albe albe   18984 Apr  8  2023 c.456b65b4.js.gz
+-rw-r--r--  1 albe albe     189 Apr  8  2023 c.4a97632a.js
+-rw-r--r--  1 albe albe     144 Apr  8  2023 c.4a97632a.js.gz
+-rw-r--r--  1 albe albe   37751 Apr  8  2023 c.4c04acb5.js
+-rw-r--r--  1 albe albe   12197 Apr  8  2023 c.4c04acb5.js.gz
+-rw-r--r--  1 albe albe    6904 Apr  8  2023 c.4fa7acdf.js
+-rw-r--r--  1 albe albe    2126 Apr  8  2023 c.4fa7acdf.js.gz
+-rw-r--r--  1 albe albe    9880 Apr  8  2023 c.4feb0cb8.js
+-rw-r--r--  1 albe albe    2180 Apr  8  2023 c.4feb0cb8.js.gz
+-rw-r--r--  1 albe albe     236 Apr  8  2023 c.50bfd408.js
+-rw-r--r--  1 albe albe     178 Apr  8  2023 c.50bfd408.js.gz
+-rw-r--r--  1 albe albe    7210 Apr  8  2023 c.568c70d8.js
+-rw-r--r--  1 albe albe    2431 Apr  8  2023 c.568c70d8.js.gz
+-rw-r--r--  1 albe albe    1132 Apr  8  2023 c.5d3ce9d6.js
+-rw-r--r--  1 albe albe     543 Apr  8  2023 c.5d3ce9d6.js.gz
+-rw-r--r--  1 albe albe      31 Apr  8  2023 c.656daa82.js
+-rw-r--r--  1 albe albe   44198 Apr  8  2023 c.710a50fc.js
+-rw-r--r--  1 albe albe   10125 Apr  8  2023 c.710a50fc.js.gz
+-rw-r--r--  1 albe albe     384 Apr  8  2023 c.743a15a1.js
+-rw-r--r--  1 albe albe     223 Apr  8  2023 c.743a15a1.js.gz
+-rw-r--r--  1 albe albe    7685 Apr  8  2023 c.7948d625.js
+-rw-r--r--  1 albe albe    2439 Apr  8  2023 c.7948d625.js.gz
+-rw-r--r--  1 albe albe   13977 Apr  8  2023 c.7bb36093.js
+-rw-r--r--  1 albe albe    3793 Apr  8  2023 c.7bb36093.js.gz
+-rw-r--r--  1 albe albe    6563 Apr  8  2023 c.81a49b25.js
+-rw-r--r--  1 albe albe    1976 Apr  8  2023 c.81a49b25.js.gz
+-rw-r--r--  1 albe albe    1568 Apr  8  2023 c.82e03b89.js
+-rw-r--r--  1 albe albe     611 Apr  8  2023 c.82e03b89.js.gz
+-rw-r--r--  1 albe albe   35748 Apr  8  2023 c.82eccc94.js
+-rw-r--r--  1 albe albe    8234 Apr  8  2023 c.82eccc94.js.gz
+-rw-r--r--  1 albe albe    9048 Apr  8  2023 c.8d4c35ad.js
+-rw-r--r--  1 albe albe    2422 Apr  8  2023 c.8d4c35ad.js.gz
+-rw-r--r--  1 albe albe   64646 Apr  8  2023 c.8de55195.js
+-rw-r--r--  1 albe albe   19595 Apr  8  2023 c.8de55195.js.gz
+-rw-r--r--  1 albe albe     462 Apr  8  2023 c.8e28b461.js
+-rw-r--r--  1 albe albe     227 Apr  8  2023 c.8e28b461.js.gz
+-rw-r--r--  1 albe albe   18213 Apr  8  2023 c.97b7c4b0.js
+-rw-r--r--  1 albe albe    3105 Apr  8  2023 c.97b7c4b0.js.gz
+-rw-r--r--  1 albe albe  145110 Apr  8  2023 c.99c1c4ba.js
+-rw-r--r--  1 albe albe   40063 Apr  8  2023 c.99c1c4ba.js.gz
+-rw-r--r--  1 albe albe   75333 Apr  8  2023 c.9b92f489.js
+-rw-r--r--  1 albe albe   14114 Apr  8  2023 c.9b92f489.js.gz
+-rw-r--r--  1 albe albe    1524 Apr  8  2023 c.a5f69ed4.js
+-rw-r--r--  1 albe albe     725 Apr  8  2023 c.a5f69ed4.js.gz
+-rw-r--r--  1 albe albe   69044 Apr  8  2023 c.aa05d073.js
+-rw-r--r--  1 albe albe   15502 Apr  8  2023 c.aa05d073.js.gz
+-rw-r--r--  1 albe albe 1410091 Apr  8  2023 c.ad739743.js
+-rw-r--r--  1 albe albe  188403 Apr  8  2023 c.ad739743.js.gz
+-rw-r--r--  1 albe albe    1187 Apr  8  2023 c.b9fadbef.js
+-rw-r--r--  1 albe albe     553 Apr  8  2023 c.b9fadbef.js.gz
+-rw-r--r--  1 albe albe   67196 Apr  8  2023 c.bc53dda1.js
+-rw-r--r--  1 albe albe   13543 Apr  8  2023 c.bc53dda1.js.gz
+-rw-r--r--  1 albe albe   14208 Apr  8  2023 c.bc5a73e9.js
+-rw-r--r--  1 albe albe    3866 Apr  8  2023 c.bc5a73e9.js.gz
+-rw-r--r--  1 albe albe    2934 Apr  8  2023 c.bdf06437.js
+-rw-r--r--  1 albe albe    1134 Apr  8  2023 c.bdf06437.js.gz
+-rw-r--r--  1 albe albe    5734 Apr  8  2023 c.c436d42d.js
+-rw-r--r--  1 albe albe    1874 Apr  8  2023 c.c436d42d.js.gz
+-rw-r--r--  1 albe albe   28201 Apr  8  2023 c.c79c22f9.js
+-rw-r--r--  1 albe albe    9926 Apr  8  2023 c.c79c22f9.js.gz
+-rw-r--r--  1 albe albe   16341 Apr  8  2023 c.d124a3a6.js
+-rw-r--r--  1 albe albe    3723 Apr  8  2023 c.d124a3a6.js.gz
+-rw-r--r--  1 albe albe  127332 Apr  8  2023 c.d262aab0.js
+-rw-r--r--  1 albe albe   26661 Apr  8  2023 c.d262aab0.js.gz
+-rw-r--r--  1 albe albe  492380 Apr  8  2023 c.d2e52e5a.js
+-rw-r--r--  1 albe albe  101404 Apr  8  2023 c.d2e52e5a.js.gz
+-rw-r--r--  1 albe albe    1749 Apr  8  2023 c.d6d13164.js
+-rw-r--r--  1 albe albe     686 Apr  8  2023 c.d6d13164.js.gz
+-rw-r--r--  1 albe albe     405 Apr  8  2023 c.e23b0d0b.js
+-rw-r--r--  1 albe albe     260 Apr  8  2023 c.e23b0d0b.js.gz
+-rw-r--r--  1 albe albe    1824 Apr  8  2023 c.e2a8d067.js
+-rw-r--r--  1 albe albe     816 Apr  8  2023 c.e2a8d067.js.gz
+-rw-r--r--  1 albe albe   19480 Apr  8  2023 c.ecbce863.js
+-rw-r--r--  1 albe albe    4723 Apr  8  2023 c.ecbce863.js.gz
+-rw-r--r--  1 albe albe    3958 Apr  8  2023 c.f12697b4.js
+-rw-r--r--  1 albe albe    1283 Apr  8  2023 c.f12697b4.js.gz
+-rw-r--r--  1 albe albe    3472 Apr  8  2023 c.f1291e50.js
+-rw-r--r--  1 albe albe    1097 Apr  8  2023 c.f1291e50.js.gz
+-rw-r--r--  1 albe albe     160 Apr  8  2023 c.f2bb3724.js
+-rw-r--r--  1 albe albe     141 Apr  8  2023 c.f2bb3724.js.gz
+-rw-r--r--  1 albe albe  178643 Apr  8  2023 c.f6611997.js
+-rw-r--r--  1 albe albe   50211 Apr  8  2023 c.f6611997.js.gz
+-rw-r--r--  1 albe albe   17006 Apr  8  2023 c.f940f080.js
+-rw-r--r--  1 albe albe    5019 Apr  8  2023 c.f940f080.js.gz
+-rw-r--r--  1 albe albe     340 Apr  8  2023 c.fe747ba2.js
+-rw-r--r--  1 albe albe     162 Apr  8  2023 c.fe747ba2.js.gz
+-rw-r--r--  1 albe albe     246 Apr  8  2023 entrypoint.js
+-rw-r--r--  1 albe albe     183 Apr  8  2023 entrypoint.js.gz
+-rw-r--r--  1 albe albe      94 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe  622481 Apr  8  2023 main-ad130be7.js
+-rw-r--r--  1 albe albe  153969 Apr  8  2023 main-ad130be7.js.gz
+-rw-r--r--  1 albe albe      41 Apr  8  2023 manifest.json
+drwxr-xr-x  2 albe albe    4096 Jun  4  2023 __pycache__
+-rw-r--r--  1 albe albe      24 Apr  8  2023 version.py
+
+./hasst708b/data/haconfig/custom_components/hacs/hacs_frontend/__pycache__:
+total 24
+drwxr-xr-x 2 albe albe 4096 Jun  4  2023 .
+drwxr-xr-x 3 albe albe 4096 Apr  8  2023 ..
+-rw-r--r-- 1 albe albe  339 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r-- 1 albe albe  419 Apr  8  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe  174 Jun  4  2023 version.cpython-310.pyc
+-rw-r--r-- 1 albe albe  194 Apr  8  2023 version.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/hacs/hacs_frontend_experimental:
+total 5636
+drwxr-xr-x  3 albe albe   12288 Apr  8  2023 .
+drwxrwxr-x 10 albe albe    4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe    7628 Apr  8  2023 c.004a7b01.js
+-rw-r--r--  1 albe albe    2391 Apr  8  2023 c.004a7b01.js.gz
+-rw-r--r--  1 albe albe    5901 Apr  8  2023 c.00e853e1.js
+-rw-r--r--  1 albe albe    1609 Apr  8  2023 c.00e853e1.js.gz
+-rw-r--r--  1 albe albe    8716 Apr  8  2023 c.033798e3.js
+-rw-r--r--  1 albe albe    2716 Apr  8  2023 c.033798e3.js.gz
+-rw-r--r--  1 albe albe      88 Apr  8  2023 c.04ecc0ad.js
+-rw-r--r--  1 albe albe     254 Apr  8  2023 c.07e395f8.js
+-rw-r--r--  1 albe albe     189 Apr  8  2023 c.07e395f8.js.gz
+-rw-r--r--  1 albe albe    6737 Apr  8  2023 c.0931d4e5.js
+-rw-r--r--  1 albe albe    1591 Apr  8  2023 c.0931d4e5.js.gz
+-rw-r--r--  1 albe albe      54 Apr  8  2023 c.1024e243.js
+-rw-r--r--  1 albe albe    1513 Apr  8  2023 c.1075ceb6.js
+-rw-r--r--  1 albe albe     634 Apr  8  2023 c.1075ceb6.js.gz
+-rw-r--r--  1 albe albe     254 Apr  8  2023 c.10855172.js
+-rw-r--r--  1 albe albe     199 Apr  8  2023 c.10855172.js.gz
+-rw-r--r--  1 albe albe    1585 Apr  8  2023 c.1095ea82.js
+-rw-r--r--  1 albe albe     691 Apr  8  2023 c.1095ea82.js.gz
+-rw-r--r--  1 albe albe    5776 Apr  8  2023 c.10b44dbb.js
+-rw-r--r--  1 albe albe    1649 Apr  8  2023 c.10b44dbb.js.gz
+-rw-r--r--  1 albe albe  295565 Apr  8  2023 c.10c7d0ce.js
+-rw-r--r--  1 albe albe   89805 Apr  8  2023 c.10c7d0ce.js.gz
+-rw-r--r--  1 albe albe    1383 Apr  8  2023 c.117d0056.js
+-rw-r--r--  1 albe albe     717 Apr  8  2023 c.117d0056.js.gz
+-rw-r--r--  1 albe albe   64646 Apr  8  2023 c.146bd8ba.js
+-rw-r--r--  1 albe albe   19589 Apr  8  2023 c.146bd8ba.js.gz
+-rw-r--r--  1 albe albe      66 Apr  8  2023 c.21c042d4.js
+-rw-r--r--  1 albe albe     495 Apr  8  2023 c.2610e8cd.js
+-rw-r--r--  1 albe albe     235 Apr  8  2023 c.2610e8cd.js.gz
+-rw-r--r--  1 albe albe    6111 Apr  8  2023 c.2a64ceac.js
+-rw-r--r--  1 albe albe    2173 Apr  8  2023 c.2a64ceac.js.gz
+-rw-r--r--  1 albe albe    1421 Apr  8  2023 c.33478cf6.js
+-rw-r--r--  1 albe albe     636 Apr  8  2023 c.33478cf6.js.gz
+-rw-r--r--  1 albe albe   12963 Apr  8  2023 c.34b7552d.js
+-rw-r--r--  1 albe albe    3383 Apr  8  2023 c.34b7552d.js.gz
+-rw-r--r--  1 albe albe     363 Apr  8  2023 c.36ae07d6.js
+-rw-r--r--  1 albe albe     263 Apr  8  2023 c.36ae07d6.js.gz
+-rw-r--r--  1 albe albe  202558 Apr  8  2023 c.388f6c87.js
+-rw-r--r--  1 albe albe   33023 Apr  8  2023 c.388f6c87.js.gz
+-rw-r--r--  1 albe albe    7344 Apr  8  2023 c.3cd443fb.js
+-rw-r--r--  1 albe albe    2362 Apr  8  2023 c.3cd443fb.js.gz
+-rw-r--r--  1 albe albe   11042 Apr  8  2023 c.3e134699.js
+-rw-r--r--  1 albe albe    3576 Apr  8  2023 c.3e134699.js.gz
+-rw-r--r--  1 albe albe     198 Apr  8  2023 c.468b43fb.js
+-rw-r--r--  1 albe albe     154 Apr  8  2023 c.468b43fb.js.gz
+-rw-r--r--  1 albe albe   16896 Apr  8  2023 c.4707854b.js
+-rw-r--r--  1 albe albe    3537 Apr  8  2023 c.4707854b.js.gz
+-rw-r--r--  1 albe albe     148 Apr  8  2023 c.4f015773.js
+-rw-r--r--  1 albe albe    1566 Apr  8  2023 c.4f8247dc.js
+-rw-r--r--  1 albe albe     662 Apr  8  2023 c.4f8247dc.js.gz
+-rw-r--r--  1 albe albe   16265 Apr  8  2023 c.50a2e981.js
+-rw-r--r--  1 albe albe    5394 Apr  8  2023 c.50a2e981.js.gz
+-rw-r--r--  1 albe albe     236 Apr  8  2023 c.50bfd408.js
+-rw-r--r--  1 albe albe     178 Apr  8  2023 c.50bfd408.js.gz
+-rw-r--r--  1 albe albe    5378 Apr  8  2023 c.54067e61.js
+-rw-r--r--  1 albe albe    1735 Apr  8  2023 c.54067e61.js.gz
+-rw-r--r--  1 albe albe    7187 Apr  8  2023 c.55c222d3.js
+-rw-r--r--  1 albe albe    1896 Apr  8  2023 c.55c222d3.js.gz
+-rw-r--r--  1 albe albe    1364 Apr  8  2023 c.59ae3c13.js
+-rw-r--r--  1 albe albe     543 Apr  8  2023 c.59ae3c13.js.gz
+-rw-r--r--  1 albe albe    6629 Apr  8  2023 c.5aed34c8.js
+-rw-r--r--  1 albe albe    1816 Apr  8  2023 c.5aed34c8.js.gz
+-rw-r--r--  1 albe albe    1132 Apr  8  2023 c.5ebe89cb.js
+-rw-r--r--  1 albe albe     544 Apr  8  2023 c.5ebe89cb.js.gz
+-rw-r--r--  1 albe albe   38284 Apr  8  2023 c.5fe2e3ab.js
+-rw-r--r--  1 albe albe   12084 Apr  8  2023 c.5fe2e3ab.js.gz
+-rw-r--r--  1 albe albe    2267 Apr  8  2023 c.6233ba52.js
+-rw-r--r--  1 albe albe     817 Apr  8  2023 c.6233ba52.js.gz
+-rw-r--r--  1 albe albe      31 Apr  8  2023 c.656daa82.js
+-rw-r--r--  1 albe albe  148278 Apr  8  2023 c.6a1a9e04.js
+-rw-r--r--  1 albe albe   40884 Apr  8  2023 c.6a1a9e04.js.gz
+-rw-r--r--  1 albe albe    3434 Apr  8  2023 c.6d6a8b76.js
+-rw-r--r--  1 albe albe    1097 Apr  8  2023 c.6d6a8b76.js.gz
+-rw-r--r--  1 albe albe     177 Apr  8  2023 c.6eb9fcd4.js
+-rw-r--r--  1 albe albe     161 Apr  8  2023 c.6eb9fcd4.js.gz
+-rw-r--r--  1 albe albe     988 Apr  8  2023 c.6f18200a.js
+-rw-r--r--  1 albe albe     564 Apr  8  2023 c.6f18200a.js.gz
+-rw-r--r--  1 albe albe    1954 Apr  8  2023 c.6f84470d.js
+-rw-r--r--  1 albe albe     809 Apr  8  2023 c.6f84470d.js.gz
+-rw-r--r--  1 albe albe     321 Apr  8  2023 c.704dab74.js
+-rw-r--r--  1 albe albe     233 Apr  8  2023 c.704dab74.js.gz
+-rw-r--r--  1 albe albe   20336 Apr  8  2023 c.7398f5d5.js
+-rw-r--r--  1 albe albe    3219 Apr  8  2023 c.7398f5d5.js.gz
+-rw-r--r--  1 albe albe     384 Apr  8  2023 c.743a15a1.js
+-rw-r--r--  1 albe albe     223 Apr  8  2023 c.743a15a1.js.gz
+-rw-r--r--  1 albe albe   37415 Apr  8  2023 c.7606b61b.js
+-rw-r--r--  1 albe albe   12102 Apr  8  2023 c.7606b61b.js.gz
+-rw-r--r--  1 albe albe    5633 Apr  8  2023 c.7a44e681.js
+-rw-r--r--  1 albe albe    1844 Apr  8  2023 c.7a44e681.js.gz
+-rw-r--r--  1 albe albe   44256 Apr  8  2023 c.7d6b8ecd.js
+-rw-r--r--  1 albe albe   10133 Apr  8  2023 c.7d6b8ecd.js.gz
+-rw-r--r--  1 albe albe    2412 Apr  8  2023 c.81714150.js
+-rw-r--r--  1 albe albe     750 Apr  8  2023 c.81714150.js.gz
+-rw-r--r--  1 albe albe   12234 Apr  8  2023 c.86b125b8.js
+-rw-r--r--  1 albe albe    4004 Apr  8  2023 c.86b125b8.js.gz
+-rw-r--r--  1 albe albe      97 Apr  8  2023 c.874c8cfd.js
+-rw-r--r--  1 albe albe    4517 Apr  8  2023 c.89afba42.js
+-rw-r--r--  1 albe albe    1403 Apr  8  2023 c.89afba42.js.gz
+-rw-r--r--  1 albe albe     764 Apr  8  2023 c.89ccd556.js
+-rw-r--r--  1 albe albe     252 Apr  8  2023 c.89ccd556.js.gz
+-rw-r--r--  1 albe albe     462 Apr  8  2023 c.8e28b461.js
+-rw-r--r--  1 albe albe     227 Apr  8  2023 c.8e28b461.js.gz
+-rw-r--r--  1 albe albe    3513 Apr  8  2023 c.8e31888c.js
+-rw-r--r--  1 albe albe    1472 Apr  8  2023 c.8e31888c.js.gz
+-rw-r--r--  1 albe albe    1068 Apr  8  2023 c.92d158dd.js
+-rw-r--r--  1 albe albe     442 Apr  8  2023 c.92d158dd.js.gz
+-rw-r--r--  1 albe albe    2919 Apr  8  2023 c.99cf2c6d.js
+-rw-r--r--  1 albe albe     983 Apr  8  2023 c.99cf2c6d.js.gz
+-rw-r--r--  1 albe albe    3318 Apr  8  2023 c.9ca1c36a.js
+-rw-r--r--  1 albe albe    1087 Apr  8  2023 c.9ca1c36a.js.gz
+-rw-r--r--  1 albe albe    1749 Apr  8  2023 c.9f8c12a9.js
+-rw-r--r--  1 albe albe     687 Apr  8  2023 c.9f8c12a9.js.gz
+-rw-r--r--  1 albe albe    1824 Apr  8  2023 c.9fea9e8a.js
+-rw-r--r--  1 albe albe     817 Apr  8  2023 c.9fea9e8a.js.gz
+-rw-r--r--  1 albe albe    8760 Apr  8  2023 c.a0797e5e.js
+-rw-r--r--  1 albe albe    2388 Apr  8  2023 c.a0797e5e.js.gz
+-rw-r--r--  1 albe albe      22 Apr  8  2023 c.a0946910.js
+-rw-r--r--  1 albe albe    4579 Apr  8  2023 c.a1a1fa36.js
+-rw-r--r--  1 albe albe    1248 Apr  8  2023 c.a1a1fa36.js.gz
+-rw-r--r--  1 albe albe    1199 Apr  8  2023 c.a23e6b57.js
+-rw-r--r--  1 albe albe     480 Apr  8  2023 c.a23e6b57.js.gz
+-rw-r--r--  1 albe albe    4109 Apr  8  2023 c.a35673d5.js
+-rw-r--r--  1 albe albe    1329 Apr  8  2023 c.a35673d5.js.gz
+-rw-r--r--  1 albe albe    1271 Apr  8  2023 c.a42008f9.js
+-rw-r--r--  1 albe albe     619 Apr  8  2023 c.a42008f9.js.gz
+-rw-r--r--  1 albe albe    2426 Apr  8  2023 c.a9f9a1ad.js
+-rw-r--r--  1 albe albe     871 Apr  8  2023 c.a9f9a1ad.js.gz
+-rw-r--r--  1 albe albe 1410091 Apr  8  2023 c.ad739743.js
+-rw-r--r--  1 albe albe  188403 Apr  8  2023 c.ad739743.js.gz
+-rw-r--r--  1 albe albe    6470 Apr  8  2023 c.af6192ab.js
+-rw-r--r--  1 albe albe    1567 Apr  8  2023 c.af6192ab.js.gz
+-rw-r--r--  1 albe albe     136 Apr  8  2023 c.b0145069.js
+-rw-r--r--  1 albe albe   63052 Apr  8  2023 c.b02ad375.js
+-rw-r--r--  1 albe albe   18924 Apr  8  2023 c.b02ad375.js.gz
+-rw-r--r--  1 albe albe   11981 Apr  8  2023 c.b5bff745.js
+-rw-r--r--  1 albe albe    3315 Apr  8  2023 c.b5bff745.js.gz
+-rw-r--r--  1 albe albe    8425 Apr  8  2023 c.b72da797.js
+-rw-r--r--  1 albe albe    2619 Apr  8  2023 c.b72da797.js.gz
+-rw-r--r--  1 albe albe  183753 Apr  8  2023 c.bae47305.js
+-rw-r--r--  1 albe albe   29312 Apr  8  2023 c.bae47305.js.gz
+-rw-r--r--  1 albe albe   67196 Apr  8  2023 c.bc53dda1.js
+-rw-r--r--  1 albe albe   13543 Apr  8  2023 c.bc53dda1.js.gz
+-rw-r--r--  1 albe albe    2078 Apr  8  2023 c.c128b7f4.js
+-rw-r--r--  1 albe albe     840 Apr  8  2023 c.c128b7f4.js.gz
+-rw-r--r--  1 albe albe    1283 Apr  8  2023 c.c14afbb0.js
+-rw-r--r--  1 albe albe     508 Apr  8  2023 c.c14afbb0.js.gz
+-rw-r--r--  1 albe albe   35438 Apr  8  2023 c.c177bbc3.js
+-rw-r--r--  1 albe albe   11806 Apr  8  2023 c.c177bbc3.js.gz
+-rw-r--r--  1 albe albe    4079 Apr  8  2023 c.c629b018.js
+-rw-r--r--  1 albe albe    1511 Apr  8  2023 c.c629b018.js.gz
+-rw-r--r--  1 albe albe    3452 Apr  8  2023 c.c6e8abf0.js
+-rw-r--r--  1 albe albe    1356 Apr  8  2023 c.c6e8abf0.js.gz
+-rw-r--r--  1 albe albe   55367 Apr  8  2023 c.c7247a8c.js
+-rw-r--r--  1 albe albe   11832 Apr  8  2023 c.c7247a8c.js.gz
+-rw-r--r--  1 albe albe    4086 Apr  8  2023 c.c91fa748.js
+-rw-r--r--  1 albe albe    1306 Apr  8  2023 c.c91fa748.js.gz
+-rw-r--r--  1 albe albe      40 Apr  8  2023 c.ca7549f6.js
+-rw-r--r--  1 albe albe   17167 Apr  8  2023 c.cb18c559.js
+-rw-r--r--  1 albe albe    5029 Apr  8  2023 c.cb18c559.js.gz
+-rw-r--r--  1 albe albe      72 Apr  8  2023 c.cbce77f6.js
+-rw-r--r--  1 albe albe    1569 Apr  8  2023 c.cbdebe08.js
+-rw-r--r--  1 albe albe     612 Apr  8  2023 c.cbdebe08.js.gz
+-rw-r--r--  1 albe albe     426 Apr  8  2023 c.ccbe2b52.js
+-rw-r--r--  1 albe albe     285 Apr  8  2023 c.ccbe2b52.js.gz
+-rw-r--r--  1 albe albe    1188 Apr  8  2023 c.cde53df3.js
+-rw-r--r--  1 albe albe     557 Apr  8  2023 c.cde53df3.js.gz
+-rw-r--r--  1 albe albe   87320 Apr  8  2023 c.cf116af0.js
+-rw-r--r--  1 albe albe   18559 Apr  8  2023 c.cf116af0.js.gz
+-rw-r--r--  1 albe albe    9845 Apr  8  2023 c.d0bb37e8.js
+-rw-r--r--  1 albe albe    2351 Apr  8  2023 c.d0bb37e8.js.gz
+-rw-r--r--  1 albe albe    1299 Apr  8  2023 c.d1219bde.js
+-rw-r--r--  1 albe albe     515 Apr  8  2023 c.d1219bde.js.gz
+-rw-r--r--  1 albe albe      54 Apr  8  2023 c.d2f13ac1.js
+-rw-r--r--  1 albe albe   14828 Apr  8  2023 c.d32a5f4a.js
+-rw-r--r--  1 albe albe    4460 Apr  8  2023 c.d32a5f4a.js.gz
+-rw-r--r--  1 albe albe    6850 Apr  8  2023 c.d3a1c985.js
+-rw-r--r--  1 albe albe    2328 Apr  8  2023 c.d3a1c985.js.gz
+-rw-r--r--  1 albe albe    2623 Apr  8  2023 c.d9d8b90e.js
+-rw-r--r--  1 albe albe    1191 Apr  8  2023 c.d9d8b90e.js.gz
+-rw-r--r--  1 albe albe    1440 Apr  8  2023 c.dd8473cb.js
+-rw-r--r--  1 albe albe     575 Apr  8  2023 c.dd8473cb.js.gz
+-rw-r--r--  1 albe albe     405 Apr  8  2023 c.e23b0d0b.js
+-rw-r--r--  1 albe albe     260 Apr  8  2023 c.e23b0d0b.js.gz
+-rw-r--r--  1 albe albe     324 Apr  8  2023 c.e3f3a0be.js
+-rw-r--r--  1 albe albe     220 Apr  8  2023 c.e3f3a0be.js.gz
+-rw-r--r--  1 albe albe    9877 Apr  8  2023 c.e651e5fa.js
+-rw-r--r--  1 albe albe    2179 Apr  8  2023 c.e651e5fa.js.gz
+-rw-r--r--  1 albe albe   36509 Apr  8  2023 c.e6b9d450.js
+-rw-r--r--  1 albe albe   10291 Apr  8  2023 c.e6b9d450.js.gz
+-rw-r--r--  1 albe albe   64884 Apr  8  2023 c.eab7754a.js
+-rw-r--r--  1 albe albe   14836 Apr  8  2023 c.eab7754a.js.gz
+-rw-r--r--  1 albe albe   17227 Apr  8  2023 c.eaded7f4.js
+-rw-r--r--  1 albe albe    4788 Apr  8  2023 c.eaded7f4.js.gz
+-rw-r--r--  1 albe albe   28217 Apr  8  2023 c.ebda878e.js
+-rw-r--r--  1 albe albe    9927 Apr  8  2023 c.ebda878e.js.gz
+-rw-r--r--  1 albe albe    6681 Apr  8  2023 c.ecded9d0.js
+-rw-r--r--  1 albe albe    1561 Apr  8  2023 c.ecded9d0.js.gz
+-rw-r--r--  1 albe albe   20103 Apr  8  2023 c.ef7f8e16.js
+-rw-r--r--  1 albe albe    4709 Apr  8  2023 c.ef7f8e16.js.gz
+-rw-r--r--  1 albe albe    1215 Apr  8  2023 c.f03f3db9.js
+-rw-r--r--  1 albe albe     486 Apr  8  2023 c.f03f3db9.js.gz
+-rw-r--r--  1 albe albe    3434 Apr  8  2023 c.f23c17e5.js
+-rw-r--r--  1 albe albe    1320 Apr  8  2023 c.f23c17e5.js.gz
+-rw-r--r--  1 albe albe  179300 Apr  8  2023 c.f2af93f0.js
+-rw-r--r--  1 albe albe   50886 Apr  8  2023 c.f2af93f0.js.gz
+-rw-r--r--  1 albe albe     160 Apr  8  2023 c.f2bb3724.js
+-rw-r--r--  1 albe albe     141 Apr  8  2023 c.f2bb3724.js.gz
+-rw-r--r--  1 albe albe    7828 Apr  8  2023 c.f3491693.js
+-rw-r--r--  1 albe albe    2067 Apr  8  2023 c.f3491693.js.gz
+-rw-r--r--  1 albe albe    9050 Apr  8  2023 c.f4985284.js
+-rw-r--r--  1 albe albe    2425 Apr  8  2023 c.f4985284.js.gz
+-rw-r--r--  1 albe albe    1860 Apr  8  2023 c.f965ee00.js
+-rw-r--r--  1 albe albe     768 Apr  8  2023 c.f965ee00.js.gz
+-rw-r--r--  1 albe albe      73 Apr  8  2023 c.fa0ef026.js
+-rw-r--r--  1 albe albe   18214 Apr  8  2023 c.fbdfc079.js
+-rw-r--r--  1 albe albe    3107 Apr  8  2023 c.fbdfc079.js.gz
+-rw-r--r--  1 albe albe    4696 Apr  8  2023 c.fc9cf645.js
+-rw-r--r--  1 albe albe    1459 Apr  8  2023 c.fc9cf645.js.gz
+-rw-r--r--  1 albe albe     340 Apr  8  2023 c.fe747ba2.js
+-rw-r--r--  1 albe albe     162 Apr  8  2023 c.fe747ba2.js.gz
+-rw-r--r--  1 albe albe  222235 Apr  8  2023 c.fea0de05.js
+-rw-r--r--  1 albe albe   50739 Apr  8  2023 c.fea0de05.js.gz
+-rw-r--r--  1 albe albe    4010 Apr  8  2023 c.ffceae7a.js
+-rw-r--r--  1 albe albe    1244 Apr  8  2023 c.ffceae7a.js.gz
+-rw-r--r--  1 albe albe     246 Apr  8  2023 entrypoint.js
+-rw-r--r--  1 albe albe     183 Apr  8  2023 entrypoint.js.gz
+-rw-r--r--  1 albe albe      94 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe  542031 Apr  8  2023 main-85e087f9.js
+-rw-r--r--  1 albe albe  140720 Apr  8  2023 main-85e087f9.js.gz
+-rw-r--r--  1 albe albe      41 Apr  8  2023 manifest.json
+drwxr-xr-x  2 albe albe    4096 Jun  4  2023 __pycache__
+-rw-r--r--  1 albe albe      24 Apr  8  2023 version.py
+
+./hasst708b/data/haconfig/custom_components/hacs/hacs_frontend_experimental/__pycache__:
+total 32
+drwxr-xr-x 2 albe albe  4096 Jun  4  2023 .
+drwxr-xr-x 3 albe albe 12288 Apr  8  2023 ..
+-rw-r--r-- 1 albe albe   352 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r-- 1 albe albe   419 Apr  8  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe   187 Jun  4  2023 version.cpython-310.pyc
+-rw-r--r-- 1 albe albe   194 Apr  8  2023 version.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/hacs/__pycache__:
+total 232
+drwxr-xr-x  2 albe albe  4096 Jun  8  2023 .
+drwxrwxr-x 10 albe albe  4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe 33349 Jun  4  2023 base.cpython-310.pyc
+-rw-r--r--  1 albe albe 62410 Jun  8  2023 base.cpython-311.pyc
+-rw-r--r--  1 albe albe  6563 Jun  4  2023 config_flow.cpython-310.pyc
+-rw-r--r--  1 albe albe 11417 Jun  8  2023 config_flow.cpython-311.pyc
+-rw-r--r--  1 albe albe  2197 Jun  4  2023 const.cpython-310.pyc
+-rw-r--r--  1 albe albe  2363 Jun  8  2023 const.cpython-311.pyc
+-rw-r--r--  1 albe albe  2320 Jun  4  2023 data_client.cpython-310.pyc
+-rw-r--r--  1 albe albe  3630 Jun  8  2023 data_client.cpython-311.pyc
+-rw-r--r--  1 albe albe  2318 Jun  4  2023 diagnostics.cpython-310.pyc
+-rw-r--r--  1 albe albe  3918 Jun  8  2023 diagnostics.cpython-311.pyc
+-rw-r--r--  1 albe albe  4675 Jun  4  2023 entity.cpython-310.pyc
+-rw-r--r--  1 albe albe  6977 Jun  8  2023 entity.cpython-311.pyc
+-rw-r--r--  1 albe albe  2982 Jun  4  2023 enums.cpython-310.pyc
+-rw-r--r--  1 albe albe  4014 Jun  8  2023 enums.cpython-311.pyc
+-rw-r--r--  1 albe albe  2260 Jun  4  2023 exceptions.cpython-310.pyc
+-rw-r--r--  1 albe albe  3309 Jun  8  2023 exceptions.cpython-311.pyc
+-rw-r--r--  1 albe albe  2093 Jun  4  2023 frontend.cpython-310.pyc
+-rw-r--r--  1 albe albe  3631 Jun  8  2023 frontend.cpython-311.pyc
+-rw-r--r--  1 albe albe  7220 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r--  1 albe albe 13580 Jun  8  2023 __init__.cpython-311.pyc
+-rw-r--r--  1 albe albe  2203 Jun  4  2023 sensor.cpython-310.pyc
+-rw-r--r--  1 albe albe  3374 Jun  8  2023 sensor.cpython-311.pyc
+-rw-r--r--  1 albe albe  1772 Jun  4  2023 system_health.cpython-310.pyc
+-rw-r--r--  1 albe albe  2700 Jun  8  2023 system_health.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/hacs/repositories:
+total 100
+drwxr-xr-x  3 albe albe  4096 Jun  4  2023 .
+drwxrwxr-x 10 albe albe  4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe  3194 Apr  8  2023 appdaemon.py
+-rw-r--r--  1 albe albe 48801 Apr  8  2023 base.py
+-rw-r--r--  1 albe albe   886 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe  7395 Apr  8  2023 integration.py
+-rw-r--r--  1 albe albe  3629 Apr  8  2023 netdaemon.py
+-rw-r--r--  1 albe albe  4780 Apr  8  2023 plugin.py
+drwxr-xr-x  2 albe albe  4096 Jun  8  2023 __pycache__
+-rw-r--r--  1 albe albe  3691 Apr  8  2023 python_script.py
+-rw-r--r--  1 albe albe  3088 Apr  8  2023 template.py
+-rw-r--r--  1 albe albe  3689 Apr  8  2023 theme.py
+
+./hasst708b/data/haconfig/custom_components/hacs/repositories/__pycache__:
+total 216
+drwxr-xr-x 2 albe albe  4096 Jun  8  2023 .
+drwxr-xr-x 3 albe albe  4096 Jun  4  2023 ..
+-rw-r--r-- 1 albe albe  2967 Jun  4  2023 appdaemon.cpython-310.pyc
+-rw-r--r-- 1 albe albe  5471 Jun  8  2023 appdaemon.cpython-311.pyc
+-rw-r--r-- 1 albe albe 34609 Jun  4  2023 base.cpython-310.pyc
+-rw-r--r-- 1 albe albe 68091 Jun  8  2023 base.cpython-311.pyc
+-rw-r--r-- 1 albe albe   950 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r-- 1 albe albe  1270 Jun  8  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe  6161 Jun  4  2023 integration.cpython-310.pyc
+-rw-r--r-- 1 albe albe 11105 Jun  8  2023 integration.cpython-311.pyc
+-rw-r--r-- 1 albe albe  3308 Jun  4  2023 netdaemon.cpython-310.pyc
+-rw-r--r-- 1 albe albe  5831 Jun  8  2023 netdaemon.cpython-311.pyc
+-rw-r--r-- 1 albe albe  4388 Jun  4  2023 plugin.cpython-310.pyc
+-rw-r--r-- 1 albe albe  7703 Jun  8  2023 plugin.cpython-311.pyc
+-rw-r--r-- 1 albe albe  3522 Jun  4  2023 python_script.cpython-310.pyc
+-rw-r--r-- 1 albe albe  6105 Jun  8  2023 python_script.cpython-311.pyc
+-rw-r--r-- 1 albe albe  3206 Jun  4  2023 template.cpython-310.pyc
+-rw-r--r-- 1 albe albe  5371 Jun  8  2023 template.cpython-311.pyc
+-rw-r--r-- 1 albe albe  3697 Jun  4  2023 theme.cpython-310.pyc
+-rw-r--r-- 1 albe albe  6356 Jun  8  2023 theme.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/hacs/translations:
+total 12
+drwxr-xr-x  2 albe albe 4096 Apr  8  2023 .
+drwxrwxr-x 10 albe albe 4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe 3206 Apr  8  2023 en.json
+
+./hasst708b/data/haconfig/custom_components/hacs/utils:
+total 908
+drwxr-xr-x  3 albe albe   4096 Jun  4  2023 .
+drwxrwxr-x 10 albe albe   4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe   4587 Apr  8  2023 backup.py
+-rw-r--r--  1 albe albe   2282 Apr  8  2023 configuration_schema.py
+-rw-r--r--  1 albe albe  13118 Apr  8  2023 data.py
+-rw-r--r--  1 albe albe    207 Apr  8  2023 decode.py
+-rw-r--r--  1 albe albe   1194 Apr  8  2023 decorator.py
+-rw-r--r--  1 albe albe 829358 Apr  8  2023 default.repositories
+-rw-r--r--  1 albe albe   1539 Apr  8  2023 filters.py
+-rw-r--r--  1 albe albe     29 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe    292 Apr  8  2023 json.py
+-rw-r--r--  1 albe albe    137 Apr  8  2023 logger.py
+-rw-r--r--  1 albe albe    905 Apr  8  2023 path.py
+drwxr-xr-x  2 albe albe   4096 Jun  8  2023 __pycache__
+-rw-r--r--  1 albe albe   2459 Apr  8  2023 queue_manager.py
+-rw-r--r--  1 albe albe    403 Apr  8  2023 regex.py
+-rw-r--r--  1 albe albe   2584 Apr  8  2023 store.py
+-rw-r--r--  1 albe albe   1218 Apr  8  2023 template.py
+-rw-r--r--  1 albe albe   2026 Apr  8  2023 validate.py
+-rw-r--r--  1 albe albe   1057 Apr  8  2023 version.py
+-rw-r--r--  1 albe albe    202 Apr  8  2023 workarounds.py
+
+./hasst708b/data/haconfig/custom_components/hacs/utils/__pycache__:
+total 180
+drwxr-xr-x 2 albe albe  4096 Jun  8  2023 .
+drwxr-xr-x 3 albe albe  4096 Jun  4  2023 ..
+-rw-r--r-- 1 albe albe  3851 Jun  4  2023 backup.cpython-310.pyc
+-rw-r--r-- 1 albe albe  8097 Jun  8  2023 backup.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1806 Jun  4  2023 configuration_schema.cpython-310.pyc
+-rw-r--r-- 1 albe albe  3579 Jun  8  2023 configuration_schema.cpython-311.pyc
+-rw-r--r-- 1 albe albe  8850 Jun  4  2023 data.cpython-310.pyc
+-rw-r--r-- 1 albe albe 17508 Jun  8  2023 data.cpython-311.pyc
+-rw-r--r-- 1 albe albe   440 Jun  4  2023 decode.cpython-310.pyc
+-rw-r--r-- 1 albe albe   619 Jun  8  2023 decode.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1453 Jun  4  2023 decorator.cpython-310.pyc
+-rw-r--r-- 1 albe albe  2283 Jun  8  2023 decorator.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1230 Jun  4  2023 filters.cpython-310.pyc
+-rw-r--r-- 1 albe albe  2041 Jun  8  2023 filters.cpython-311.pyc
+-rw-r--r-- 1 albe albe   175 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r-- 1 albe albe   193 Jun  8  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe   325 Jun  4  2023 json.cpython-310.pyc
+-rw-r--r-- 1 albe albe   431 Jun  8  2023 json.cpython-311.pyc
+-rw-r--r-- 1 albe albe   318 Jun  4  2023 logger.cpython-310.pyc
+-rw-r--r-- 1 albe albe   423 Jun  8  2023 logger.cpython-311.pyc
+-rw-r--r-- 1 albe albe   942 Jun  4  2023 path.cpython-310.pyc
+-rw-r--r-- 1 albe albe  2008 Jun  8  2023 path.cpython-311.pyc
+-rw-r--r-- 1 albe albe  2708 Jun  4  2023 queue_manager.cpython-310.pyc
+-rw-r--r-- 1 albe albe  4398 Jun  8  2023 queue_manager.cpython-311.pyc
+-rw-r--r-- 1 albe albe   639 Jun  4  2023 regex.cpython-310.pyc
+-rw-r--r-- 1 albe albe   894 Jun  8  2023 regex.cpython-311.pyc
+-rw-r--r-- 1 albe albe  2869 Jun  4  2023 store.cpython-310.pyc
+-rw-r--r-- 1 albe albe  4142 Jun  8  2023 store.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1107 Jun  4  2023 template.cpython-310.pyc
+-rw-r--r-- 1 albe albe  1651 Jun  8  2023 template.cpython-311.pyc
+-rw-r--r-- 1 albe albe  2067 Jun  4  2023 validate.cpython-310.pyc
+-rw-r--r-- 1 albe albe  3748 Jun  8  2023 validate.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1100 Jun  4  2023 version.cpython-310.pyc
+-rw-r--r-- 1 albe albe  1587 Jun  8  2023 version.cpython-311.pyc
+-rw-r--r-- 1 albe albe   295 Jun  4  2023 workarounds.cpython-310.pyc
+-rw-r--r-- 1 albe albe   325 Jun  8  2023 workarounds.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/hacs/validate:
+total 60
+drwxr-xr-x  2 albe albe 4096 Apr  8  2023 .
+drwxrwxr-x 10 albe albe 4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe  653 Apr  8  2023 archived.py
+-rw-r--r--  1 albe albe 1492 Apr  8  2023 base.py
+-rw-r--r--  1 albe albe  974 Apr  8  2023 brands.py
+-rw-r--r--  1 albe albe  669 Apr  8  2023 description.py
+-rw-r--r--  1 albe albe 1081 Apr  8  2023 hacsjson.py
+-rw-r--r--  1 albe albe 1037 Apr  8  2023 images.py
+-rw-r--r--  1 albe albe  893 Apr  8  2023 information.py
+-rw-r--r--  1 albe albe   29 Apr  8  2023 __init__.py
+-rw-r--r--  1 albe albe 1306 Apr  8  2023 integration_manifest.py
+-rw-r--r--  1 albe albe  678 Apr  8  2023 issues.py
+-rw-r--r--  1 albe albe 2757 Apr  8  2023 manager.py
+-rw-r--r--  1 albe albe  862 Apr  8  2023 README.md
+-rw-r--r--  1 albe albe  665 Apr  8  2023 topics.py
+
+./hasst708b/data/haconfig/custom_components/hacs/websocket:
+total 44
+drwxr-xr-x  3 albe albe 4096 Jun  4  2023 .
+drwxrwxr-x 10 albe albe 4096 Jun  4  2023 ..
+-rw-r--r--  1 albe albe 1588 Apr  8  2023 critical.py
+-rw-r--r--  1 albe albe 4140 Apr  8  2023 __init__.py
+drwxr-xr-x  2 albe albe 4096 Jun  8  2023 __pycache__
+-rw-r--r--  1 albe albe 7086 Apr  8  2023 repositories.py
+-rw-r--r--  1 albe albe 9953 Apr  8  2023 repository.py
+
+./hasst708b/data/haconfig/custom_components/hacs/websocket/__pycache__:
+total 72
+drwxr-xr-x 2 albe albe  4096 Jun  8  2023 .
+drwxr-xr-x 3 albe albe  4096 Jun  4  2023 ..
+-rw-r--r-- 1 albe albe  1565 Jun  4  2023 critical.cpython-310.pyc
+-rw-r--r-- 1 albe albe  2623 Jun  8  2023 critical.cpython-311.pyc
+-rw-r--r-- 1 albe albe  3273 Jun  4  2023 __init__.cpython-310.pyc
+-rw-r--r-- 1 albe albe  5964 Jun  8  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe  5200 Jun  4  2023 repositories.cpython-310.pyc
+-rw-r--r-- 1 albe albe 10404 Jun  8  2023 repositories.cpython-311.pyc
+-rw-r--r-- 1 albe albe  6739 Jun  4  2023 repository.cpython-310.pyc
+-rw-r--r-- 1 albe albe 14792 Jun  8  2023 repository.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/scheduler:
+total 140
+drwxr-xr-x 3 albe albe  4096 Jun 11  2023 .
+drwxrwxr-x 5 albe albe  4096 May  1  2024 ..
+-rw-r--r-- 1 albe albe 18827 Jun 11  2023 actions.py
+-rw-r--r-- 1 albe albe   825 Jun 11  2023 config_flow.py
+-rw-r--r-- 1 albe albe  6385 Jun 11  2023 const.py
+-rw-r--r-- 1 albe albe 15334 Jun 11  2023 __init__.py
+-rw-r--r-- 1 albe albe   360 Jun 11  2023 manifest.json
+drwxr-xr-x 2 albe albe  4096 Jun 11  2023 __pycache__
+-rw-r--r-- 1 albe albe  4474 Jun 11  2023 services.yaml
+-rw-r--r-- 1 albe albe 13338 Jun 11  2023 store.py
+-rw-r--r-- 1 albe albe 18759 Jun 11  2023 switch.py
+-rw-r--r-- 1 albe albe 19501 Jun 11  2023 timer.py
+-rw-r--r-- 1 albe albe  8346 Jun 11  2023 websockets.py
+
+./hasst708b/data/haconfig/custom_components/scheduler/__pycache__:
+total 168
+drwxr-xr-x 2 albe albe  4096 Jun 11  2023 .
+drwxr-xr-x 3 albe albe  4096 Jun 11  2023 ..
+-rw-r--r-- 1 albe albe 25488 Jun 11  2023 actions.cpython-311.pyc
+-rw-r--r-- 1 albe albe  1670 Jun 11  2023 config_flow.cpython-311.pyc
+-rw-r--r-- 1 albe albe  7918 Jun 11  2023 const.cpython-311.pyc
+-rw-r--r-- 1 albe albe 24574 Jun 11  2023 __init__.cpython-311.pyc
+-rw-r--r-- 1 albe albe 20963 Jun 11  2023 store.cpython-311.pyc
+-rw-r--r-- 1 albe albe 27045 Jun 11  2023 switch.cpython-311.pyc
+-rw-r--r-- 1 albe albe 25782 Jun 11  2023 timer.cpython-311.pyc
+-rw-r--r-- 1 albe albe 12346 Jun 11  2023 websockets.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/sonoff:
+total 168
+drwxr-xr-x 5 root root  4096 May  1  2024 .
+drwxrwxr-x 5 albe albe  4096 May  1  2024 ..
+-rw-r--r-- 1 root root  4671 May  1  2024 binary_sensor.py
+-rw-r--r-- 1 root root  1530 May  1  2024 button.py
+-rw-r--r-- 1 root root 12044 May  1  2024 climate.py
+-rw-r--r-- 1 root root  4730 May  1  2024 config_flow.py
+drwxr-xr-x 4 root root  4096 May  1  2024 core
+-rw-r--r-- 1 root root  6220 May  1  2024 cover.py
+-rw-r--r-- 1 root root  2513 May  1  2024 diagnostics.py
+-rw-r--r-- 1 root root  5796 May  1  2024 fan.py
+-rw-r--r-- 1 root root  9575 May  1  2024 __init__.py
+-rw-r--r-- 1 root root 35699 May  1  2024 light.py
+-rw-r--r-- 1 root root   384 May  1  2024 manifest.json
+-rw-r--r-- 1 root root  1919 May  1  2024 number.py
+drwxr-xr-x 2 root root  4096 May  1  2024 __pycache__
+-rw-r--r-- 1 root root  6591 May  1  2024 remote.py
+-rw-r--r-- 1 root root 11383 May  1  2024 sensor.py
+-rw-r--r-- 1 root root   295 May  1  2024 services.yaml
+-rw-r--r-- 1 root root  4566 May  1  2024 switch.py
+-rw-r--r-- 1 root root  4184 May  1  2024 system_health.py
+drwxr-xr-x 2 root root  4096 May  1  2024 translations
+
+./hasst708b/data/haconfig/custom_components/sonoff/core:
+total 48
+drwxr-xr-x 4 root root  4096 May  1  2024 .
+drwxr-xr-x 5 root root  4096 May  1  2024 ..
+-rw-r--r-- 1 root root   375 May  1  2024 const.py
+-rw-r--r-- 1 root root 17816 May  1  2024 devices.py
+-rw-r--r-- 1 root root  3944 May  1  2024 entity.py
+drwxr-xr-x 3 root root  4096 May  1  2024 ewelink
+drwxr-xr-x 2 root root  4096 May  1  2024 __pycache__
+-rw-r--r-- 1 root root  1014 May  1  2024 xutils.py
+
+./hasst708b/data/haconfig/custom_components/sonoff/core/ewelink:
+total 72
+drwxr-xr-x 3 root root  4096 May  1  2024 .
+drwxr-xr-x 4 root root  4096 May  1  2024 ..
+-rw-r--r-- 1 root root  2230 May  1  2024 base.py
+-rw-r--r-- 1 root root  5326 May  1  2024 camera.py
+-rw-r--r-- 1 root root 20226 May  1  2024 cloud.py
+-rw-r--r-- 1 root root 13133 May  1  2024 __init__.py
+-rw-r--r-- 1 root root  9373 May  1  2024 local.py
+drwxr-xr-x 2 root root  4096 May  1  2024 __pycache__
+
+./hasst708b/data/haconfig/custom_components/sonoff/core/ewelink/__pycache__:
+total 96
+drwxr-xr-x 2 root root  4096 May  1  2024 .
+drwxr-xr-x 3 root root  4096 May  1  2024 ..
+-rw-r--r-- 1 root root  4735 May  1  2024 base.cpython-311.pyc
+-rw-r--r-- 1 root root  9468 May  1  2024 camera.cpython-311.pyc
+-rw-r--r-- 1 root root 31097 May  1  2024 cloud.cpython-311.pyc
+-rw-r--r-- 1 root root 18513 May  1  2024 __init__.cpython-311.pyc
+-rw-r--r-- 1 root root 13431 May  1  2024 local.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/sonoff/core/__pycache__:
+total 44
+drwxr-xr-x 2 root root  4096 May  1  2024 .
+drwxr-xr-x 4 root root  4096 May  1  2024 ..
+-rw-r--r-- 1 root root   555 May  1  2024 const.cpython-311.pyc
+-rw-r--r-- 1 root root 18980 May  1  2024 devices.cpython-311.pyc
+-rw-r--r-- 1 root root  6355 May  1  2024 entity.cpython-311.pyc
+-rw-r--r-- 1 root root  2729 May  1  2024 xutils.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/sonoff/__pycache__:
+total 192
+drwxr-xr-x 2 root root  4096 May  1  2024 .
+drwxr-xr-x 5 root root  4096 May  1  2024 ..
+-rw-r--r-- 1 root root  8995 May  1  2024 binary_sensor.cpython-311.pyc
+-rw-r--r-- 1 root root  3194 May  1  2024 button.cpython-311.pyc
+-rw-r--r-- 1 root root 14287 May  1  2024 climate.cpython-311.pyc
+-rw-r--r-- 1 root root  7750 May  1  2024 config_flow.cpython-311.pyc
+-rw-r--r-- 1 root root 10341 May  1  2024 cover.cpython-311.pyc
+-rw-r--r-- 1 root root  4725 May  1  2024 diagnostics.cpython-311.pyc
+-rw-r--r-- 1 root root  9305 May  1  2024 fan.cpython-311.pyc
+-rw-r--r-- 1 root root 14209 May  1  2024 __init__.cpython-311.pyc
+-rw-r--r-- 1 root root 40576 May  1  2024 light.cpython-311.pyc
+-rw-r--r-- 1 root root  3961 May  1  2024 number.cpython-311.pyc
+-rw-r--r-- 1 root root 10251 May  1  2024 remote.cpython-311.pyc
+-rw-r--r-- 1 root root 19637 May  1  2024 sensor.cpython-311.pyc
+-rw-r--r-- 1 root root 10386 May  1  2024 switch.cpython-311.pyc
+-rw-r--r-- 1 root root  7633 May  1  2024 system_health.cpython-311.pyc
+
+./hasst708b/data/haconfig/custom_components/sonoff/translations:
+total 68
+drwxr-xr-x 2 root root 4096 May  1  2024 .
+drwxr-xr-x 5 root root 4096 May  1  2024 ..
+-rw-r--r-- 1 root root 1175 May  1  2024 ar.json
+-rw-r--r-- 1 root root 1093 May  1  2024 ee.json
+-rw-r--r-- 1 root root 1061 May  1  2024 en.json
+-rw-r--r-- 1 root root 1105 May  1  2024 es.json
+-rw-r--r-- 1 root root 1069 May  1  2024 fr-ca.json
+-rw-r--r-- 1 root root 1093 May  1  2024 hu.json
+-rw-r--r-- 1 root root 1123 May  1  2024 id.json
+-rw-r--r-- 1 root root 1055 May  1  2024 pl.json
+-rw-r--r-- 1 root root 1069 May  1  2024 pt-BR.json
+-rw-r--r-- 1 root root 1096 May  1  2024 pt.json
+-rw-r--r-- 1 root root 1357 May  1  2024 ru.json
+-rw-r--r-- 1 root root 1167 May  1  2024 sk.json
+-rw-r--r-- 1 root root 1089 May  1  2024 tr.json
+-rw-r--r-- 1 root root 1422 May  1  2024 uk.json
+-rw-r--r-- 1 root root 1262 May  1  2024 ur.json
+
+./hasst708b/data/haconfig/deps:
+total 8
+drwxrwxrwx 2 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 ..
+
+./hasst708b/data/haconfig/.storage:
+total 1608
+drwxrwxrwx 3 albe albe    4096 Jun 14  2025 .
+drwxrwxrwx 9 albe albe    4096 Jun 14  2025 ..
+-rwxrwxrwx 1 albe albe     534 Jun  4  2023 assist_pipeline.pipelines
+-rw------- 1 root root   17388 Apr 30  2025 auth
+-rw------- 1 albe albe     266 Jun  4  2023 auth_provider.homeassistant
+-rw-r--r-- 1 albe albe     275 Jun  4  2023 core.analytics
+-rw-r--r-- 1 albe albe     582 Jun  4  2023 core.area_registry
+-rw------- 1 albe albe     373 Jun  4  2023 core.config
+-rw-r--r-- 1 albe albe    2362 Jun 11  2023 core.config_entries
+-rw-r--r-- 1 root root    5200 Nov 17  2024 core.device_registry
+-rw-r--r-- 1 root root   43634 Nov 17  2024 core.entity_registry
+-rw-r--r-- 1 root root     736 Jun 14  2025 core.restore_state
+-rwxrwxrwx 1 albe albe     126 Jun  4  2023 core.uuid
+-rw-r--r-- 1 root root     304 Apr 30  2025 frontend.user_data_82e0cd99612d4d99b866569daeeddf45
+-rw-r--r-- 1 albe albe     277 Jun  4  2023 hacs.critical
+-rw-r--r-- 1 root root    2972 Jun 14  2025 hacs.hacs
+-rw-r--r-- 1 root root 1472539 Jun 14  2025 hacs.repositories
+-rw-r--r-- 1 albe albe     769 Jun  4  2023 homeassistant.exposed_entities
+-rw-r--r-- 1 root root     267 May 15  2025 http
+-rwxrwxrwx 1 albe albe     134 Jun  4  2023 http.auth
+-rw-r--r-- 1 albe albe    1959 Jun 17  2023 lovelace
+-rw-r--r-- 1 albe albe     284 Jun 17  2023 lovelace_resources
+-rw------- 1 albe albe     174 Jun  4  2023 onboarding
+-rw-r--r-- 1 albe albe     246 Jun  4  2023 person
+-rw-r--r-- 1 albe albe     109 Jun  4  2023 repairs.issue_registry
+-rw-r--r-- 1 root root     180 Jun 14  2025 scheduler.storage
+drwxr-xr-x 2 albe albe    4096 May 15  2025 sonoff
+-rw-r--r-- 1 root root      85 Jun 14  2025 trace.saved_traces
+
+./hasst708b/data/haconfig/.storage/sonoff:
+total 32
+drwxr-xr-x 2 albe albe  4096 May 15  2025 .
+drwxrwxrwx 3 albe albe  4096 Jun 14  2025 ..
+-rw-r--r-- 1 root root 22155 May 15  2025 dgleba@gmail.com.json
+
+./hasst708b/data/haconfig/tts:
+total 8
+drwxrwxrwx 2 albe albe 4096 Jun  4  2023 .
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 ..
+
+./hasst708b/data/haconfig/www:
+total 12
+drwxr-xr-x 3 albe albe 4096 Jun 11  2023 .
+drwxrwxrwx 9 albe albe 4096 Jun 14  2025 ..
+drwxr-xr-x 3 albe albe 4096 Jun 11  2023 community
+
+./hasst708b/data/haconfig/www/community:
+total 12
+drwxr-xr-x 3 albe albe 4096 Jun 11  2023 .
+drwxr-xr-x 3 albe albe 4096 Jun 11  2023 ..
+drwxr-xr-x 2 albe albe 4096 Jun 11  2023 scheduler-card
+
+./hasst708b/data/haconfig/www/community/scheduler-card:
+total 388
+drwxr-xr-x 2 albe albe   4096 Jun 11  2023 .
+drwxr-xr-x 3 albe albe   4096 Jun 11  2023 ..
+-rw-r--r-- 1 albe albe 309658 Jun 17  2023 scheduler-card.js
+-rw-r--r-- 1 albe albe  77129 Jun 17  2023 scheduler-card.js.gz

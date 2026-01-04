@@ -5,7 +5,16 @@
 #@  
 ####################################   2025-11-30[Nov-Sun]18-57PM 
 
+# cd ..; sudo tar -czvf  hassist708yard_$(date +"%Y-%m-%d_%H.%M.%S").tgz ./hassist708yard;
+# sudo tar -czvf ../hassist708yard_zip/hassist708yard_$(date +"%Y-%m-%d_%H.%M.%S").tgz -C .. "$(basename "$PWD")";
 
-sudo tar -czvf  hassist708yard_2025-11-30_all.tgz hassist708yard
+cd /ap/dkr/732collection/red74/hassist708yard;
+
+ls -laR>ll.txt;
+
+sudo tar -czvf ../hassist708yard_zip/hassist708yard_$(date +"%Y-%m-%d_%H.%M.%S").tgz -C .. "$(basename "$PWD")";
 
 
+cd ..;
+sudo tar -czvf ./hassist708yard_zip/hassist708yard-dotdot_$(date +"%Y-%m-%d_%H.%M.%S").tgz  hassist708yard ;
+cd hassist708yard;
