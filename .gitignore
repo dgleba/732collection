@@ -19,6 +19,8 @@ datasys/
 data/
 log/
 x/
+zip/
+
 
 #*.sqlite3
 
