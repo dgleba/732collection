@@ -61,15 +61,14 @@ class TagTbl(models.Model):
 class PostTbl(models.Model):
 
     # # Relationships
-    postedfrom = models.ForeignKey("blogappm2m.PostedFromTbl", on_delete=models.CASCADE, related_name='postedfrom')
-    tags = models.ManyToManyField("blogappm2m.TagTbl", related_name='tags')
-
+    postedfrom = models.ForeignKey("blogappm2m.PostedFromTbl", on_delete=models.CASCADE, related_name='postedfrom', blank=True, null=True,)
+    tags = models.ManyToManyField("blogappm2m.TagTbl", related_name='tags', blank=True,)
 
     # Fields
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
-    body = models.TextField()
-    title = models.CharField(max_length=302)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False, blank=True, null=True,)
+    updated_at = models.DateTimeField(auto_now=True, editable=False, blank=True, null=True,)
+    body = models.TextField( blank=True, null=True,)
+    title = models.CharField(max_length=302, blank=True, null=True,)
     pic = models.ImageField(upload_to="images/", default=None, blank=True, null=True,)
 
     class Meta:

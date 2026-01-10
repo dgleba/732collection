@@ -1,0 +1,292 @@
+{
+  "value": [
+    {
+      "driveAlias": "personal/dgleba",
+      "driveType": "personal",
+      "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$b40377aa-2cd6-4270-b6d1-12e0925d5837",
+      "lastModifiedDateTime": "2026-01-05T19:59:28.229907537Z",
+      "name": "David Gleba",
+      "owner": {
+        "user": {
+          "displayName": "",
+          "id": "b8357e97-be40-4bcb-b01a-77eef88cbbdb"
+        }
+      },
+      "quota": {
+        "remaining": 9223372036854775807,
+        "state": "normal",
+        "total": 0,
+        "used": 1984620
+      },
+      "root": {
+        "eTag": "\"1ae558b15563e93d4ebb488430594634\"",
+        "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$b40377aa-2cd6-4270-b6d1-12e0925d5837",
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$b40377aa-2cd6-4270-b6d1-12e0925d5837"
+      },
+      "webUrl": "https://opencld.daveg.win/f/0f385aa5-2d34-4cff-a9c9-899071b886b6$b40377aa-2cd6-4270-b6d1-12e0925d5837"
+    },
+    {
+      "driveAlias": "virtual/shares",
+      "driveType": "virtual",
+      "id": "a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668",
+      "lastModifiedDateTime": "2026-01-04T17:53:39.191588476Z",
+      "name": "Shares",
+      "root": {
+        "eTag": "\"433d028cb1a55e4255d7d915c2439a5e\"",
+        "id": "a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668",
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668"
+      },
+      "webUrl": "https://opencld.daveg.win/f/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668"
+    },
+    {
+      "driveAlias": "mountpoint/2026-01-03_sat_23.24-pm.one.odt",
+      "driveType": "mountpoint",
+      "id": "a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!0f385aa5-2d34-4cff-a9c9-899071b886b6:280aaea5-cfc1-4c68-84a9-a12f92aab026:c81164d2-dd71-4c63-b3e9-fc104a0db8a5",
+      "name": "2026-01-03_Sat_23.24-PM.one.odt",
+      "owner": {
+        "user": {
+          "displayName": "",
+          "id": "8c1aec75-031a-48d6-a814-dc9c40fc114c"
+        }
+      },
+      "root": {
+        "id": "a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!0f385aa5-2d34-4cff-a9c9-899071b886b6:280aaea5-cfc1-4c68-84a9-a12f92aab026:c81164d2-dd71-4c63-b3e9-fc104a0db8a5",
+        "remoteItem": {
+          "driveAlias": "personal/admin",
+          "eTag": "\"433d028cb1a55e4255d7d915c2439a5e\"",
+          "file": {
+            "mimeType": "application/vnd.oasis.opendocument.text"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$280aaea5-cfc1-4c68-84a9-a12f92aab026!5183b8ee-f5e9-48d7-87f1-909dd6f0a960",
+          "lastModifiedDateTime": "2026-01-04T17:53:39.191588476Z",
+          "name": "2026-01-03_Sat_23.24-PM.one.odt",
+          "path": "/2026-01-03_Sat_23.24-PM.one.odt",
+          "rootId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$280aaea5-cfc1-4c68-84a9-a12f92aab026!280aaea5-cfc1-4c68-84a9-a12f92aab026",
+          "size": 11582,
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$280aaea5-cfc1-4c68-84a9-a12f92aab026%21280aaea5-cfc1-4c68-84a9-a12f92aab026/2026-01-03_Sat_23.24-PM.one.odt"
+        },
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668%210f385aa5-2d34-4cff-a9c9-899071b886b6:280aaea5-cfc1-4c68-84a9-a12f92aab026:c81164d2-dd71-4c63-b3e9-fc104a0db8a5"
+      },
+      "webUrl": "https://opencld.daveg.win/f/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668%210f385aa5-2d34-4cff-a9c9-899071b886b6:280aaea5-cfc1-4c68-84a9-a12f92aab026:c81164d2-dd71-4c63-b3e9-fc104a0db8a5"
+    },
+    {
+      "driveAlias": "project/dgone",
+      "driveType": "project",
+      "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633",
+      "lastModifiedDateTime": "2026-01-05T19:53:37.235686572Z",
+      "name": "dg-one",
+      "owner": {
+        "user": {
+          "displayName": "",
+          "id": "af7c97b1-51fc-4411-a3c4-2303fab78633"
+        }
+      },
+      "quota": {
+        "remaining": 989279473,
+        "state": "normal",
+        "total": 1000000000,
+        "used": 10720527
+      },
+      "root": {
+        "eTag": "\"837a87196a97d7eb11a1b0fd7cde2c32\"",
+        "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633",
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633"
+      },
+      "special": [
+        {
+          "eTag": "\"9842c40d911ded63f3e155c68df9cfc6\"",
+          "file": {
+            "mimeType": "image/png"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633!5118f5c4-6323-4aa0-b3ac-d82ebb93cd84",
+          "image": {
+            "height": 1080,
+            "width": 1920
+          },
+          "lastModifiedDateTime": "2026-01-04T19:29:51.880686683Z",
+          "name": "image.png",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633!84d5dae4-7027-4887-9b31-90ab472e0481",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 10921,
+          "specialFolder": {
+            "name": "image"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633%21af7c97b1-51fc-4411-a3c4-2303fab78633/.space/image.png"
+        },
+        {
+          "eTag": "\"9c0620600a5f624c02c7188355662742\"",
+          "file": {
+            "mimeType": "text/markdown"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633!1441fc95-9eaa-4167-8ea4-6b6fe546eae6",
+          "lastModifiedDateTime": "2026-01-04T19:29:51.89284215Z",
+          "name": "readme.md",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633!84d5dae4-7027-4887-9b31-90ab472e0481",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 46,
+          "specialFolder": {
+            "name": "readme"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633%21af7c97b1-51fc-4411-a3c4-2303fab78633/.space/readme.md"
+        }
+      ],
+      "webUrl": "https://opencld.daveg.win/f/0f385aa5-2d34-4cff-a9c9-899071b886b6$af7c97b1-51fc-4411-a3c4-2303fab78633"
+    },
+    {
+      "driveAlias": "project/adma",
+      "driveType": "project",
+      "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53",
+      "lastModifiedDateTime": "2026-01-04T22:50:23.204252536Z",
+      "name": "adma",
+      "owner": {
+        "user": {
+          "displayName": "",
+          "id": "999ba3fc-be46-448a-89c4-b6e21e616b53"
+        }
+      },
+      "quota": {
+        "remaining": 999943754,
+        "state": "normal",
+        "total": 1000000000,
+        "used": 56246
+      },
+      "root": {
+        "eTag": "\"be2d9a925c55597b433bc8ce87c3e33d\"",
+        "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53",
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53"
+      },
+      "special": [
+        {
+          "eTag": "\"becb8a97b271b0a97b6403659e63c112\"",
+          "file": {
+            "mimeType": "image/png"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53!305d4e65-3e05-425c-8f2c-fc4dccb58682",
+          "image": {
+            "height": 1080,
+            "width": 1920
+          },
+          "lastModifiedDateTime": "2026-01-04T20:29:01.434852933Z",
+          "name": "image.png",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53!fb303749-1548-4f4d-ad0c-05937f6c3257",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 10921,
+          "specialFolder": {
+            "name": "image"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53%21999ba3fc-be46-448a-89c4-b6e21e616b53/.space/image.png"
+        },
+        {
+          "eTag": "\"d2031c8597a698aa607ea0c89892a769\"",
+          "file": {
+            "mimeType": "text/markdown"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53!d7cf4b7e-cedc-4b67-99ee-a90e8cf1ec14",
+          "lastModifiedDateTime": "2026-01-04T20:29:01.446215432Z",
+          "name": "readme.md",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53!fb303749-1548-4f4d-ad0c-05937f6c3257",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 46,
+          "specialFolder": {
+            "name": "readme"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53%21999ba3fc-be46-448a-89c4-b6e21e616b53/.space/readme.md"
+        }
+      ],
+      "webUrl": "https://opencld.daveg.win/f/0f385aa5-2d34-4cff-a9c9-899071b886b6$999ba3fc-be46-448a-89c4-b6e21e616b53"
+    },
+    {
+      "driveAlias": "project/upload",
+      "driveType": "project",
+      "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963",
+      "lastModifiedDateTime": "2026-01-05T19:54:31.580982558Z",
+      "name": "upload",
+      "owner": {
+        "user": {
+          "displayName": "",
+          "id": "105c0da8-0b90-46cd-8d2c-f156cea8d963"
+        }
+      },
+      "quota": {
+        "remaining": 999989033,
+        "state": "normal",
+        "total": 1000000000,
+        "used": 10967
+      },
+      "root": {
+        "eTag": "\"1b800a19a889b92f8e60f3417eb6d2ee\"",
+        "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963",
+        "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963"
+      },
+      "special": [
+        {
+          "eTag": "\"c27e68541e0ad94c6fc66d521771dfbd\"",
+          "file": {
+            "mimeType": "image/png"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963!b73d60f6-f983-41d4-bbec-42b905114fd3",
+          "image": {
+            "height": 1080,
+            "width": 1920
+          },
+          "lastModifiedDateTime": "2026-01-05T19:54:30.494703635Z",
+          "name": "image.png",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963!f529fd48-b85b-4dac-a783-b152030cc260",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 10921,
+          "specialFolder": {
+            "name": "image"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963%21105c0da8-0b90-46cd-8d2c-f156cea8d963/.space/image.png"
+        },
+        {
+          "eTag": "\"2ccbc5b9b86619f9227a7d89770afde0\"",
+          "file": {
+            "mimeType": "text/markdown"
+          },
+          "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963!48b98579-7157-4420-a700-05659856bdab",
+          "lastModifiedDateTime": "2026-01-05T19:54:30.506848379Z",
+          "name": "readme.md",
+          "parentReference": {
+            "driveId": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963",
+            "driveType": "project",
+            "id": "0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963!f529fd48-b85b-4dac-a783-b152030cc260",
+            "name": ".space",
+            "path": "/.space"
+          },
+          "size": 46,
+          "specialFolder": {
+            "name": "readme"
+          },
+          "webDavUrl": "https://opencld.daveg.win/dav/spaces/0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963%21105c0da8-0b90-46cd-8d2c-f156cea8d963/.space/readme.md"
+        }
+      ],
+      "webUrl": "https://opencld.daveg.win/f/0f385aa5-2d34-4cff-a9c9-899071b886b6$105c0da8-0b90-46cd-8d2c-f156cea8d963"
+    }
+  ]
+}

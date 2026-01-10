@@ -67,6 +67,7 @@ These MAY have already been run against this project..
     docker-compose run --rm djdev python manage.py makemigrations menuapp
     docker-compose run --rm djdev python manage.py makemigrations menu94app
     docker-compose run --rm djdev python manage.py makemigrations blogappm2m
+    docker-compose run --rm dj726eg74 python manage.py makemigrations blogappm2m
     docker-compose run --rm djdev python manage.py makemigrations tookbreakapp624c
 
 

@@ -1,0 +1,63 @@
+
+# start adminerd after upkuma. Give upkuma a chance to make it's data files first.
+#   docker-compose up upkuma -d ;  docker-compose logs upkuma ;
+#   sleep 19
+# if adminer starts first, it will create kuma.db folder and prevent upkuma from creating db properly.
+#       docker-compose up adminerd -d
+
+networks:
+  cfnet1:
+    name: cfnet1
+  cfnet_r74_daveg2online:
+    name: cfnet_r74_daveg2online
+
+volumes:
+  uptime-kuma-pg-data:
+  uptime-dbp-data:
+
+services:
+
+  upkumapg:
+    # http://10.33.44.81:6176/
+    image: louislam/uptime-kuma:latest
+    restart: unless-stopped
+    ports:
+      - "6176:3001"
+    volumes:
+      - uptime-kuma-pg-data:/app/data
+    depends_on:
+      dbp:
+        condition: service_healthy
+    networks:
+      - default
+      - cfnet_r74_daveg2online
+
+  dbp:
+    image: postgres:18-alpine
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # Optional: allow remote connections if needed
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "16181:5432"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - uptime-dbp-data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 120s
+      timeout: 15s
+      retries: 3
+      start_period: 140s
+    networks:
+      - default
