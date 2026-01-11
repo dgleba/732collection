@@ -1,0 +1,23 @@
+source:
+  type: mysql
+  db_conn:
+    host: mysql
+    port: 3306
+    user: testuser
+    passwd: testpass
+    charset: utf8mb4
+
+target:
+  db_conn:
+    host: postgres
+    port: 5432
+    user: postgres
+    passwd: pgpass
+    database: testdb
+
+replica:
+  batch_size: 10000
+  skip_tables: []
+  skip_schemas: []
+  limit_tables: []
+  limit_schemas: []

@@ -1,0 +1,55 @@
+
+#@################################################################
+#@  
+#@  Title:::     
+#@  
+#@###################################   2026-01-10[Jan-Sat]17-41PM 
+
+chameleon not working. 2026-01-10_Sat_17.50-PM
+
+------------
+
+
+I got v2 and mariadb working.
+
+image: louislam/uptime-kuma:latest
+	latest only got v1.23
+
+
+
+these env vars are not new enough.
+	# kuma
+	DB_ENGINE=postgres
+	DB_HOST=dbp
+	DB_PORT=5432
+	DB_NAME=dkrdb
+	DB_USER=duser
+	DB_PASSWORD=pw55
+
+
+
+
+#################################################################
+
+notes.
+
+more..
+
+
+# environment:
+  # MYSQL_HOST: ${MYSQL_HOST}
+  # MYSQL_PORT: 3306
+  # MYSQL_USER: ${MYSQL_ROOT_USER}
+  # MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  # PG_HOST: ${POSTGRES_HOST}
+  # PG_PORT: 5432
+  # PG_USER: ${POSTGRES_USER}
+  # PG_PASSWORD: ${POSTGRES_PASSWORD}
+  # PG_DATABASE: ${POSTGRES_DB}
+  
+  
+
+#################################################################
+
+  

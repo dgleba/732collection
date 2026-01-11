@@ -6,9 +6,6 @@
 #       docker-compose up adminerd -d
 
 networks:
-  # sister2:
-    # name: sister2
-    # external: true
   cfnet1:
     name: cfnet1
   cfnet_r74_daveg2online:
@@ -34,7 +31,9 @@ services:
     networks:
       - default
       - cfnet_r74_daveg2online
-      
+    env_file:
+      - .env 
+ 
   dbm:
     # image: mysql:8.0.23
     # image: yobasystems/alpine-mariadb:10.11

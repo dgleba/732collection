@@ -1,0 +1,22 @@
+
+#@################################################################
+#@  
+#@  Title:::     
+#@  
+#@###################################   2026-01-10[Jan-Sat]17-41PM 
+
+This may be sqlite not postgres
+
+
+image: louislam/uptime-kuma:latest
+	latest only got v1.23
+
+
+these env vars are no new enough.
+	# kuma
+	DB_ENGINE=postgres
+	DB_HOST=dbp
+	DB_PORT=5432
+	DB_NAME=dkrdb
+	DB_USER=duser
+	DB_PASSWORD=pw55

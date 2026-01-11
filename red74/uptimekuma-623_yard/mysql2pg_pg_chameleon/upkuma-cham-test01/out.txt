@@ -1,0 +1,225 @@
+#  ============   ./docker-compose.yml   ==============
+
+#/ap/dkr/732collection/red74/uptimekuma-623_yard/mysql2postgres-pg_chameleon/upkuma-cham-test
+# docker-compose.yml 
+
+volumes:
+  uptime-kuma-data:
+  uptime-db-data:
+
+services:
+
+  upkuma:
+    # http://10.33.44.81:6177/
+    # latest was 1.23 for me..
+    #image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2.0.2-slim
+    restart: unless-stopped
+    ports:
+      - "6177:3001"
+    env_file:
+      - .env
+    volumes:
+      - ../sysdata/uptime-kuma-data:/app/data
+      #- uptime-kuma-data:/app/data
+    depends_on:
+      dbm:
+        condition: service_healthy
+    networks:
+      - default
+      
+  dbm:
+    # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:12
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "16182:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - uptime-db-data:/var/lib/mysql
+      #- ../sysdata/uptime-db-data:/var/lib/mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 70s
+       timeout: 15s
+       retries: 3
+       start_period: 140s
+    networks:
+      - default
+
+
+#  ============   ./docker-compose-chameleon.yml   ==============
+
+# ------------  docker-compose-chameleon.yml
+
+volumes:
+  dbp-pg-data:
+
+services:
+
+  dbp:
+    # docker rm upkuma-cham-test-dbp-1 ; docker volume rm  upkuma-cham-test_dbp-pg-data
+    image: postgres:18-alpine
+    #container_name: dbp
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "5439:5432"
+    volumes:
+      - dbp-pg-data:/var/lib/postgresql
+      - /etc/localtime:/etc/localtime:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 60s
+      timeout: 12s
+      retries: 10
+      start_period: 10s
+    networks:
+      - default
+
+  pgchameleon:
+    # this should one run once.
+    # no need.. docker volume rm upkuma-cham-test_pgcham-data
+    # no no.. image: the4thdoctor/pgchameleon:latest
+    build: ./pgchameleon
+    restart: no
+    depends_on:
+      dbp:
+        condition: service_healthy
+      dbm:
+        condition: service_healthy
+    volumes:
+      # - pgcham-data:/var/lib/pgchameleon
+      - ./pgchameleon/config:/etc/pgchameleon
+    env_file:
+      - ./.env
+    # healthcheck:
+      # test: ["CMD-SHELL", "chameleon status c01 || exit 1"]
+      # interval: 60s
+      # timeout: 15s
+      # retries: 10
+      # start_period: 10s
+    command: >
+      sh -c "
+        envsubst < /etc/pgchameleon/config-tmpl.yml > /etc/pgchameleon/config.yml &&
+        chameleon setconf c01 &&
+        chameleon create_replica c01 &&
+        chameleon start_replica c01
+      "
+    networks:
+      - default
+
+
+#  ============   ./pgchameleon/config/config.yml   ==============
+source:
+  db_conn:
+    host: ${MYSQL_HOST}
+    port: ${MYSQL_PORT}
+    user: ${MYSQL_USER}
+    passwd: ${MYSQL_PASSWORD}
+    charset: utf8
+    connect_timeout: 10
+
+target:
+  db_conn:
+    host: ${POSTGRES_HOST}
+    port: 5432
+    user: ${POSTGRES_USER}
+    passwd: ${POSTGRES_PASSWORD}
+    database: ${POSTGRES_DB}
+
+replica:
+  batch_size: 10000
+  limit_tables: []
+  limit_schemas: []
+  skip_tables: []
+  skip_schemas: []
+
+
+# environment:
+  # MYSQL_HOST: ${MYSQL_HOST}
+  # MYSQL_PORT: 3306
+  # MYSQL_USER: ${MYSQL_ROOT_USER}
+  # MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  # PG_HOST: ${POSTGRES_HOST}
+  # PG_PORT: 5432
+  # PG_USER: ${POSTGRES_USER}
+  # PG_PASSWORD: ${POSTGRES_PASSWORD}
+  # PG_DATABASE: ${POSTGRES_DB}
+#  ============   ./pgchameleon/Dockerfile   ==============
+FROM python:3.11-slim
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        libmariadb-dev \
+        libmariadb-dev-compat \
+        git \
+        ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir pg_chameleon
+
+RUN mkdir -p /etc/pg_chameleon /var/lib/pg_chameleon
+
+WORKDIR /var/lib/pg_chameleon
+
+ENTRYPOINT ["sh", "-c"]
+CMD ["chameleon --help"]
+
+#  ============   ./.env   ==============
+
+#kuma OLD vars..
+DB_ENGINE=mysql
+DB_HOST=dbm
+DB_PORT=3306
+DB_NAME=dkrdb
+DB_USER=duser
+DB_PASSWORD=aa
+
+# Kuma
+UPTIME_KUMA_DB_TYPE=mariadb
+UPTIME_KUMA_DB_HOSTNAME=dbm
+UPTIME_KUMA_DB_PORT=3306
+UPTIME_KUMA_DB_POOL_MAX_CONNECTIONS=10
+UPTIME_KUMA_DB_NAME=dkrdb
+UPTIME_KUMA_DB_USERNAME=duser
+UPTIME_KUMA_DB_PASSWORD=aa
+
+
+#mysql
+MYSQL_HOST=dbm
+MYSQL_DATABASE=dkrdb
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=rr
+MYSQL_USER=duser
+MYSQL_PASSWORD=aa
+
+TZ=US/Eastern
+
+COMPOSE_FILE=docker-compose.yml:docker-compose-chameleon.yml
+
+# postgres
+POSTGRES_HOST=dbp
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=aa
+#POSTGRES_ROOT_USER=postgres
+#POSTGRES_ROOT_PASSWORD=rr
+
+

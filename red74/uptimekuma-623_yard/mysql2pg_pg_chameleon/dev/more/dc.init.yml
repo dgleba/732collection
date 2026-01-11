@@ -1,0 +1,78 @@
+
+services:
+
+  mysql:
+    image: mariadb:10.11
+    #container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    command:
+      - --log-bin=mysql-bin
+      - --binlog-format=ROW
+      - --server-id=1
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d:ro
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-prootpass"]
+      interval: 30s
+      retries: 3
+      start_period: 40s
+      
+  postgres:
+    image: postgres:15
+    #container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_DB: testdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      retries: 3
+      start_period: 40s
+      
+
+  #  docker-compose run --rm --user root pgchameleon    chown -R 1000:1000 /home/chameleon/.pg_chameleon
+  pgchameleon:
+   build:
+     context: ./pgchameleon
+     #platform: linux/amd64
+   depends_on:
+     mysql:
+       condition: service_healthy
+     postgres:
+       condition: service_healthy
+   environment:
+     - CHAMELEON_HOME=/var/lib/pgchameleon
+   volumes:
+     - ./sysdata/pgcham-crib:/crib
+     # perm problem...  - ./pgchameleon/config.yml:/home/chameleon/.pg_chameleon/configuration/default.yml:ro
+     #- ./pgchameleon:/home/chameleon/.pg_chameleon/configuration/
+     #
+     # nonono... - pgcham-home:/home/chameleon/.pg_chameleon
+     # no perm problems with logic how docker applies perms on startup..  - pgcham-data:/var/lib/pgchameleon
+     #- ./sysdata/pgchameleon_logs:/var/lib/pgchameleon/logs
+   command: >
+      sh -c "         
+      echo "2.home is: $HOME" &&
+      mkdir -p /var/lib/pgchameleon/logs /var/lib/pgchameleon/pid &&
+        chameleon create_replica_schema; 
+      "
+
+volumes:
+  mysql-data:
+  pg-data:
+  #pgcham-data:
+  pgcham-home:
+

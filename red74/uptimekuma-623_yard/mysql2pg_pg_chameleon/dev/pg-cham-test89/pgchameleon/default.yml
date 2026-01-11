@@ -1,0 +1,43 @@
+
+# ---- logging ----
+# global settings
+#log_dir: /var/log/pg_chameleon
+#log_level: INFO  
+pid_dir: /pgchamdir/pid
+log_dir: /pgchamdir/logs
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# ---- PostgreSQL target ----
+pg_conn:
+  host: postgres
+  port: 5432
+  user: postgres
+  password: pgpass
+  database: testdb
+  charset: utf8
+
+
+# ---- MySQL source connection ----
+mysql_conn:
+  host: mysql
+  port: 3306
+  user: testuser
+  password: testpass
+  charset: utf8mb4
+
+# ---- Replication sources ----
+sources:
+  replica1:
+    type: mysql 
+    db_conn: mysql_conn
+    schema_mappings:
+      testdb: public
+    batch_size: 10000
+    skip_tables: []
+    limit_tables: []
+
+

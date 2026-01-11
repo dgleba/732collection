@@ -1,0 +1,34 @@
+source:
+  type: mysql
+  db_conn:
+    host: mysql
+    port: 3306
+    user: testuser
+    passwd: testpass
+    charset: utf8mb4
+
+target:
+  db_conn:
+    host: postgres
+    port: 5432
+    user: postgres
+    passwd: pgpass
+    database: testdb
+
+replica:
+  batch_size: 10000
+  skip_tables: []
+  skip_schemas: []
+  limit_tables: []
+  limit_schemas: []
+
+# global settings
+#log_dir: /var/log/pg_chameleon
+#log_level: INFO  
+pid_dir: '/var/lib/pgchameleon/pid/'
+log_dir: '/var/lib/pgchameleon/logs/'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''

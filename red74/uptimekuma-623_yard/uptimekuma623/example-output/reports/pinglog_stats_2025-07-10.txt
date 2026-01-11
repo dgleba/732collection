@@ -1,0 +1,16 @@
+Host: 8.8.8.8
+  Count: 22660
+  Min:   5.93 ms
+  Max:   846.00 ms
+  Avg:   7.44 ms
+  Stdev: 9.36 ms
+  Mode:  7.25 ms
+
+Host: google.ca
+  Count: 22671
+  Min:   6.00 ms
+  Max:   825.00 ms
+  Avg:   7.11 ms
+  Stdev: 7.86 ms
+  Mode:  6.82 ms
+
