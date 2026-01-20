@@ -2,9 +2,9 @@
 
 # see notes below...
 
-mkdir -p log
-LOGFILE="./log/speedtest_log.csv"
-RAWLOG="./log/speedtest_raw.log"
+mkdir -p ../sysdata/log
+LOGFILE="../sysdata/log/speedtest_log.csv"
+RAWLOG="../sysdata/log/speedtest_raw.log"
 
 # Add CSV header if it doesn't exist
 if [ ! -f "$LOGFILE" ]; then
@@ -40,8 +40,8 @@ old1 () {
 #!/bin/bash
 
 mkdir -p log
-LOGFILE="./log/speedtest_log.csv"
-RAWLOG="./log/speedtest_raw.log"
+LOGFILE="../sysdata/log/speedtest_log.csv"
+RAWLOG="../sysdata/log/speedtest_raw.log"
 
 # Add CSV header if file doesn't exist
 if [ ! -f "$LOGFILE" ]; then

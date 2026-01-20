@@ -1,0 +1,60 @@
+
+#/ap/dkr/732collection/red74/uptimekuma-623_yard/mysql2postgres-pg_chameleon/upkuma-cham-test
+# docker-compose.yml 
+
+volumes:
+  uptime-kuma-data:
+  uptime-db-data:
+
+services:
+
+  upkuma:
+    # http://10.33.44.81:6177/
+    # latest was 1.23 for me..
+    #image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2.0.2-slim
+    restart: unless-stopped
+    ports:
+      - "6177:3001"
+    env_file:
+      - .env
+    volumes:
+      - ./sysdata/uptime-kuma-data:/app/data
+      #- uptime-kuma-data:/app/data
+    depends_on:
+      dbm:
+        condition: service_healthy
+    networks:
+      - default
+      
+  dbm:
+    # image: mysql:8.0.23
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:12
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "16182:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - uptime-db-data:/var/lib/mysql
+      #- ../sysdata/uptime-db-data:/var/lib/mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 70s
+       timeout: 15s
+       retries: 3
+       start_period: 140s
+    networks:
+      - default
+

@@ -1,0 +1,62 @@
+
+#@################################################################
+#@  
+#@  Title:::     
+#@  
+#@###################################   2026-01-11[Jan-Sun]15-35PM 
+
+I cannot get tables created in pg.
+
+I am using dbeaver to view db. nice.
+
+to run:
+
+	dkd -v
+	dc up
+
+ref:
+https://pg-chameleon.readthedocs.io/en/ver2.0/usage.html#example
+
+
+
+------------
+
+error 2026-01-11_Sun_15.36-PM
+
+chameleon@943f826a7271:~/.pg_chameleon/configuration$ chameleon create_replica_schema --debug
+/usr/local/bin/chameleon.py:2: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  from pkg_resources import get_distribution
+2026-01-11 20:31:10 MainProcess DEBUG pg_lib.py (663): Changing the autocommit flag to True
+2026-01-11 20:31:10 MainProcess INFO global_lib.py (297): Trying to create replica schema
+2026-01-11 20:31:10 MainProcess DEBUG pg_lib.py (715): Trying to connect to the destination database.
+2026-01-11 20:31:10 MainProcess DEBUG pg_lib.py (683): There is already a database connection active.
+2026-01-11 20:31:10 MainProcess DEBUG pg_lib.py (719): Creating the replica schema.
+chameleon@943f826a7271:~/.pg_chameleon/configuration$ 
+Display all 865 possibilities? (y or n)^C
+chameleon@943f826a7271:~/.pg_chameleon/configuration$ chameleon show_errors
+/usr/local/bin/chameleon.py:2: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  from pkg_resources import get_distribution
+Traceback (most recent call last):
+  File "/usr/local/bin/chameleon", line 5, in <module>
+    exec(compile(open(__file__).read(), __file__, 'exec'))
+  File "/usr/local/bin/chameleon.py", line 56, in <module>
+    replica = replica_engine(args)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pg_chameleon/lib/global_lib.py", line 107, in __init__
+    log_list = self.__init_logger("global")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pg_chameleon/lib/global_lib.py", line 933, in __init_logger
+    fh = TimedRotatingFileHandler(log_file, when="d",interval=1,backupCount=log_days_keep)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/logging/handlers.py", line 214, in __init__
+    BaseRotatingHandler.__init__(self, filename, 'a', encoding=encoding,
+  File "/usr/local/lib/python3.11/logging/handlers.py", line 58, in __init__
+    logging.FileHandler.__init__(self, filename, mode=mode,
+  File "/usr/local/lib/python3.11/logging/__init__.py", line 1181, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/logging/__init__.py", line 1213, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/pgchamdir/logs/default_general.log'
+chameleon@943f826a7271:~/.pg_chameleon/configuration$ 

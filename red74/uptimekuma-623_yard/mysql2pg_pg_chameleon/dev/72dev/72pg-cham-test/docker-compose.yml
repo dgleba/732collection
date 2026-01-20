@@ -1,0 +1,102 @@
+
+services:
+
+  dbm:
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpas
+      MYSQL_DATABASE: delphis
+      MYSQL_USER: musr
+      MYSQL_PASSWORD: mpass
+    ports:
+      - "23306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: --binlog-format=ROW --server-id=1 --log-bin=mysql-bin --binlog-row-image=FULL --expire_logs_days=10 --binlog_row_metadata=FULL
+    networks:
+      - default
+    # healthcheck:
+      # test: ["CMD", "mysqladmin", "ping", "-prootpas"]
+      # interval: 10s
+      # retries: 10
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=rootpas"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 40s
+      
+  dbp:
+    image: postgres:15
+    #container_name: chameleon_postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "25432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 120s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+
+  chameleon:
+    build: .
+    volumes:
+      - ./config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs:/var/log/pg_chameleon
+    networks:
+      - chameleon_net
+    stdin_open: true
+    tty: true
+    #command: tail -f /dev/null
+    command: >
+        bash -c " echo 'start command after sleeping n seconds..'.. ; sleep 10 ;
+        set -vx; 
+        echo '1..';  chameleon set_configuration_files;
+        echo '2..';  chameleon create_replica_schema --debug ;
+        echo '3..';  chameleon add_source --config default  --debug --source dba ;
+        echo '4..';  chameleon init_replica --config default --debug --source dba ;
+        echo '5..';  chameleon start_replica --config default --source dba ;
+        tail -f ~/.pg_chameleon/logs/*.log;
+        "
+    depends_on:
+      dbm:
+        condition: service_healthy
+      dbp:
+        condition: service_healthy
+
+  adminer:
+    # http://10.33.44.81:6607/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    # env_file:
+      # - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbp
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_PLUGINS=tables-filter
+    ports:
+      - 6607:8080
+    networks:
+      - default
+
+volumes:
+  mysql_data:
+  postgres_data:
+  chameleon_logs:
+
+networks:
+  chameleon_net:
+    driver: bridge
+

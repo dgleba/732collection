@@ -5,11 +5,26 @@
 #@  
 #@###################################   2026-01-10[Jan-Sat]17-41PM 
 
+------------
+
+copy data from docker volume to host...
+
+docker cp uptimekuma623-upkuma-1:/app/data ./kuma-backup
+
+------------
+
+
 This may be sqlite not postgres
+
+------------
+
 
 
 image: louislam/uptime-kuma:latest
 	latest only got v1.23
+
+------------
+
 
 
 these env vars are no new enough.
@@ -20,3 +35,6 @@ these env vars are no new enough.
 	DB_NAME=dkrdb
 	DB_USER=duser
 	DB_PASSWORD=pw55
+
+------------
+

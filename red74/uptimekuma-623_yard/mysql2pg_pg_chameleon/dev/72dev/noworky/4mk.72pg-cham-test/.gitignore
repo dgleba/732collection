@@ -1,0 +1,9 @@
+# Docker volumes
+mysql-init/*.sql
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

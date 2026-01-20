@@ -1,0 +1,42 @@
+# global settings
+pid_dir: '/pgchamdir/pid'
+log_dir: '/pgchamdir/logs'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# postgres destination connection
+pg_conn:
+  host: "postgres"
+  port: "5432"
+  user: "postgres"
+  password: "pgpass"
+  database: "testdb"
+  charset: "utf8"
+
+sources:
+  replica1:
+    db_conn:
+      host: "mysql"
+      port: "3306"
+      user: "testuser"
+      password: "testpass"
+      charset: 'utf8mb4'
+      connect_timeout: 10
+    schema_mappings:
+      testdb: public
+    type: mysql
+    my_server_id: 100
+    replica_batch_size: 10000
+    replay_max_rows: 10000
+    batch_retention: '1 day'
+    copy_max_memory: "300M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 1
+    on_error_replay: continue
+    on_error_read: continue
+    gtid_enable: false
+    

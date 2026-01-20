@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: chameleon_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: sakila
+      MYSQL_USER: chameleon_user
+      MYSQL_PASSWORD: chameleon_pass
+    ports:
+      - "23306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: --binlog-format=ROW --server-id=1 --log-bin=mysql-bin --binlog-row-image=FULL
+    networks:
+      - chameleon_net
+
+  postgres:
+    image: postgres:15
+    container_name: chameleon_postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: sakila
+    ports:
+      - "25432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - chameleon_net
+
+  chameleon:
+    build: .
+    container_name: pg_chameleon
+    depends_on:
+      - mysql
+      - postgres
+    volumes:
+      - ./config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs:/var/log/pg_chameleon
+    networks:
+      - chameleon_net
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null
+
+volumes:
+  mysql_data:
+  postgres_data:
+  chameleon_logs:
+
+networks:
+  chameleon_net:
+    driver: bridge

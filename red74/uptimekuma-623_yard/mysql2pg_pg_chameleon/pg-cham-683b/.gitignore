@@ -1,0 +1,15 @@
+
+# init with password..
+10-init-pg.sql
+
+# yml with password..
+default.yml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+.env
+.env**

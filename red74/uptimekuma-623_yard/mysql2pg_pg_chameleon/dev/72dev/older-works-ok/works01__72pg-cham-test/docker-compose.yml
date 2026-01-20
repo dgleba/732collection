@@ -1,0 +1,76 @@
+services:
+  mysql:
+    image: mariadb:10.11
+    #container_name: chameleon_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: delphis_mediterranea
+      MYSQL_USER: usr_replica
+      MYSQL_PASSWORD: replica_pass
+    ports:
+      - "23306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: --binlog-format=ROW --server-id=1 --log-bin=mysql-bin --binlog-row-image=FULL --expire_logs_days=10 --binlog_row_metadata=FULL
+    networks:
+      - chameleon_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-prootpass"]
+      interval: 15s
+      retries: 10
+      
+  postgres:
+    image: postgres:15
+    #container_name: chameleon_postgres
+    environment:
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_USER: usr_replica
+      POSTGRES_DB: db_replica
+    ports:
+      - "25432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - chameleon_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 15s
+      retries: 10
+
+
+  chameleon:
+    build: .
+    #container_name: pg_chameleon
+    volumes:
+      - ./config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs:/var/log/pg_chameleon
+    networks:
+      - chameleon_net
+    stdin_open: true
+    tty: true
+    #command: tail -f /dev/null
+    command: >
+        bash -c " echo 'start command after sleeping 5'.. && sleep 5 &&
+        chameleon set_configuration_files;
+        chameleon create_replica_schema --debug &&
+        chameleon add_source --config default  --debug --source mysql &&
+        chameleon init_replica --config default --debug --source mysql &&
+        chameleon start_replica --config default --source mysql &&
+        tail -f ~/.pg_chameleon/logs/*.log;
+        "
+    depends_on:
+      mysql:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
+  postgres_data:
+  chameleon_logs:
+
+networks:
+  chameleon_net:
+    driver: bridge

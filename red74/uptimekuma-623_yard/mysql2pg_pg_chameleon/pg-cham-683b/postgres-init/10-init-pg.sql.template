@@ -1,0 +1,10 @@
+
+CREATE USER replica WITH PASSWORD '${PG_user_pass}';
+CREATE DATABASE delphis_repl WITH OWNER replica;
+
+-- Create readonly user
+CREATE USER usr_readonly WITH PASSWORD '${PG_ro_pass}';
+
+-- Grant connect on database
+GRANT CONNECT ON DATABASE delphis_repl TO usr_readonly;
+

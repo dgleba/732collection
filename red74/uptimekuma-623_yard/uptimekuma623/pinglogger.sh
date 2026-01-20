@@ -4,14 +4,14 @@ echo ... Running.  See logs...
 
 END_TIME=$(( $(date +%s) + 53 ))
 
-mkdir -p log
+mkdir -p ../sysdata/log/
 
 while [ $(date +%s) -lt $END_TIME ]; do
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     DATE=$(date "+%Y-%m-%d")
 
-    ALL_LOG="./log/ping_all_${DATE}.log"
-    FAIL_LOG="./log/ping_fail_${DATE}.log"
+    ALL_LOG="../sysdata/log/ping_all_${DATE}.log"
+    FAIL_LOG="../sysdata/log/ping_fail_${DATE}.log"
 
     for HOST in 8.8.8.8 google.ca; do
         OUTPUT=$(ping -c 2 -W 2 "$HOST" 2>&1)
@@ -56,7 +56,7 @@ contab -e
 #  old  usage:
 #     bash pinglogger.sh &
 #     nohup ./pinglogger.sh &
-#     aDATE=$(date "+%Y-%m-%d") ;  tail -f ./log/ping_all_${aDATE}.log ;
+#     aDATE=$(date "+%Y-%m-%d") ;  tail -f ../sysdata/log/ping_all_${aDATE}.log ;
 
 }
 
