@@ -1,0 +1,49 @@
+#!/bin/bash
+
+echo 'pgcham help..' ; 
+
+
+echo
+cat <<'EOF'
+
+Run these like this..
+
+dc exec cham  bash /dg/helpsh
+
+
+dc exec cham  bash /dg/1prepsh
+
+dc exec cham  bash /dg/5initsh
+
+dc exec cham  bash /dg/7repsh
+
+
+Only for a few records of data example..
+   dc exec cham  bash /dg/99_full-complete-startpgcham.sh
+
+EOF
+
+echo
+
+
+notes001_fuction () {
+echo
+
+# set -vx; 
+
+# sleep 1 ;
+
+# echo 'Generating .yml config file from template...'; 
+# envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+# echo '1. set conf...';  chameleon set_configuration_files;
+# echo '2..';  chameleon create_replica_schema --debug ;
+# echo '3..';  chameleon add_source --config default  --debug --source dba ;
+
+# echo '4..';  chameleon init_replica --config default --debug --source dba ;
+
+# sleep 30;
+
+# echo '5..';  chameleon start_replica --config default --source dba ;
+# tail -f ~/.pg_chameleon/logs/*.log;
+
+}

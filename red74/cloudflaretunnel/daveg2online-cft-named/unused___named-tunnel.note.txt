@@ -1,0 +1,97 @@
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-02-08[Feb-Sun]11-54AM 
+
+https://copilot.microsoft.com/shares/DTnLkZQqfgmExsXgAuY6w
+
+
+✅ If you use a Tunnel Token (like your compose example), Cloudflare ignores any local config.yml..
+
+
+
+Cloudflare Tunnel has two modes:
+
+Mode	How it works	Uses config.yml??
+
+Token-based (your current setup)	cloudflared tunnel run --token	❌ No — Cloudflare controls everything from the dashboard
+
+Named tunnel	You create a tunnel locally, store cert.pem, run cloudflared tunnel run	✅ Yes — config.yml fully supported
+
+
+------------
+
+mkdir -p ./sysdata/cflared
+
+# create cert.pem
+docker run -it --rm   --user root   -e HOME=/etc/cloudflared \
+    -v $(pwd)/sysdata/cflared:/etc/cloudflared   cloudflare/cloudflared:latest tunnel login
+
+--
+
+	[12:06:04] albe@del-7410:/ap/dkr/732collection/red74/cloudflaretunnel/daveg2online-cft$ 
+
+	docker run -it --rm   --user root   -e HOME=/etc/cloudflared \
+	  -v $(pwd)/sysdata/cflared:/etc/cloudflared   cloudflare/cloudflared:latest tunnel login
+	  
+	Please open the following URL and log in with your Cloudflare account:
+
+	https://dash.cloudflare.com/argotunnel?aud=&callback=https%3A%2F%2Flogin.cloudflareaccess.org%2FXB-V4qpZpcDY56YTwsCu3K_XpVJTtcmGX-aAjXmRE2s%3D
+
+	Leave cloudflared running to download the cert automatically.
+	2026-02-08T17:06:24Z INF You have successfully logged in.
+	If you wish to copy your credentials to a server, they have been saved to:
+	/etc/cloudflared/.cloudflared/cert.pem
+
+	[12:06:24] albe@del-7410:/ap/dkr/732collection/red74/cloudflaretunnel/daveg2online-cft$ 
+
+
+
+------------
+
+sudo mv sysdata/cflared/.cloudflared/cert.pem sysdata/cflared/
+sudo rmdir sysdata/cflared/.cloudflared
+
+
+
+------------
+
+docker run -it --rm   --user root   -v $(pwd)/sysdata/cflared:/etc/cloudflared \
+  cloudflare/cloudflared:latest tunnel create websitesimple
+
+
+	[12:39:49] albe@del-7410:/ap/dkr/732collection/red74/cloudflaretunnel/daveg2online-cft$ docker run -it 
+	--rm   --user root   -v $(pwd)/sysdata/cflared:/etc/cloudflared \
+	  cloudflare/cloudflared:latest tunnel create websitesimple
+	Tunnel credentials written to /etc/cloudflared/087329bc-6491-4962-b5e0-d361b11b4a13.json. cloudflared chose this 
+	file based on where your origin certificate was found. Keep this file secret. 
+	To revoke these credentials, delete the tunnel.
+	Created tunnel websitesimple with id 087329bc-6491-4962-b5e0-d361b11b4a13
+	2026-02-08T17:39:52Z WRN Your version 2025.8.1 is outdated. We recommend upgrading it to 2026.2.0
+	[12:39:52] albe@del-7410:/ap/dkr/732collection/red74/cloudflaretunnel/daveg2online-cft$ 
+	
+
+------------
+
+3. Create config.yml
+
+
+tunnel: websitesimple
+credentials-file: /etc/cloudflared/websitesimple.json
+
+ingress:
+  - hostname: websitesimple.daveg2.online
+    service: http://websitesimple:80
+  - service: http_status:404
+
+
+
+------------
+
+i stopped
+
+
+------------
+

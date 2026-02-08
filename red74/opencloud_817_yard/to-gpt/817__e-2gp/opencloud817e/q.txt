@@ -1,0 +1,8 @@
+
+I am using the offical opencloud.eu compose at https://github.com/opencloud-eu/opencloud-compose
+My code is attached.
+
+I want to add onlyoffice with collab online.
+I am using cftunnels, so no traefik, https, or anything just local exposed ports.
+
+

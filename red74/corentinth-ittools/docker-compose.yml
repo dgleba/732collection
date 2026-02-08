@@ -1,0 +1,10 @@
+
+services:
+
+  # http://10.33.44.81:9112/
+  it-tools:
+    image: ghcr.io/corentinth/it-tools:latest
+    restart: unless-stopped
+    ports:
+      - "9112:80"
+

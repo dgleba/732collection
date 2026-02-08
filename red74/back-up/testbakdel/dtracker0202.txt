@@ -1,0 +1,15 @@
+
+------------
+2026-02-02_Mon_14.30-PM
+
+total 12
+drwxrwxr-x 2 albe staff 4096 Feb  2 14:29 .
+drwxrwxrwx 4 albe staff 4096 Feb  2 14:28 ..
+-rw-rw-r-- 1 albe staff    0 Feb  2 14:28 del0202a.txt
+-rw-rw-r-- 1 albe staff    6 Feb  2 14:29 del0202b.txt
+-rw-rw-r-- 1 albe staff    0 Feb  2 14:29 deltracker0202.txt
+
+
+------------
+
+

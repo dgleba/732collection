@@ -33,10 +33,10 @@ services:
     ports:
       - "6307:3306"
     volumes:
-      - db_data:/var/lib/mysql
-      #- ../sysdata/maria/:/var/lib/mysql/ # folder for mysql's internal data files.
+      #- db_data:/var/lib/mysql
+      - ./sysdata/mysqldata/:/var/lib/mysql/ # folder for mysql's internal data files.
       # - .:/root # folder for scripts, etc.
-      # - ../data/maria429/:/home # folder for exported data, etc.
+      # - ./sysdatadata/maria429/:/home # folder for exported data, etc.
     logging:
       driver: "json-file"
       options:

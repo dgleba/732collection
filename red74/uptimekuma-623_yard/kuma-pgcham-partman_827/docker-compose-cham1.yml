@@ -1,0 +1,47 @@
+
+services:
+
+  pg:
+    # image: postgres:15
+    build: 
+      context: ./
+      dockerfile: Dockerfile.pg
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    env_file:
+      - .env
+    ports:
+      - "25433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./pg-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 120s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+
+  cham:
+    build: .
+    # restart: always
+    volumes:
+      - ./pg_cham_start:/dg:ro
+      - ./pg_cham_config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs:/var/log/pg_chameleon
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    #command:  bash /dg/startpgcham.sh
+    #command:  bash -c "ls -la /dg/"
+    command:  bash -c "echo starting cham...; tail -f /dev/null;"
+    depends_on:
+      dbm:
+        condition: service_healthy
+      pg:
+        condition: service_healthy
+

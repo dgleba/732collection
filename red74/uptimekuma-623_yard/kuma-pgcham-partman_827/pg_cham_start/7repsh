@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# echo 'pgcham starting command after sleeping n seconds..' ; 
+
+set -vx; 
+
+
+notes001_fuction () {
+echo
+# sleep 10 ;
+# echo 'Generating .yml config file from template...'; 
+# envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+# echo '1. set conf...';  chameleon set_configuration_files;
+# echo '2..';  chameleon create_replica_schema --debug ;
+# echo '3..';  chameleon add_source --config default  --debug --source dba ;
+# echo '4..';  chameleon init_replica --config default --debug --source dba ;
+}
+
+chameleon show_status --source dba;
+
+chameleon show_errors;
+
+
+chameleon stop_replica --config default --source dba  --force --debug;
+
+rm -f /home/chameleon/.pg_chameleon/pid/*.pid;
+
+echo '5..';  chameleon start_replica --config default --source dba  ;
+
+
+# tail -f ~/.pg_chameleon/logs/*.log;
+

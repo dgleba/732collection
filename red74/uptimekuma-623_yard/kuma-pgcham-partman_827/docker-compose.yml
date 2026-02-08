@@ -1,0 +1,68 @@
+
+volumes:
+  mysql_data:
+  postgres_data:
+  chameleon_logs:
+  postgres_data3:
+  cham3_logs:
+
+services:
+
+  upkuma:
+    # http://10.33.44.81:6178/
+    # latest was 1.23 for me..
+    #image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2.0.2-slim
+    restart: unless-stopped
+    ports:
+      - "6178:3001"
+    volumes:
+      - ./sysdata/uptime-kuma-data:/app/data
+      #- uptime-kuma-data:/app/data
+    depends_on:
+      dbm:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  dbm:
+    #image: mariadb:11
+    build: 
+      context: ./
+      dockerfile: Dockerfile.mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "23307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: --binlog-format=ROW --server-id=1 --log-bin=mysql-bin --binlog-row-image=FULL --expire_logs_days=10 --binlog_row_metadata=FULL
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 40s
+
+  adminer:
+    # http://10.33.44.81:6609/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=pg
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_PLUGINS=tables-filter
+    ports:
+      - 6609:8080
+

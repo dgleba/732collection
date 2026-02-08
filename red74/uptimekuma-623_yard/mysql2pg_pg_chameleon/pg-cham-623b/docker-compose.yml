@@ -2,7 +2,7 @@
 services:
 
   dbm:
-    image: mariadb:10.11
+    image: mariadb:11
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -20,7 +20,7 @@ services:
     networks:
       - default
     healthcheck:
-       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=rootpas"]
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
        interval: 120s
        timeout: 15s
        retries: 5

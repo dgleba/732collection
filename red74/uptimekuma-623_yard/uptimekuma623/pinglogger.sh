@@ -6,6 +6,7 @@ END_TIME=$(( $(date +%s) + 53 ))
 
 mkdir -p ../sysdata/log/
 
+# ping repeat until endtime each minute.
 while [ $(date +%s) -lt $END_TIME ]; do
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     DATE=$(date "+%Y-%m-%d")
@@ -33,6 +34,7 @@ while [ $(date +%s) -lt $END_TIME ]; do
 
     # Optional short pause to avoid tight loop, can be removed
     sleep 3
+    sleep 40
 done
 
 

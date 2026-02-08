@@ -40,7 +40,8 @@ services:
       # - MYSQL_ROOT_PASSWORD=
       - x33=x33
     volumes:
-      - db_data:/var/lib/mysql
+      #- db_data:/var/lib/mysql # 2026-01-25 switch to bind mount
+      - ../sysdata/mysqldata:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: ["CMD", "/usr/local/bin/healthcheck.sh", "--innodb_initialized"]

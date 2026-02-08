@@ -1,0 +1,81 @@
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+# postgres  destination connection
+pg_conn:
+  host: "${hostipaddr}"
+  port: "${POSTGRES_pubPORT}"
+  user: "replica"
+  password: "${PG_user_pass}"
+  database: "${MYSQL_DATABASE}_rpl"
+  charset: "utf8"
+
+sources:
+  dba:
+    db_conn:
+      host: "${hostipaddr}"
+      port: "${MYSQL_pubPORT}"
+      user: "${MYSQL_USER}"
+      password: "${MYSQL_PASSWORD}"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      ${MYSQL_DATABASE}: ${MYSQL_DATABASE}_rpl
+    limit_tables:
+      - ${MYSQL_DATABASE}.heartbeat
+    skip_tables:
+      - ${MYSQL_DATABASE}.user
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "120s"
+    my_server_id: 9
+    replica_batch_size: 10000
+    replay_max_rows: 10000
+    batch_retention: '1 day'
+    copy_max_memory: "300M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 1
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      # insert:
+        # - delphis_mediterranea.foo  # skips inserts on table
+      delete:
+        - ${MYSQL_DATABASE}  # skips deletes on schema 
+      update:
+    keep_existing_schema: No
+    net_read_timeout: 600
+
+
+# the dictionary fillfactor is used to set the fillfactor for tables that are expected to work with large updates
+# The key name defines the fillfactor level (The allowed values range is 10 to 100)
+# If key name is set to "*" then the fillfactor applies to all tables in the replicated schema
+# If the table appears in multiple fillfactors then only the last matched value will be applied
+fillfactor:
+  "30":
+    tables:
+      - "foo.bar"
+  # "40":
+    # tables:
+      # - "foo.foobar"
+

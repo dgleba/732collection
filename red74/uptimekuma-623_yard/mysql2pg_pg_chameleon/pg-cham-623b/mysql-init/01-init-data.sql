@@ -65,7 +65,7 @@ UNLOCK TABLES;
 LOCK TABLES `foo` WRITE;
 /*!40000 ALTER TABLE `foo` DISABLE KEYS */;
 INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, 'first rec');
-INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, '0119 525gg');
+INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, '0119 926');
 
 UNLOCK TABLES;
 

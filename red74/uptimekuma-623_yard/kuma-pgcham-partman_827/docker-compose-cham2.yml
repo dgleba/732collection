@@ -1,0 +1,45 @@
+
+services:
+
+  cham3:
+    build: .
+    restart: always
+    volumes:
+      - ./pg_cham3_start:/dg:ro
+      - ./pg_cham3_config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs3:/var/log/pg_chameleon
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    #command: tail -f /dev/null
+    command:  bash /dg/startpgcham3.sh
+    depends_on:
+      pg:
+        condition: service_healthy
+      pg3:
+        condition: service_healthy
+
+  pg3:
+    # image: postgres:15
+    build: 
+      context: ./
+      dockerfile: Dockerfile.pg
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    env_file:
+      - .env
+    ports:
+      - "35432:5432"
+    volumes:
+      - postgres_data3:/var/lib/postgresql/data
+      #- ./postgres-init3:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 120s
+      timeout: 20s
+      retries: 5
+      start_period: 40s

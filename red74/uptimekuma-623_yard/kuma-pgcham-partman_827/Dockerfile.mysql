@@ -1,0 +1,6 @@
+#FROM mariadb:11
+FROM mariadb:10
+
+# Install gettext-base to provide envsubst
+RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+

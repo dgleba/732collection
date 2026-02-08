@@ -1,0 +1,11 @@
+-- ------------------------------------------------------------
+-- 3. Create readonly user
+-- ------------------------------------------------------------
+CREATE USER IF NOT EXISTS 'usr_readonly'@'%' IDENTIFIED BY '';
+
+GRANT SELECT ON dkrdb.* TO 'usr_readonly'@'%';
+
+GRANT REPLICATION SLAVE, REPLICATION CLIENT, RELOAD ON *.* TO 'duser'@'%';
+FLUSH PRIVILEGES;
+
+------------

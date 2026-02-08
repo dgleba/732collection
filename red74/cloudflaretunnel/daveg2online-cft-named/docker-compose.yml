@@ -1,0 +1,30 @@
+
+# I didn't finish this..
+
+
+
+networks:
+  cfnet_r74_daveg2online  ?? :
+    name: cfnet_r74_daveg2online
+
+
+services:
+
+  # Cloudflare Tunnel Container
+  cftunnel:
+    image: cloudflare/cloudflared
+    user:  root
+    #
+    # 2026-02-08_Sun_13.15-PM unfinished..
+    #command: tunnel  --no-autoupdate  run  --token ${TUNNEL_TOKEN}
+    restart: unless-stopped
+    #
+    # in token mode, volumes are ignored. Volumes are used in named tunnel mode.
+    volumes:
+      - ./sysdata/cflared:/etc/cloudflared
+    #
+    environment:
+      # TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
+      - TZ=America/New_York # Adjust to your timezone
+    networks:
+      - cfnet_r74_daveg2online

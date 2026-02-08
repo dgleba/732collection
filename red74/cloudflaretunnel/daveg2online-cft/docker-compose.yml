@@ -15,14 +15,13 @@ services:
   cftunnel:
     image: cloudflare/cloudflared
     command: tunnel  --no-autoupdate  run  --token ${TUNNEL_TOKEN}
+    # in token mode, volumes are ignored. Volumes are used in named tunnel mode.
     # volumes:
-    #   - ./cloudflared:/etc/cloudflared
+      # - ./sysdata/cflared:/etc/cloudflared
     restart: unless-stopped
     environment:
       # TUNNEL_TOKEN: ${TUNNEL_TOKEN} 
       - TZ=America/New_York # Adjust to your timezone
     user:  root
     networks:
-      #- sister2
-      #- cfnet1
       - cfnet_r74_daveg2online

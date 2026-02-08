@@ -1,0 +1,987 @@
+###  ==================   ./docker-compose-cham1.yml   ==================
+
+
+services:
+
+  pg:
+    # image: postgres:15
+    build: 
+      context: ./
+      dockerfile: Dockerfile.pg
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    env_file:
+      - .env
+    ports:
+      - "25433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./pg-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 120s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+
+  cham:
+    build: .
+    # restart: always
+    volumes:
+      - ./pg_cham_start:/dg:ro
+      - ./pg_cham_config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs:/var/log/pg_chameleon
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    #command:  bash /dg/startpgcham.sh
+    #command:  bash -c "ls -la /dg/"
+    command:  tail -f /dev/null
+    depends_on:
+      dbm:
+        condition: service_healthy
+      pg:
+        condition: service_healthy
+
+
+###  ==================   ./docker-compose-cham2.yml   ==================
+
+
+services:
+
+  cham3:
+    build: .
+    restart: always
+    volumes:
+      - ./pg_cham3_start:/dg:ro
+      - ./pg_cham3_config:/home/chameleon/.pg_chameleon/configuration
+      - chameleon_logs3:/var/log/pg_chameleon
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    #command: tail -f /dev/null
+    command:  bash /dg/startpgcham3.sh
+    depends_on:
+      pg:
+        condition: service_healthy
+      pg3:
+        condition: service_healthy
+
+  pg3:
+    # image: postgres:15
+    build: 
+      context: ./
+      dockerfile: Dockerfile.pg
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    env_file:
+      - .env
+    ports:
+      - "35432:5432"
+    volumes:
+      - postgres_data3:/var/lib/postgresql/data
+      #- ./postgres-init3:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 120s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+
+###  ==================   ./docker-compose.yml   ==================
+
+
+volumes:
+  mysql_data:
+  postgres_data:
+  chameleon_logs:
+  postgres_data3:
+  cham3_logs:
+
+services:
+
+  upkuma:
+    # http://10.33.44.81:6178/
+    # latest was 1.23 for me..
+    #image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2.0.2-slim
+    restart: unless-stopped
+    ports:
+      - "6178:3001"
+    volumes:
+      - ./sysdata/uptime-kuma-data:/app/data
+      #- uptime-kuma-data:/app/data
+    depends_on:
+      dbm:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  dbm:
+    #image: mariadb:11
+    build: 
+      context: ./
+      dockerfile: Dockerfile.mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "23307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: --binlog-format=ROW --server-id=1 --log-bin=mysql-bin --binlog-row-image=FULL --expire_logs_days=10 --binlog_row_metadata=FULL
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 40s
+
+  adminer:
+    # http://10.33.44.81:6609/  use dbm or ip:port for server while logging in. 192.168.88.60:6608
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - ADMINER_DEFAULT_SERVER=pg
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_PLUGINS=tables-filter
+    ports:
+      - 6609:8080
+
+
+###  ==================   ./Dockerfile   ==================
+
+FROM python:3.11-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    default-libmysqlclient-dev \
+    pkg-config mc \
+	gettext-base \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -u 1000 -s /bin/bash chameleon
+
+# Install pg_chameleon
+RUN pip install --no-cache-dir pg_chameleon
+
+# Create configuration directory with proper permissions
+RUN mkdir -p /home/chameleon/.pg_chameleon/configuration && \
+    chown -R chameleon:chameleon /home/chameleon/.pg_chameleon
+
+# Create log directory with proper permissions
+RUN mkdir -p /var/log/pg_chameleon && \
+    chown -R chameleon:chameleon /var/log/pg_chameleon
+
+# Switch to non-root user
+USER chameleon
+
+# Set working directory
+WORKDIR /home/chameleon
+
+# Default command
+CMD ["bash"]
+
+###  ==================   ./Dockerfile.mysql   ==================
+
+FROM mariadb:11
+
+# Install gettext-base to provide envsubst
+RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+
+
+###  ==================   ./Dockerfile.pg   ==================
+
+FROM postgres:15
+
+# Install gettext-base to provide envsubst
+RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+
+
+###  ==================   ./.env   ==================
+
+
+TZ=US/Eastern
+
+#compose files inclusion...
+COMPOSE_FILE=docker-compose.yml:docker-compose-cham1.yml
+# COMPOSE_FILE=docker-compose.yml:docker-compose-cham1.yml:docker-compose-cham3.yml
+
+# host:
+hostipaddr=10.33.44.81
+
+# Kuma
+UPTIME_KUMA_DB_TYPE=mariadb
+UPTIME_KUMA_DB_HOSTNAME=dbm
+UPTIME_KUMA_DB_PORT=3306
+UPTIME_KUMA_DB_POOL_MAX_CONNECTIONS=10
+UPTIME_KUMA_DB_NAME=dkrdb
+UPTIME_KUMA_DB_USERNAME=duser
+UPTIME_KUMA_DB_PASSWORD=dd
+
+# mysql
+MYSQL_ROOT_PASSWORD=rpass
+MYSQL_PASSWORD=dd
+#mysql
+MYSQL_HOST=dbm
+MYSQL_DATABASE=dkrdb
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=rpass
+MYSQL_USER=duser
+MYSQL_PASSWORD=dd
+MYSQL_pubPORT=23307
+
+# postgres
+POSTGRES_HOST=dbp
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_pubPORT=25433
+# for replica user
+PG_user_pass=pass
+PG_ro_pass=ropass
+
+
+###  ==================   ./examplecham.env   ==================
+
+
+# host:
+hostipaddr=10.33.44.81
+
+# mysql
+MYSQL_ROOT_PASSWORD=rootpas
+MYSQL_PASSWORD=mpass
+
+
+# postgres
+POSTGRES_PASSWORD=postgres
+#
+# for replica user
+PG_user_pass=pass
+PG_ro_pass=ropass
+
+
+###  ==================   ./.gitignore   ==================
+
+
+# init with password..
+10-init-pg.sql
+
+# yml with password..
+default.yml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+.env
+.env**
+
+###  ==================   ./mysql-init/00-gen-mdb-sql.sh   ==================
+
+#!/bin/bash
+set -e
+
+# These will now appear in your 'dc up' logs
+echo "Current directory:" && pwd
+echo "Running as user:" && whoami
+
+
+# echo "Checking variable: PG_user_pass is ${PG_user_pass}" # If this is empty, envsubst will output nothing
+
+envsubst < /docker-entrypoint-initdb.d/01-init.sql.template > /docker-entrypoint-initdb.d/01-init.sql
+
+
+# chmod 777 /docker-entrypoint-initdb.d/*.sql
+
+
+###  ==================   ./mysql-init/01-init.sql   ==================
+
+-- ------------------------------------------------------------
+-- 4. Create source schema (if not exists)
+-- ------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS delphis
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+-- pg_chameleon also needs SELECT on the replicated schema
+GRANT SELECT ON delphis.* TO 'duser'@'%';
+
+-- ------------------------------------------------------------
+-- 3. Create readonly user
+-- ------------------------------------------------------------
+CREATE USER IF NOT EXISTS 'usr_readonly'@'%' IDENTIFIED BY '';
+
+GRANT SELECT ON dkrdb.* TO 'usr_readonly'@'%';
+
+
+-- ------------------------------------------------------------
+-- 5. Create allowed table (foo)
+--    pg_chameleon will copy only this table because of limit_tables
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS delphis.foo (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    tiny_flag TINYINT(1),
+    payload TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ------------------------------------------------------------
+-- 6. Create skipped table (bar)
+--    pg_chameleon will ignore this table because of skip_tables
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS delphis.bar (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    note VARCHAR(255)
+) ENGINE=InnoDB;
+-- ------------------------------------------------------------
+-- 7. Apply privileges again (idempotent safety)
+-- ------------------------------------------------------------
+FLUSH PRIVILEGES;
+
+use delphis;
+
+-- -------------------------------------------------
+--
+-- Dumping data for table `bar`
+--
+LOCK TABLES `bar` WRITE;
+/*!40000 ALTER TABLE `bar` DISABLE KEYS */;
+INSERT INTO `bar` VALUES (1,'2026-01-19a. This table is skipped by pg_chameleon'),
+(2,'These rows will NOT appear in PostgreSQL'),
+(3,'Useful for verifying skip_tables behavior');
+/*!40000 ALTER TABLE `bar` ENABLE KEYS */;
+UNLOCK TABLES;
+--
+-- Dumping data for table `foo`
+--
+LOCK TABLES `foo` WRITE;
+/*!40000 ALTER TABLE `foo` DISABLE KEYS */;
+INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, 'first rec');
+INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, '0119 926');
+
+UNLOCK TABLES;
+
+-- -------------------------------------------------
+GRANT REPLICATION SLAVE, REPLICATION CLIENT, RELOAD ON *.* TO 'duser'@'%';
+FLUSH PRIVILEGES;
+------------
+
+###  ==================   ./mysql-init/01-init.sql.template   ==================
+
+-- ------------------------------------------------------------
+-- 4. Create source schema (if not exists)
+-- ------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS delphis
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+-- pg_chameleon also needs SELECT on the replicated schema
+GRANT SELECT ON delphis.* TO 'duser'@'%';
+
+-- ------------------------------------------------------------
+-- 3. Create readonly user
+-- ------------------------------------------------------------
+CREATE USER IF NOT EXISTS 'usr_readonly'@'%' IDENTIFIED BY '';
+
+GRANT SELECT ON dkrdb.* TO 'usr_readonly'@'%';
+
+
+-- ------------------------------------------------------------
+-- 5. Create allowed table (foo)
+--    pg_chameleon will copy only this table because of limit_tables
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS delphis.foo (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    tiny_flag TINYINT(1),
+    payload TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ------------------------------------------------------------
+-- 6. Create skipped table (bar)
+--    pg_chameleon will ignore this table because of skip_tables
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS delphis.bar (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    note VARCHAR(255)
+) ENGINE=InnoDB;
+-- ------------------------------------------------------------
+-- 7. Apply privileges again (idempotent safety)
+-- ------------------------------------------------------------
+FLUSH PRIVILEGES;
+
+use delphis;
+
+-- -------------------------------------------------
+--
+-- Dumping data for table `bar`
+--
+LOCK TABLES `bar` WRITE;
+/*!40000 ALTER TABLE `bar` DISABLE KEYS */;
+INSERT INTO `bar` VALUES (1,'2026-01-19a. This table is skipped by pg_chameleon'),
+(2,'These rows will NOT appear in PostgreSQL'),
+(3,'Useful for verifying skip_tables behavior');
+/*!40000 ALTER TABLE `bar` ENABLE KEYS */;
+UNLOCK TABLES;
+--
+-- Dumping data for table `foo`
+--
+LOCK TABLES `foo` WRITE;
+/*!40000 ALTER TABLE `foo` DISABLE KEYS */;
+INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, 'first rec');
+INSERT INTO delphis.foo (tiny_flag, payload) VALUES(1, '0119 926');
+
+UNLOCK TABLES;
+
+-- -------------------------------------------------
+GRANT REPLICATION SLAVE, REPLICATION CLIENT, RELOAD ON *.* TO '${MYSQL_USER}'@'%';
+FLUSH PRIVILEGES;
+------------
+
+###  ==================   ./pg_cham_config/config-example.yml   ==================
+
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+
+# postgres  destination connection
+pg_conn:
+  host: "localhost"
+  port: "5432"
+  user: "usr_replica"
+  password: "never_commit_password"
+  database: "db_replica"
+  charset: "utf8"
+
+sources:
+  mysql:
+    db_conn:
+      host: "localhost"
+      port: "3306"
+      user: "usr_replica"
+      password: "never_commit_passwords"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      delphis_mediterranea: loxodonta_africana
+    limit_tables:
+      - delphis_mediterranea.foo
+    skip_tables:
+      - delphis_mediterranea.bar
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "120s"
+    my_server_id: 100
+    replica_batch_size: 10000
+    replay_max_rows: 10000
+    batch_retention: '1 day'
+    copy_max_memory: "300M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 1
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      insert:
+        - delphis_mediterranea.foo  # skips inserts on delphis_mediterranea.foo
+      delete:
+        - delphis_mediterranea  # skips deletes on schema delphis_mediterranea
+      update:
+    keep_existing_schema: No
+    net_read_timeout: 600
+
+  pgsql:
+    db_conn:
+      host: "localhost"
+      port: "5432"
+      user: "usr_replica"
+      password: "never_commit_passwords"
+      database: "db_replica"
+      charset: 'utf8'
+      connect_timeout: 10
+      schema_mappings:
+        loxodonta_africana: elephas_maximus
+      limit_tables:
+        - loxodonta_africana.foo
+      skip_tables:
+        - loxodonta_africana.bar
+      copy_max_memory: "300M"
+      grant_select_to:
+        - usr_readonly
+      lock_timeout: "10s"
+      my_server_id: 100
+      replica_batch_size: 3000
+      replay_max_rows: 10000
+      sleep_loop: 5
+      batch_retention: '1 day'
+      copy_mode: 'file'
+      out_dir: /tmp
+      type: pgsql
+
+# the dictionary fillfactor is used to set the fillfactor for tables that are expected to work with large updates
+# The key name defines the fillfactor level (The allowed values range is 10 to 100)
+# If key name is set to "*" then the fillfactor applies to all tables in the replicated schema
+# If the table appears in multiple fillfactors then only the last matched value will be applied
+fillfactor:
+  "30":
+    tables:
+      - "foo.bar"
+  "40":
+    tables:
+      - "foo.foobar"
+
+###  ==================   ./pg_cham_config/default-template.yml   ==================
+
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+# postgres  destination connection
+pg_conn:
+  host: "${hostipaddr}"
+  port: "${POSTGRES_pubPORT}"
+  user: "replica"
+  password: "${PG_user_pass}"
+  database: "${MYSQL_DATABASE}_rpl"
+  charset: "utf8"
+
+sources:
+  dba:
+    db_conn:
+      host: "${hostipaddr}"
+      port: "${MYSQL_pubPORT}"
+      user: "${MYSQL_USER}"
+      password: "${MYSQL_PASSWORD}"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      ${MYSQL_DATABASE}: ${MYSQL_DATABASE}_rpl
+    limit_tables:
+      - ${MYSQL_DATABASE}.heartbeat
+    skip_tables:
+      - ${MYSQL_DATABASE}.user
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "120s"
+    my_server_id: 9
+    replica_batch_size: 10000
+    replay_max_rows: 10000
+    batch_retention: '1 day'
+    copy_max_memory: "300M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 1
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      # insert:
+        # - delphis_mediterranea.foo  # skips inserts on table
+      delete:
+        - ${MYSQL_DATABASE}  # skips deletes on schema 
+      update:
+    keep_existing_schema: No
+    net_read_timeout: 600
+
+
+# the dictionary fillfactor is used to set the fillfactor for tables that are expected to work with large updates
+# The key name defines the fillfactor level (The allowed values range is 10 to 100)
+# If key name is set to "*" then the fillfactor applies to all tables in the replicated schema
+# If the table appears in multiple fillfactors then only the last matched value will be applied
+fillfactor:
+  "30":
+    tables:
+      - "foo.bar"
+  # "40":
+    # tables:
+      # - "foo.foobar"
+
+
+###  ==================   ./pg_cham_config/default.yml   ==================
+
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: file
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+# postgres  destination connection
+pg_conn:
+  host: "10.33.44.81"
+  port: "25433"
+  user: "replica"
+  password: "pass"
+  database: "dkrdb_rpl"
+  charset: "utf8"
+
+sources:
+  dba:
+    db_conn:
+      host: "10.33.44.81"
+      port: "23307"
+      user: "duser"
+      password: "dd"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      dkrdb: dkrdb_rpl
+    limit_tables:
+      - dkrdb.heartbeat
+    skip_tables:
+      - dkrdb.user
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "120s"
+    my_server_id: 9
+    replica_batch_size: 10000
+    replay_max_rows: 10000
+    batch_retention: '1 day'
+    copy_max_memory: "300M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 1
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      # insert:
+        # - delphis_mediterranea.foo  # skips inserts on table
+      delete:
+        - dkrdb  # skips deletes on schema 
+      update:
+    keep_existing_schema: No
+    net_read_timeout: 600
+
+
+# the dictionary fillfactor is used to set the fillfactor for tables that are expected to work with large updates
+# The key name defines the fillfactor level (The allowed values range is 10 to 100)
+# If key name is set to "*" then the fillfactor applies to all tables in the replicated schema
+# If the table appears in multiple fillfactors then only the last matched value will be applied
+fillfactor:
+  "30":
+    tables:
+      - "foo.bar"
+  # "40":
+    # tables:
+      # - "foo.foobar"
+
+
+###  ==================   ./pg_cham_start/1prepsh   ==================
+
+#!/bin/bash
+
+echo 'pgcham starting command after sleeping n seconds..' ; 
+set -vx; 
+sleep 1 ;
+
+echo 'Generating .yml config file from template...'; 
+envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+
+echo '1. set conf...';  chameleon set_configuration_files;
+echo '2..';  chameleon create_replica_schema --debug ;
+echo '3..';  chameleon add_source --config default  --debug --source dba ;
+
+# echo '4..';  chameleon init_replica --config default --debug --source dba ;
+# sleep 30;
+# echo '5..';  chameleon start_replica --config default --source dba ;
+# tail -f ~/.pg_chameleon/logs/*.log;
+
+
+###  ==================   ./pg_cham_start/5initsh   ==================
+
+#!/bin/bash
+
+# echo 'pgcham starting command after sleeping n seconds..' ; 
+
+set -vx; 
+
+#sleep 10 ;
+
+# echo 'Generating .yml config file from template...'; 
+# envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+# echo '1. set conf...';  chameleon set_configuration_files;
+# echo '2..';  chameleon create_replica_schema --debug ;
+# echo '3..';  chameleon add_source --config default  --debug --source dba ;
+
+echo '4..';  chameleon init_replica --config default --debug --source dba ;
+
+# sleep 30;
+# echo '5..';  chameleon start_replica --config default --source dba ;
+# tail -f ~/.pg_chameleon/logs/*.log;
+
+
+###  ==================   ./pg_cham_start/7repsh   ==================
+
+#!/bin/bash
+
+# echo 'pgcham starting command after sleeping n seconds..' ; 
+
+set -vx; 
+
+
+notes001_fuction () {
+echo
+# sleep 10 ;
+# echo 'Generating .yml config file from template...'; 
+# envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+# echo '1. set conf...';  chameleon set_configuration_files;
+# echo '2..';  chameleon create_replica_schema --debug ;
+# echo '3..';  chameleon add_source --config default  --debug --source dba ;
+# echo '4..';  chameleon init_replica --config default --debug --source dba ;
+}
+
+echo '5..';  chameleon start_replica --config default --source dba ;
+
+tail -f ~/.pg_chameleon/logs/*.log;
+
+
+###  ==================   ./pg_cham_start/helpsh   ==================
+
+#!/bin/bash
+
+echo 'pgcham help..' ; 
+
+
+echo
+cat <<'EOF'
+
+Run these like this..
+
+dc exec cham  bash /dg/helpsh
+
+
+dc exec cham  bash /dg/1prepsh
+
+dc exec cham  bash /dg/5initsh
+
+dc exec cham  bash /dg/7repsh
+
+
+Only for a few records of data example..
+   dc exec cham  bash /dg/99_full-complete-startpgcham.sh
+
+EOF
+
+echo
+
+
+notes001_fuction () {
+echo
+
+# set -vx; 
+
+# sleep 1 ;
+
+# echo 'Generating .yml config file from template...'; 
+# envsubst < /home/chameleon/.pg_chameleon/configuration/default-template.yml  > /home/chameleon/.pg_chameleon/configuration/default.yml;
+# echo '1. set conf...';  chameleon set_configuration_files;
+# echo '2..';  chameleon create_replica_schema --debug ;
+# echo '3..';  chameleon add_source --config default  --debug --source dba ;
+
+# echo '4..';  chameleon init_replica --config default --debug --source dba ;
+
+# sleep 30;
+
+# echo '5..';  chameleon start_replica --config default --source dba ;
+# tail -f ~/.pg_chameleon/logs/*.log;
+
+}
+
+###  ==================   ./pg-init/00-gen-pg-sql.sh   ==================
+
+#!/bin/bash
+set -e
+
+# These will now appear in your 'dc up' logs
+echo "Current directory:" && pwd
+echo "Running as user:" && whoami
+
+
+echo "Checking variable: PG_user_pass is ${PG_user_pass}" # If this is empty, envsubst will output nothing
+
+envsubst < /docker-entrypoint-initdb.d/10-init-pg.sql.template > /docker-entrypoint-initdb.d/10-init-pg.sql
+
+
+#chmod 777 /docker-entrypoint-initdb.d/10*.sql
+
+
+###  ==================   ./pg-init/10-init-pg.sql   ==================
+
+
+CREATE USER replica WITH PASSWORD 'pass';
+CREATE DATABASE dkrdb_rpl WITH OWNER replica;
+
+-- Create readonly user
+CREATE USER usr_readonly WITH PASSWORD 'ropass';
+
+-- Grant connect on database
+GRANT CONNECT ON DATABASE dkrdb_rpl TO usr_readonly;
+
+
+###  ==================   ./pg-init/10-init-pg.sql.template   ==================
+
+
+CREATE USER replica WITH PASSWORD '${PG_user_pass}';
+CREATE DATABASE ${MYSQL_DATABASE}_rpl WITH OWNER replica;
+
+-- Create readonly user
+CREATE USER usr_readonly WITH PASSWORD '${PG_ro_pass}';
+
+-- Grant connect on database
+GRANT CONNECT ON DATABASE ${MYSQL_DATABASE}_rpl TO usr_readonly;
+
+
+###  ==================   ./readme-pgcham.txt   ==================
+
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-01-18[Jan-Sun]17-10PM 
+
+# Reference:
+
+https://pg-chameleon.readthedocs.io/en/ver2.0/usage.html#example
+
+https://github.com/the4thdoctor/pg_chameleon/blob/main/pg_chameleon/configuration/config-example.yml
+
+
+# usage:
+
+I run this in docker compose on Ubuntu.
+
+1. 
+cp  example.env  .env
+
+
+2.
+Review the settings in each file.
+
+The only thing I can think that may need changing is:
+For example:
+	The ip address in the .env file.
+
+
+3.
+On host, to allow write perms in the container.
+
+chmod 777 -R mysql-init/
+chmod 777 -R pg-init/
+chmod 777 -R config/
+
+
+4.
+
+docker compose up
+
+
+5.
+Look at the tables in the databases:
+
+Use a tool like dbeaver or adminer to view the tables in each db system.
+Add/change a record in mysql and see the results in pg.
+Deletes are set to be ignored.
+
+
+------------
+
+
+###  ==================   ./_status.txt   ==================
+
+
+#@################################################################
+#@  
+#@  Title:::     
+#@  
+#@###################################   2026-01-18_Sun_22.52-PM
+
+chameleon  working. 2026-01-18_Sun_22.52-PM
+
+------------
+
+upc12 u:p
+
+works with mariadb. 2026-01-17_Sat_11.05-AM.
+
+pgcham doesn't work.
+
+
+------------
+
+
