@@ -1,4 +1,8 @@
 
+networks:
+  cfnet_r74_daveg2online:
+    name: cfnet_r74_daveg2online
+
 services:
 
   # http://10.33.44.81:9112/
@@ -7,4 +11,5 @@ services:
     restart: unless-stopped
     ports:
       - "9112:80"
-
+    networks:
+      - cfnet_r74_daveg2online

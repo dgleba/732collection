@@ -1,0 +1,45 @@
+
+services:
+
+  memos:
+  # http://10.33.44.81:5230/  
+    image: neosmemo/memos:stable
+    #container_name: memos
+    volumes:
+      - ../sysdata/memos:/var/opt/memos
+    ports:
+      - 5230:5230
+    networks:
+      - default
+      - cfnet_red74dgwin
+    env_file:
+      - .env        
+        
+
+  adminer:
+    # http://10.33.44.81:29609/  or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 29609:8080
+    # networks:
+    #   - sister2
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=dbmm
+      - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+      
+      
+      
+networks:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+

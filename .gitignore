@@ -1,5 +1,7 @@
 
+# SQLite backups
 red74/wfsearch_811_yard/wfsearch811/djangosite/sqlitedb/wfsearch-files.db
+red74/wfsearch_811_yard/wfsearch811/djangosite/sqlitedb/wfsearch-files.db-bak-a
 
 .env
 .env.*

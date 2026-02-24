@@ -1,31 +1,22 @@
 
 networks:
-  # sister2:
-    # name: sister2
-  # cfnet1:
-    # external: true
-    # name: cfnet1
   cfnet_r74_daveg2online:
     external: true
     
 services:
 
-  websitesimple:
-  # main:
-    # to test this jwilder/LE
-    # http://10.33.44.81
-    # https://websitesimple.daveg2.online/
+  webtest6212:
+    # http://10.33.44.81:6212
     # http://web-108-168-7-24.nip.io/
     # https://web.198.144.183.160.nip.io/
     image: nginx:1.21-alpine
     volumes:
       - ./site:/usr/share/nginx/html
     ports:
-      - '80:80'
+      - '6212:80'
     expose:
       - "80"
     # environment:
-      # - VIRTUAL_HOST=davegg.com,198.144.183.160.nip.io,d.davegg.com
       # - VIRTUAL_PORT=80
     restart: always
     networks:

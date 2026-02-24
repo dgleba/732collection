@@ -1,0 +1,45 @@
+
+services:
+
+  memos:
+    depends_on:
+      dbmm:
+        condition: service_healthy
+
+  dbmm:
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:12
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3308:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # folder for mysql's internal data files. permanent store on local folder.. 
+      - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # more easily destroyed docker named volume. 
+      # - mysqldatastore:/var/lib/mysql/  
+      - ./script:/script
+      # folders for imported or exported data, etc.
+      - ../sysdata/in-out/:/in-out
+      - ../data/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+    networks:
+      - default
+

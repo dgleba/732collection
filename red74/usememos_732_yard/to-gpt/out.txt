@@ -1,0 +1,362 @@
+###  ==================   ./docker-compose-mysql.yml   ==================
+
+
+services:
+
+  memos:
+    depends_on:
+      dbmm:
+        condition: service_healthy
+
+  dbmm:
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:12
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3308:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # folder for mysql's internal data files. permanent store on local folder.. 
+      - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # more easily destroyed docker named volume. 
+      # - mysqldatastore:/var/lib/mysql/  
+      - ./script:/script
+      # folders for imported or exported data, etc.
+      - ../sysdata/in-out/:/in-out
+      - ../data/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+    networks:
+      - default
+
+
+###  ==================   ./docker-compose-pg.yml   ==================
+
+
+services:
+
+  memos:
+    depends_on:
+      dbp:
+        condition: service_healthy
+
+  dbp:
+    image: "postgres:16-alpine"
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "6163:5432"
+    volumes:
+      - ../sysdata/postgres-data:/var/lib/postgresql/data
+      - ../sysdata/in-out/:/in-out
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+    networks:
+      - default
+
+
+###  ==================   ./docker-compose.yml   ==================
+
+
+services:
+
+  memos:
+  # http://10.33.44.81:5230/  
+    image: neosmemo/memos:stable
+    #container_name: memos
+    volumes:
+      - ../sysdata/memos:/var/opt/memos
+    ports:
+      - 5230:5230
+    networks:
+      - default
+      - cfnet_red74dgwin
+    env_file:
+      - .env        
+        
+
+  adminer:
+    # http://10.33.44.81:29609/  or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 29609:8080
+    # networks:
+    #   - sister2
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbp
+      # - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=dbmm
+      - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+      
+      
+      
+networks:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+
+
+###  ==================   ./stripd.env   ==================
+
+#
+# notice multiple compose files combined..
+#
+#COMPOSE_FILE=docker-compose.yml:docker-compose-pg.yml
+COMPOSE_FILE=docker-compose.yml:docker-compose-mysql.yml
+
+
+# had to specify tcp for the host when using dkr service name like dgmm:3306
+MEMOS_DRIVER=mysql  
+MEMOS_DSN=
+#MEMOS_DSN=
+
+#MEMOS_DRIVER=postgres 
+#MEMOS_DSN=
+
+# enable buildkit for docker
+# DOCKER_BUILDKIT=1
+# enable buildkit for docker-compose
+# COMPOSE_DOCKER_CLI_BUILD=1
+
+DEBUG=True
+ALLOWED_HOSTS=*
+SECRET_KEY=secret12362444
+
+PYTHONDONTWRITEBYTECODE='1'
+PYTHONUNBUFFERED=1
+
+MYSQL_HOST=dbm
+MYSQL_DATABASE=memos
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=
+MYSQL_USER=muser
+MYSQL_PASSWORD=
+
+# django admin
+# DJANGO_SUPERUSER_USERNAME=aa
+# DJANGO_SUPERUSER_EMAIL=a@a.com
+# createsuperuser --noinput
+DJANGO_SUPERUSER_PASSWORD=
+# DJANGO_SUPERUSER_PASSWORD=
+
+# see this in docker-compose.yml
+#    environment:
+#      - ADMINER_DEFAULT_SERVER=dbmd
+
+POSTGRES_HOST=dbp
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=
+POSTGRES_DB=memos
+
+#2020-07-26 10:05AM David Gleba added timezone
+TZ=America/Detroit
+
+###  ==================   ./tables.schema.info.sql   ==================
+
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-02-22[Feb-Sun]20-48PM 
+
+ 
+Tables:
+
+select activity
+select attachment
+select idp
+select inbox
+select memo
+select memo_relation
+select reaction
+select system_setting
+select user
+select user_setting
+
+------------
+
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-02-22[Feb-Sun]20-48PM 
+
+
+-- Adminer 5.4.1 MariaDB 12.1.2-MariaDB-ubu2404 dump
+
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE `activity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `type` varchar(256) NOT NULL DEFAULT '',
+  `level` varchar(256) NOT NULL DEFAULT 'INFO',
+  `payload` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `attachment`;
+CREATE TABLE `attachment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(256) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `filename` text NOT NULL,
+  `blob` mediumblob DEFAULT NULL,
+  `type` varchar(256) NOT NULL DEFAULT '',
+  `size` int(11) NOT NULL DEFAULT 0,
+  `memo_id` int(11) DEFAULT NULL,
+  `storage_type` varchar(256) NOT NULL DEFAULT '',
+  `reference` text NOT NULL DEFAULT '',
+  `payload` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `idp`;
+CREATE TABLE `idp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `type` text NOT NULL,
+  `identifier_filter` varchar(256) NOT NULL DEFAULT '',
+  `config` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `inbox`;
+CREATE TABLE `inbox` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `status` text NOT NULL,
+  `message` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `memo`;
+CREATE TABLE `memo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(256) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `row_status` varchar(256) NOT NULL DEFAULT 'NORMAL',
+  `content` text NOT NULL,
+  `visibility` varchar(256) NOT NULL DEFAULT 'PRIVATE',
+  `pinned` tinyint(1) NOT NULL DEFAULT 0,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`payload`)),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+INSERT INTO `memo` (`id`, `uid`, `creator_id`, `created_ts`, `updated_ts`, `row_status`, `content`, `visibility`, `pinned`, `payload`) VALUES
+(1,	'UU9mSmMHyyHp6RckHXVmwz',	1,	'2026-02-23 01:19:32',	'2026-02-23 01:19:32',	'NORMAL',	'\n#@################################################################\n#@  \n#@  Title:::  \n#@  \n#@###################################   2026-02-22[Feb-Sun]20-19PM \n\n\nfirst',	'PRIVATE',	0,	'{\"property\":{}}'),
+(2,	'SwmZLMtvU5UAHLShdoBE3v',	1,	'2026-02-23 01:24:08',	'2026-02-23 01:24:08',	'NORMAL',	'Edu',	'PRIVATE',	0,	'{\"property\":{}}'),
+(3,	'78FWPZhbDUTTdk9tJnS252',	1,	'2026-02-23 01:30:33',	'2026-02-23 01:30:33',	'NORMAL',	'2026-02-22_Sun_20.30-PM\n',	'PRIVATE',	0,	'{\"property\":{}}');
+
+DROP TABLE IF EXISTS `memo_relation`;
+CREATE TABLE `memo_relation` (
+  `memo_id` int(11) NOT NULL,
+  `related_memo_id` int(11) NOT NULL,
+  `type` varchar(256) NOT NULL,
+  UNIQUE KEY `memo_id` (`memo_id`,`related_memo_id`,`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `reaction`;
+CREATE TABLE `reaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `creator_id` int(11) NOT NULL,
+  `content_id` varchar(256) NOT NULL,
+  `reaction_type` varchar(256) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `creator_id` (`creator_id`,`content_id`,`reaction_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `system_setting`;
+CREATE TABLE `system_setting` (
+  `name` varchar(256) NOT NULL,
+  `value` longtext NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_ts` timestamp NOT NULL DEFAULT current_timestamp(),
+  `row_status` varchar(256) NOT NULL DEFAULT 'NORMAL',
+  `username` varchar(256) NOT NULL,
+  `role` varchar(256) NOT NULL DEFAULT 'USER',
+  `email` varchar(256) NOT NULL DEFAULT '',
+  `nickname` varchar(256) NOT NULL DEFAULT '',
+  `password_hash` varchar(256) NOT NULL,
+  `avatar_url` longtext NOT NULL,
+  `description` varchar(256) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+DROP TABLE IF EXISTS `user_setting`;
+CREATE TABLE `user_setting` (
+  `user_id` int(11) NOT NULL,
+  `key` varchar(256) NOT NULL,
+  `value` longtext NOT NULL,
+  UNIQUE KEY `user_id` (`user_id`,`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+-- 2026-02-23 01:47:30 UTC
+
+------------
+
+
