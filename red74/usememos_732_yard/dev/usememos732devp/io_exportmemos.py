@@ -1,7 +1,9 @@
 
 # export memos from web backend using api.
 # usage:
-#    source ~/venv/bin/activate; python3 io_exportmemos.py
+#     edit .env for url and token. Ouput overwrites memos_export.json.
+#       Then.
+#           python3 io_exportmemos.py;
 
 
 import os

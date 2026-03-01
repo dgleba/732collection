@@ -40,6 +40,11 @@ https://copilot.microsoft.com/shares/Dxyqypm7feTXitgu91gEA
 
 There is activity to fix this?
 
+5.
+i wrote data export/import scripts
+
+https://github.com/dgleba/732collection/blob/main/red74/usememos_732_yard/dev/usememos732devp/io_exportmemos.py
+
 
 ------------
 
