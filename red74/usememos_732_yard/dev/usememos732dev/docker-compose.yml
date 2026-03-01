@@ -1,14 +1,14 @@
 
 services:
 
-  memos:
+  memosdev:
   # http://10.33.44.81:5230/  
-    image: neosmemo/memos:0.26.1
+    image: neosmemo/memos:0.26.2
     #container_name: memos
     volumes:
       - ../sysdata/memos:/var/opt/memos
     ports:
-      - 5230:5230
+      - 5232:5230
     networks:
       - default
       - cfnet_red74dgwin
@@ -26,7 +26,7 @@ services:
     env_file:
       - .env
     ports:
-      - 29609:8080
+      - 29610:8080
     # networks:
     #   - sister2
     environment:

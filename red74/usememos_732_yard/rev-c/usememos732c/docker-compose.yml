@@ -1,0 +1,52 @@
+
+services:
+
+  memosc:
+  # http://10.33.44.81:5233/  
+    image: neosmemo/memos:0.26.2
+    volumes:
+      - ../sysdata/memos:/var/opt/memos
+    ports:
+      - 5233:5230
+    networks:
+      - default
+      - cfnet_red74dgwin
+    env_file:
+      - .env        
+    restart: always        
+    environment:
+      - MEMOS_DRIVER=mysql 
+      - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
+      # - MEMOS_DRIVER=postgres
+      # - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" memos
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+
+
+  adminer:
+    # http://10.33.44.81:29613/  or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 29613:8080
+    networks:
+      - default
+    environment:
+      # - ADMINER_DEFAULT_SERVER=dbm
+      # - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_DEFAULT_SERVER=dbp
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      - ADMINER_PLUGINS=tables-filter
+
+
+networks:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+

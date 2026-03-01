@@ -1,0 +1,15 @@
+
+------------
+2026-02-25_Wed_17.05-PM
+
+use 26.1 web and apk 2.0.1
+
+apk : I manually downloaded apk from fdroid.com website using chrome. 
+It let me open the apk to install it. 
+I cannot find the apk on the phone using file manager.
+
+
+------------
+
+
+

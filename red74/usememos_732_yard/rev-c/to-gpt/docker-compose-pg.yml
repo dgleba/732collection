@@ -1,0 +1,31 @@
+
+services:
+
+  memos:
+    depends_on:
+      dbp:
+        condition: service_healthy
+
+  dbp:
+    image: "postgres:16-alpine"
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "6160:5432"
+    volumes:
+      - ../sysdata/postgres-data:/var/lib/postgresql/data
+      - ../sysdata/in-out/:/in-out
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+    networks:
+      - default
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"

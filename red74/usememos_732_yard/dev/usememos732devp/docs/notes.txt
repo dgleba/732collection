@@ -1,0 +1,30 @@
+
+
+curl -H "Authorization: Bearer memos_pat_Nt56YukGiNxzDtW02MtvAo4wFjFmZvi5" \
+  https://umemos.daveg.win/api/v1/memos
+
+
+curl -X GET "https://devumemos.daveg.win/api/v1/memos?pageSize=1" \
+  -H "Authorization: Bearer memos_pat_Nt56YukGiNxzDtW02MtvAo4wFjFmZvi5"
+  
+  
+  ------------
+  
+  
+7:41:11] albe@del-7410:~$ curl -X GET "https://devumemos.daveg.win/api/v1/memos?pageSize=2" \
+  -H "Authorization: Bearer memos_pat_Nt56YukGiNxzDtW02MtvAo4wFjFmZvi5"
+{
+"memos":[{
+"name":"memos/XqhCbqmJR6kjhnCqbu7RBT","state":"NORMAL","creator":"users/1","createTime":"2026-03-01T12:16:45Z","updateTime":"2026-03-01T12:24:24Z","displayTime":"2026-03-01T12:24:24Z","content":"\nattachment\n","visibility":"PRIVATE","tags":[],"pinned":false,"attachments":[{
+"name":"attachments/D5Q7nWLSuy5xA7qwxPFRSX","createTime":"2026-03-01T12:16:45Z","filename":"ubuntu-24.04.4-desktop-amd64_SHA256SUMS.txt","content":"","externalLink":"","type":"text/plain","size":"1958","memo":"memos/XqhCbqmJR6kjhnCqbu7RBT"}],"relations":[],"reactions":[],"property":{
+"hasLink":false,"hasTaskList":false,"hasCode":false,"hasIncompleteTasks":false},"snippet":"attachment"},{
+"name":"memos/kziEk2VuNfpdnc6GayTqbh","state":"NORMAL","creator":"users/1","createTime":"2026-02-28T14:51:42Z","updateTime":"2026-03-01T03:36:50Z","displayTime":"2026-03-01T03:36:50Z","content":"\n\napp manager\nKey Store\n\nsEUsS1tvhLfYaZKTwCikh7I1zHVTtm","visibility":"PRIVATE","tags":[],"pinned":false,"attachments":[],"relations":[],"reactions":[],"property":{
+"hasLink":false,"hasTaskList":false,"hasCode":false,"hasIncompleteTasks":false},"snippet":"app manager Key Store sEUsS1tvhLfYaZKTwCikh7I1zHVTtm"}],"nextPageToken":"CAIQAg=="}[07:41:13] albe@del-7410:~$ 
+[07:41:16] albe@del-7410:~$
+  
+  
+curl -X GET "https://devumemos.daveg.win/api/v1/memos?pageSize=1" \
+  -H "Authorization: Bearer memos_pat_Nt5xxxx"
+    
+{"memos":[{"name":"memos/kziEk2VuNfpdnc6GayTqbh","state":"NORMAL","creator":"users/1","createTime":"2026-02-28T14:51:42Z","updateTime":"2026-03-01T12:45:17Z","displayTime":"2026-03-01T12:45:17Z","content":"\n\napp manager\nKey Store\n\nsee other","visibility":"PRIVATE","tags":[],"pinned":false,"attachments":[],"relations":[],"reactions":[],"property":{"hasLink":false,"hasTaskList":false,"hasCode":false,"hasIncompleteTasks":false},"snippet":"app manager Key Store see other"}],
+"nextPageToken":"CAEQAQ=="}[07:47:05] albe@del-7410:~$   

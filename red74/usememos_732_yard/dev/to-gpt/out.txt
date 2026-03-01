@@ -1,0 +1,310 @@
+###  ==================   ./docker-compose-mysql.yml   ==================
+
+
+services:
+
+  memosdev:
+    depends_on:
+      dbm:
+        condition: service_healthy
+
+  dbm:
+    # image: yobasystems/alpine-mariadb:10.11
+    image: mariadb:12
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # MARIADB_AUTO_UPGRADE: 1            # Regenerate health check users and config if missing    
+      MARIADB_MYSQL_LOCALHOST_USER: 1
+    command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3309:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # folder for mysql's internal data files. permanent store on local folder.. 
+      - ../sysdata/mysqldata:/var/lib/mysql/ 
+      # more easily destroyed docker named volume. 
+      # - mysqldatastore:/var/lib/mysql/  
+      - ./script:/script
+      # folders for imported or exported data, etc.
+      - ../sysdata/in-out/:/in-out
+      - ../data/crib/:/crib
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+    healthcheck:
+       test: ["CMD", "mariadb-admin" ,"ping", "-h", "localhost", "--password=${MYSQL_ROOT_PASSWORD}"]
+       interval: 120s
+       timeout: 15s
+       retries: 5
+       start_period: 240s
+    networks:
+      - default
+
+
+###  ==================   ./docker-compose-pg.yml   ==================
+
+
+services:
+
+  memosdev:
+    depends_on:
+      dbp:
+        condition: service_healthy
+
+  dbp:
+    image: "postgres:16-alpine"
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "6163:5432"
+    volumes:
+      - ../sysdata/postgres-data:/var/lib/postgresql/data
+      - ../sysdata/in-out/:/in-out
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 20s
+      retries: 5
+      start_period: 40s
+    networks:
+      - default
+
+
+###  ==================   ./docker-compose.yml   ==================
+
+
+services:
+
+  memosdev:
+  # http://10.33.44.81:5230/  
+    image: neosmemo/memos:0.26.2
+    #container_name: memos
+    volumes:
+      - ../sysdata/memos:/var/opt/memos
+    ports:
+      - 5232:5230
+    networks:
+      - default
+      - cfnet_red74dgwin
+    env_file:
+      - .env        
+    restart: always        
+
+  adminer:
+    # http://10.33.44.81:29609/  or ip:port for server while logging in.
+    image: adminer:5
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ../turbotodorail7/apprails/db:/crib2
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 29610:8080
+    # networks:
+    #   - sister2
+    environment:
+      - ADMINER_DEFAULT_SERVER=dbp
+      - ADMINER_DEFAULT_DB_DRIVER=pgsql
+      # - ADMINER_DEFAULT_SERVER=dbm
+      # - ADMINER_DEFAULT_DB_DRIVER=mysql
+      - ADMINER_PLUGINS=tables-filter
+      
+      
+networks:
+  cfnet_red74dgwin:
+    name: cfnet_red74dgwin
+
+
+
+###  ==================   ./io_exportmemos.py   ==================
+
+
+# export memos from web backend using api.
+# usage:
+#    source ~/venv/bin/activate; python3 io_exportmemos.py
+
+import os
+import json
+import requests
+
+#from dotenv import load_dotenv
+# load_dotenv()  # loads .env from current directory
+# BASE_URL = os.getenv("MEMOS_BASE_URL")
+# TOKEN = os.getenv("MEMOS_TOKENPASS")
+
+
+def load_env(path=".env"):
+    env = {}
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            env[key.strip()] = value.strip()
+    return env
+
+env = load_env()
+
+BASE_URL = env["MEMOS_BASE_URL"]
+TOKEN = env["MEMOS_TOKENPASS"]
+
+
+headers = {
+    "Authorization": f"Bearer {TOKEN}",
+    "Content-Type": "application/json",
+}
+
+def fetch_all_memos(page_size=100):
+    memos = []
+    next_page_token = ""
+
+    while True:
+        params = {"pageSize": page_size}
+        if next_page_token:
+            params["pageToken"] = next_page_token
+
+        r = requests.get(f"{BASE_URL}/api/v1/memos", headers=headers, params=params)
+        r.raise_for_status()
+
+        data = r.json()
+        memos.extend(data.get("memos", []))
+        next_page_token = data.get("nextPageToken", "")
+
+        if not next_page_token:
+            break
+
+    return memos
+
+
+if __name__ == "__main__":
+    all_memos = fetch_all_memos()
+
+    #
+    # file with exported memos...
+    #
+    with open("memos_export.json", "w", encoding="utf-8") as f:
+        json.dump(all_memos, f, ensure_ascii=False, indent=2)
+
+    print(f"Exported {len(all_memos)} memos to memos_export.json")
+
+###  ==================   ./io_importmemos.py   ==================
+
+#
+# 
+#
+# import memos to web backend using api.
+# usage:
+#     python3 io_importmemos.py
+
+
+import os
+import json
+import requests
+
+def load_env(path=".env"):
+    env = {}
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            env[key.strip()] = value.strip()
+    return env
+
+env = load_env()
+
+BASE_URL = env["MEMOS_BASE_URL"]
+TOKEN = env["MEMOS_TOKENPASS"]
+
+headers = {
+    "Authorization": f"Bearer {TOKEN}",
+    "Content-Type": "application/json",
+}
+
+def import_memo(m):
+    
+    # new timestamps...
+    body = {
+        "content": m.get("content", ""),
+        "visibility": m.get("visibility", "PRIVATE"),
+        "tags": m.get("tags", []),
+    }
+
+    # retain exported timestamps.
+    body = {
+        "content": m.get("content", ""),
+        "visibility": m.get("visibility", "PRIVATE"),
+        "tags": m.get("tags", []),
+        "createTime": m.get("createTime"),
+        "updateTime": m.get("updateTime"),
+        "displayTime": m.get("displayTime"),
+    }
+
+    r = requests.post(f"{BASE_URL}/api/v1/memos", headers=headers, json=body)
+    r.raise_for_status()
+    return r.json()
+
+if __name__ == "__main__":
+    #
+    # file with exported memos...
+    #
+    with open("memos_export2.json", "r", encoding="utf-8") as f:
+        memos = json.load(f)
+
+    print(f"Importing {len(memos)} memos...")
+
+    for m in memos:
+        result = import_memo(m)
+        print("Imported:", result.get("name"))
+
+    print("Done.")
+
+###  ==================   ./stripd.env   ==================
+
+#
+# notice multiple compose files combined..
+#
+COMPOSE_FILE=docker-compose.yml:docker-compose-pg.yml
+#COMPOSE_FILE=docker-compose.yml:docker-compose-mysql.yml
+
+# had to specify tcp for the host when using dkr service name like dgmm:3306
+#MEMOS_DRIVER=mysql  
+# eg: MEMOS_DSN="muser:x@tcp(dbm:3306)/memos?parseTime=true"
+# nowork: MEMOS_DSN="mysql://--redacted--@dbm:3306/memos" memos
+#MEMOS_DSN=
+
+MEMOS_DRIVER=postgres
+#eg: MEMOS_DSN="postgres://--redacted--@dbp:5432/memos?sslmode=disable" memos
+MEMOS_DSN=
+
+# for export using api..
+MEMOS_TOKENPASS=
+MEMOS_BASE_URL=https://devumemos.daveg.win
+
+
+MYSQL_HOST=dbm
+MYSQL_DATABASE=memos
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=
+MYSQL_USER=muser
+MYSQL_PASSWORD=
+
+
+POSTGRES_HOST=dbp
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=
+POSTGRES_DB=memos
+
+#2020-07-26 10:05AM David Gleba added timezone
+TZ=America/Detroit
+

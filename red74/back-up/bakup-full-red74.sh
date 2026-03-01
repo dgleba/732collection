@@ -34,31 +34,39 @@ sudo find $desp -type d -empty -delete;
 
 ###### ------------------
 
-export srcp=/am/cruc4tb/
-export desp=/media/albe/4tbc/bakup/4tbb/
-export logp=/ap/log
-export logf=rsync-4tb24tbc-4tbb.log 
-mkdir -p $logp $desp
-sudo find $desp -type d -empty -delete
-date;
-export;
-sudo rsync -ah  --prune-empty-dirs   --exclude='/.Trash-1000/'   --exclude='/.Trash-1000/**' \
-  --exclude='/x/'   --exclude='/x/**'  --exclude='**/x/**' \
-  --exclude='/tmp/**' \
-  --exclude='/mnt/**'   --exclude='/media/**' \
-  --exclude='/00/**' \
-  --exclude='/bag-optional/**' \
-  --exclude='/copyof/**' \
-  --exclude='/iso/**' \
-  --exclude='/lost+found/**'   --exclude='/snapm**' \
-  --exclude='**/var/run/**' --exclude='**/var/log/**' \
-  --exclude='/koofry/**' \
-  --itemize-changes    --stats  --log-file=$logp/$logf         $srcp $desp;
 
-date;
-sudo chmod 777 /ap/log/*;
-sudo find $desp -type d -empty -delete;;
+if [[ -f /media/albe/4tbc/z_marker_disk_4tbc.txt ]]; then
+    
+	#testing... find /media/albe/4tbc/ | grep hello
 
+	export srcp=/am/cruc4tb/
+	export desp=/media/albe/4tbc/bakup/cruc4tb/
+	export logp=/ap/log
+	export logf=rsync-4tb24tbc-4tbb.log 
+	mkdir -p $logp $desp
+	sudo find $desp -type d -empty -delete
+	date;
+	export;
+	sudo rsync -ah  --prune-empty-dirs   --exclude='/.Trash-1000/'   --exclude='/.Trash-1000/**' \
+	  --exclude='/x/'   --exclude='/x/**'  --exclude='**/x/**' \
+	  --exclude='/tmp/**' \
+	  --exclude='/mnt/**'   --exclude='/media/**' \
+	  --exclude='/00/**' \
+	  --exclude='/bag-optional/**' \
+	  --exclude='/copyof/**' \
+	  --exclude='/iso/**' \
+	  --exclude='/lost+found/**'   --exclude='/snapm**' \
+	  --exclude='**/var/run/**' --exclude='**/var/log/**' \
+	  --exclude='/koofry/**' \
+	  --itemize-changes    --stats  --log-file=$logp/$logf         $srcp $desp;
+
+	date;
+	sudo chmod 777 /ap/log/*;
+	sudo find $desp -type d -empty -delete;
+
+else
+    echo "$(date '+%Y-%m-%d %H:%M:%S') Marker file missing: /media/albe/4tbc/z_marker_disk_4tbc.txt" > "$logp/4tbc-disk-missing.log"
+fi
 
 
 #  --bwlimit=540m --info=progress2 --progress \

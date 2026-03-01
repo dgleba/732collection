@@ -1,7 +1,7 @@
 
 services:
 
-  memos:
+  memosc:
     depends_on:
       dbm:
         condition: service_healthy
@@ -17,7 +17,7 @@ services:
       MARIADB_MYSQL_LOCALHOST_USER: 1
     command: --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
     ports:
-      - "3308:3306"
+      - "3310:3306"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # folder for mysql's internal data files. permanent store on local folder.. 
