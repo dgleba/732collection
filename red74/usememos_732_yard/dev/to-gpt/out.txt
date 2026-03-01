@@ -95,6 +95,19 @@ services:
     env_file:
       - .env        
     restart: always        
+    environment:
+      # - MEMOS_DRIVER=mysql 
+      # - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
+      - MEMOS_DRIVER=postgres
+      - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" 
+      #memos
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+
+
 
   adminer:
     # http://10.33.44.81:29609/  or ip:port for server while logging in.
@@ -128,12 +141,16 @@ networks:
 
 # export memos from web backend using api.
 # usage:
-#    source ~/venv/bin/activate; python3 io_exportmemos.py
+#     edit .env for url and token. Ouput overwrites memos_export.json.
+#       Then.
+#           python3 io_exportmemos.py;
+
 
 import os
 import json
 import requests
 
+#    unused env:  source ~/venv/bin/activate; python3 io_exportmemos.py
 #from dotenv import load_dotenv
 # load_dotenv()  # loads .env from current directory
 # BASE_URL = os.getenv("MEMOS_BASE_URL")
@@ -276,21 +293,11 @@ if __name__ == "__main__":
 COMPOSE_FILE=docker-compose.yml:docker-compose-pg.yml
 #COMPOSE_FILE=docker-compose.yml:docker-compose-mysql.yml
 
-# had to specify tcp for the host when using dkr service name like dgmm:3306
-#MEMOS_DRIVER=mysql  
-# eg: MEMOS_DSN="muser:x@tcp(dbm:3306)/memos?parseTime=true"
-# nowork: MEMOS_DSN="mysql://--redacted--@dbm:3306/memos" memos
-#MEMOS_DSN=
-
-MEMOS_DRIVER=postgres
-#eg: MEMOS_DSN="postgres://--redacted--@dbp:5432/memos?sslmode=disable" memos
-MEMOS_DSN=
-
 # for export using api..
 MEMOS_TOKENPASS=
 MEMOS_BASE_URL=https://devumemos.daveg.win
 
-
+#mysql:
 MYSQL_HOST=dbm
 MYSQL_DATABASE=memos
 MYSQL_ROOT_USER=root
@@ -298,7 +305,7 @@ MYSQL_ROOT_PASSWORD=
 MYSQL_USER=muser
 MYSQL_PASSWORD=
 
-
+#pg:
 POSTGRES_HOST=dbp
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres

@@ -15,6 +15,19 @@ services:
     env_file:
       - .env        
     restart: always        
+    environment:
+      # - MEMOS_DRIVER=mysql 
+      # - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
+      - MEMOS_DRIVER=postgres
+      - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" 
+      #memos
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+
+
 
   adminer:
     # http://10.33.44.81:29609/  or ip:port for server while logging in.

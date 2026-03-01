@@ -60,4 +60,22 @@ notes:
 
 ------------
 
+2026-03-01_Sun_11.33-AM
+
+    environment:
+      # - MEMOS_DRIVER=mysql 
+      # - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
+      - MEMOS_DRIVER=postgres
+      - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" memos
+
+
+------------
+
+error
+
+memosdev-1  | 2026/03/01 11:34:23 ERROR failed to migrate error="dial tcp [::1]:5432: connect: connection refused\nfailed to check if database is initialized\ngithub.com/usememos/memos/store/db/postgres.(*DB).IsInitialized\n\tgithub.com/usememos/memos/store/db/postgres/postgres.go:54\ngithub.com/usememos/memos/store.(*Store).preMigrate\n\tgithub.com/usememos/memos/store/migrator.go:216\ngithub.com/usememos/memos/store.(*Store).Migrate\n\tgithub.com/usememos/memos/store/migrator.go:105\nmain.init.func1\n\tgithub.com/usememos/memos/cmd/memos/main.go:54\ngithub.com/spf13/cobra.(*Command).execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1019\ngithub.com/spf13/cobra.(*Command).ExecuteC\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1148\ngithub.com/spf13/cobra.(*Command).Execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1071\nmain.main\n\tgithub.com/usememos/memos/cmd/memos/main.go:173\nruntime.main\n\truntime/proc.go:285\nruntime.goexit\n\truntime/asm_amd64.s:1693\nfailed to check if database is initialized\ngithub.com/usememos/memos/store.(*Store).preMigrate\n\tgithub.com/usememos/memos/store/migrator.go:218\ngithub.com/usememos/memos/store.(*Store).Migrate\n\tgithub.com/usememos/memos/store/migrator.go:105\nmain.init.func1\n\tgithub.com/usememos/memos/cmd/memos/main.go:54\ngithub.com/spf13/cobra.(*Command).execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1019\ngithub.com/spf13/cobra.(*Command).ExecuteC\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1148\ngithub.com/spf13/cobra.(*Command).Execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1071\nmain.main\n\tgithub.com/usememos/memos/cmd/memos/main.go:173\nruntime.main\n\truntime/proc.go:285\nruntime.goexit\n\truntime/asm_amd64.s:1693\nfailed to pre-migrate\ngithub.com/usememos/memos/store.(*Store).Migrate\n\tgithub.com/usememos/memos/store/migrator.go:106\nmain.init.func1\n\tgithub.com/usememos/memos/cmd/memos/main.go:54\ngithub.com/spf13/cobra.(*Command).execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1019\ngithub.com/spf13/cobra.(*Command).ExecuteC\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1148\ngithub.com/spf13/cobra.(*Command).Execute\n\tgithub.com/spf13/cobra@v1.10.1/command.go:1071\nmain.main\n\tgithub.com/usememos/memos/cmd/memos/main.go:173\nruntime.main\n\truntime/proc.go:285\nruntime.goexit\n\truntime/asm_amd64.s:1693"
+memosdev-1 exited with code 0
+
+
+------------
 

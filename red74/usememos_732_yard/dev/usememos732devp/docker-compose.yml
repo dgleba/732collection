@@ -19,7 +19,7 @@ services:
       # - MEMOS_DRIVER=mysql 
       # - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
       - MEMOS_DRIVER=postgres
-      - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" memos
+      - MEMOS_DSN=postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable 
     logging:
       driver: "json-file"
       options:
