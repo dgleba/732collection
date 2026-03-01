@@ -1,4 +1,12 @@
 
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-03-01[Mar-Sun]10-51AM 
+
+
+
 
 curl -H "Authorization: Bearer memos_pat_Nt56YukGiNxzDtW02MtvAo4wFjFmZvi5" \
   https://umemos.daveg.win/api/v1/memos
@@ -28,3 +36,28 @@ curl -X GET "https://devumemos.daveg.win/api/v1/memos?pageSize=1" \
     
 {"memos":[{"name":"memos/kziEk2VuNfpdnc6GayTqbh","state":"NORMAL","creator":"users/1","createTime":"2026-02-28T14:51:42Z","updateTime":"2026-03-01T12:45:17Z","displayTime":"2026-03-01T12:45:17Z","content":"\n\napp manager\nKey Store\n\nsee other","visibility":"PRIVATE","tags":[],"pinned":false,"attachments":[],"relations":[],"reactions":[],"property":{"hasLink":false,"hasTaskList":false,"hasCode":false,"hasIncompleteTasks":false},"snippet":"app manager Key Store see other"}],
 "nextPageToken":"CAEQAQ=="}[07:47:05] albe@del-7410:~$   
+
+
+
+#@################################################################
+#@  
+#@  Title:::  
+#@  
+#@###################################   2026-03-01[Mar-Sun]10-51AM 
+
+
+notes:
+# had to specify tcp for the host when using dkr service name like dgmm:3306
+#MEMOS_DRIVER=mysql  
+# eg: MEMOS_DSN="muser:x@tcp(dbm:3306)/memos?parseTime=true"
+# nowork: MEMOS_DSN="mysql://muser:x@dbm:3306/memos" memos
+#MEMOS_DSN="muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true"
+#MEMOS_DRIVER=postgres
+#eg: MEMOS_DSN="postgres://postgres:x@dbp:5432/memos?sslmode=disable" memos
+#MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" memos
+
+
+
+------------
+
+
