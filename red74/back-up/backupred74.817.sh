@@ -26,7 +26,9 @@ docker ps -a > /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_sys/lastbak/docker
 
 #/usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
 # 14 3,12  * * * /usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
-/usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr/ /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr/ --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
+# /usr/bin/rclone sync /am/cruc4tb/ap/dkr/red74_814_dkr/ /am/cruc4tb/koofry/volums/vd70-bakup/bak_red74_814_dkr/ --copy-links --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_red74_814_dkr.log
+
+/usr/bin/rclone sync /am/cruc4tb/ap/dkr/  /am/cruc4tb/koofry/volums/vd70-bakup/cruc4tb-ap-dkr/  --stats=30s --log-level INFO --log-file=/ap/log/rclone-bak_cruc-ap-dkr.log
  
 
 # -------------------------------------------------

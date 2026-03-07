@@ -3,7 +3,9 @@ services:
 
   memos:
   # http://10.33.44.81:5230/  
-    image: neosmemo/memos:0.26.1
+    #image: neosmemo/memos:0.26.1
+    # image: memos-custom-832b - 2026-03-07_Sat_10.41-AM
+    image: memos-custom-memos832c 
     #container_name: memos
     volumes:
       - ../sysdata/memos:/var/opt/memos
