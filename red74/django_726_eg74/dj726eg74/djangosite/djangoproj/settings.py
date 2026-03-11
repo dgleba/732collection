@@ -41,9 +41,21 @@ INSTALLED_APPS = [
     # 'filebagapp',
 ]
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+# or
 CSRF_TRUSTED_ORIGINS = [
     "https://dj726eg74.daveg2.online",
+    "http://10.33.44.81:5173",
+    "https://vuedev.daveg2.online",
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://dj726eg74.daveg2.online",
+    "http://10.33.44.81:5173",
+    "https://vuedev.daveg2.online",
+]
+
 
 
 # https://whitenoise.readthedocs.io/en/latest/django.html#using-whitenoise-in-development

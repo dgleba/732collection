@@ -15,6 +15,16 @@ mig:
 	docker-compose run --rm djdev python manage.py migrate
 
 
+apia:
+	docker-compose run --rm dj726eg74 python manage.py generateschema > openapi-schema.yaml
+
+
+apib:
+	docker-compose run --rm dj726eg74 python manage.py generateschema --format openapi-json > openapi.json
+
+
+
+
 
 lite:
 	bash -c "rmdir /code/db.sqlite3"; touch /code/db.sqlite3;

@@ -23,6 +23,12 @@ from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
 urlpatterns = [
     #path('toolbreakapp624c/', include('toolbreakapp624c.urls')),
     path('blogappm2m/', include('blogappm2m.urls')),
@@ -42,9 +48,12 @@ urlpatterns = [
     # path('', include('fileedapp.urls')),
     # path('', include('filebagapp.urls')),
 
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 
 # Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

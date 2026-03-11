@@ -5,6 +5,8 @@
 .env.secret
 .vscode
 
+exclude/
+
 staticfiles/
 mediafiles/
 djangosite/static/
@@ -16,3 +18,4 @@ datasys/
 data/
 
 #*.sqlite3
+

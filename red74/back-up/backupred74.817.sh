@@ -42,10 +42,12 @@ export logp=/ap/log;
 export logf=rsynclog-ap-dkr-koofr.log;
 mkdir -p $logp $desp; date;
 rsync    --exclude "**/tmp/**" --exclude "**/x/**" \
-  --exclude "**/log/**"  --exclude "**/logs/**"  \
-    --delete -ah -HAX --itemize-changes  --stats   --log-file=$logp/$logf       $srcp $desp;
+  --exclude "**/log/**"  --exclude "**/logs/**"  --exclude "**/venv/**" --exclude "**/lib64**" \
+    --delete -ah -HAX --safe-links --itemize-changes  --stats   --log-file=$logp/$logf       $srcp $desp;
 
 find $desp -type d -empty -delete;
+
+
 
 
 # -------------------------------------------------

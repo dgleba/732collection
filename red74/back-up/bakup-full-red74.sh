@@ -27,7 +27,7 @@ sudo rsync -ah  --prune-empty-dirs  \
   --exclude "/mnt/**" --exclude "/am/**"   --exclude "/media/**" \
   --exclude "/snap/**" \
   --exclude "**/var/run/**" --exclude "**/var/log/**" \
-    --itemize-changes  --stats    --log-file=$logp/$logf         $srcp $desp;
+    --itemize-changes  --stats --safe-links   --log-file=$logp/$logf         $srcp $desp;
 	
 sudo find $desp -type d -empty -delete;
 
@@ -58,16 +58,19 @@ if [[ -f /media/albe/4tbc/z_marker_disk_4tbc.txt ]]; then
 	  --exclude='/lost+found/**'   --exclude='/snapm**' \
 	  --exclude='**/var/run/**' --exclude='**/var/log/**' \
 	  --exclude='/koofry/**' \
-	  --itemize-changes    --stats  --log-file=$logp/$logf         $srcp $desp;
+	  --itemize-changes  --safe-links  --stats  --log-file=$logp/$logf         $srcp $desp;
 
 	date;
 	sudo chmod 777 /ap/log/*;
 	sudo find $desp -type d -empty -delete;
+	
 
 else
     echo "$(date '+%Y-%m-%d %H:%M:%S') Marker file missing: /media/albe/4tbc/z_marker_disk_4tbc.txt" > "$logp/4tbc-disk-missing.log"
 fi
 
+	#2026-03-07_Sat_18.41-PM
+	sudo chmod ugo+rx -R /am/cruc4tb/koofry/volums/vd70-bakup
 
 #  --bwlimit=540m --info=progress2 --progress \
 

@@ -1,0 +1,864 @@
+Docker container started entrypoint.sh
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/blogappm2m/api/v1/PostedFromTbl/": {
+      "get": {
+        "operationId": "listPostedFromTbls",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostedFromTbl"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "post": {
+        "operationId": "createPostedFromTbl",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostedFromTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/blogappm2m/api/v1/PostedFromTbl/{id}/": {
+      "get": {
+        "operationId": "retrievePostedFromTbl",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this posted from tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostedFromTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "put": {
+        "operationId": "updatePostedFromTbl",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this posted from tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostedFromTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdatePostedFromTbl",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this posted from tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostedFromTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostedFromTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyPostedFromTbl",
+        "description": "ViewSet for the PostedFromTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this posted from tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/blogappm2m/api/v1/PostTbl/": {
+      "get": {
+        "operationId": "listPostTbls",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostTbl"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "post": {
+        "operationId": "createPostTbl",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/blogappm2m/api/v1/PostTbl/{id}/": {
+      "get": {
+        "operationId": "retrievePostTbl",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this post tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "put": {
+        "operationId": "updatePostTbl",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this post tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdatePostTbl",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this post tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyPostTbl",
+        "description": "ViewSet for the PostTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this post tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/blogappm2m/api/v1/TagTbl/": {
+      "get": {
+        "operationId": "listTagTbls",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TagTbl"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "post": {
+        "operationId": "createTagTbl",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/blogappm2m/api/v1/TagTbl/{id}/": {
+      "get": {
+        "operationId": "retrieveTagTbl",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this tag tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "put": {
+        "operationId": "updateTagTbl",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this tag tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateTagTbl",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this tag tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TagTbl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagTbl"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyTagTbl",
+        "description": "ViewSet for the TagTbl class",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this tag tbl.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "blogappm2m"
+        ]
+      }
+    },
+    "/api/token/": {
+      "post": {
+        "operationId": "createTokenObtainPair",
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenObtainPair"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenObtainPair"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenObtainPair"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenObtainPair"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/token/refresh/": {
+      "post": {
+        "operationId": "createTokenRefresh",
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRefresh"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRefresh"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRefresh"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenRefresh"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostedFromTbl": {
+        "type": "object",
+        "properties": {
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 302
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "PostTbl": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 302
+          },
+          "pic": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "postedfrom": {
+            "type": "integer",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "TagTbl": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 302
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "TokenObtainPair": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "TokenRefresh": {
+        "type": "object",
+        "properties": {
+          "refresh": {
+            "type": "string"
+          },
+          "access": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "refresh"
+        ]
+      }
+    }
+  }
+}
