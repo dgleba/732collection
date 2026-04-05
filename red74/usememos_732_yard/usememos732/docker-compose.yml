@@ -1,10 +1,18 @@
+
+#
+#
+# .env has multiple compose files combined.  COMPOSE_FILE=
+#
+#
+
+
 services:
 
   memos:
   # http://10.33.44.81:5230/  
     # image: neosmemo/memos:0.26.1
     # image: memos-custom-832b - 2026-03-07_Sat_10.41-AM
-    image: memos-custom-memos832c 
+    image: memos-custom-memos832c3   # built from /am/cruc4tb/ap/dkr/code/usememos832c
     volumes:
       - ../sysdata/memos:/var/opt/memos
     ports:
@@ -15,7 +23,17 @@ services:
     env_file:
       - .env        
     restart: always        
-
+    environment:
+      - MEMOS_DRIVER=mysql 
+      - MEMOS_DSN=muser:${MYSQL_PASSWORD}@tcp(dbm:3306)/memos?parseTime=true
+      # - MEMOS_DRIVER=postgres
+      # - MEMOS_DSN="postgres://postgres:${POSTGRES_PASSWORD}@dbp:5432/memos?sslmode=disable" memos
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "9"
+        
   adminer:
     # http://10.33.44.81:29609/  or ip:port for server while logging in.
     image: adminer:5
@@ -36,10 +54,6 @@ services:
       - ADMINER_DEFAULT_DB_DRIVER=mysql
       - ADMINER_PLUGINS=tables-filter
       
-      
-      
 networks:
   cfnet_red74dgwin:
     name: cfnet_red74dgwin
-
-

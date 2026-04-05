@@ -1,0 +1,141 @@
+=================================================
+
+to load container to system.
+
+
+try this..
+
+
+docker load -i memos-custom-memos832c3_dkr-img.tgz
+
+
+
+=================================================
+
+
+------------
+
+docker save  memos-custom-memos832c:latest | gzip > memos-custom-memos832c2_dkr-img.tgz
+
+
+--
+
+
+docker load -i memos-custom.tar
+
+
+------------
+
+
+docker save -o memos-custom-memos832c_dkr-img.tar memos-custom-memos832c:latest 
+
+
+
+
+------------
+
+
+
+#################################################################
+#################################################################
+#################################################################
+
+
+# you asked
+
+export this container.
+
+memos-custom-memos832c                       latest        04c671c71f88   46 minutes ago      54.1MB
+
+---
+
+# copilot response
+
+Got it — you want to **export that running container** (or its image) so you can move it, back it up, or load it elsewhere.
+
+Your container:
+
+```
+memos-custom-memos832c   latest   04c671c71f88   54.1MB
+```
+
+Here are the **three correct export paths**, depending on what you actually want.
+
+---
+
+# 🟦 1. Export the *image* (recommended)
+This produces a clean `.tar` you can import on any machine.
+
+```bash
+docker save -o memos-custom.tar memos-custom-memos832c:latest
+```
+
+Verify:
+
+```bash
+ls -lh memos-custom.tar
+```
+
+Load it on another machine:
+
+```bash
+docker load -i memos-custom.tar
+```
+
+This preserves tags, layers, and metadata.
+
+---
+
+# 🟩 2. Export the *container filesystem* (raw rootfs)
+If you want the **live container’s filesystem**, not the image:
+
+```bash
+docker export -o memos-container.tar 04c671c71f88
+```
+
+Or by name:
+
+```bash
+docker export -o memos-container.tar memos-custom-memos832c
+```
+
+Load it:
+
+```bash
+cat memos-container.tar | docker import - memos-restored:latest
+```
+
+⚠️ Note: `docker export` **does not preserve** image metadata, layers, or history. It’s a raw rootfs snapshot.
+
+---
+
+# 🟧 3. Export + compress (best for portability)
+```bash
+docker save memos-custom-memos832c:latest | gzip > memos-custom.tar.gz
+```
+
+Or for container rootfs:
+
+```bash
+docker export 04c671c71f88 | gzip > memos-container.tar.gz
+```
+
+---
+
+# 🧠 Which one should you use?
+
+| Goal | Use |
+|------|-----|
+| Move the image to another machine | `docker save` |
+| Back up the running container’s filesystem | `docker export` |
+| Preserve tags, layers, metadata | `docker save` |
+| Smallest file size | `save | gzip` |
+
+---
+
+
+------------
+
+
+=================================================
+

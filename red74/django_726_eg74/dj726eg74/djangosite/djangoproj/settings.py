@@ -26,6 +26,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
+     "corsheaders",
     "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,19 +43,23 @@ INSTALLED_APPS = [
 ]
 
 
-CORS_ALLOW_ALL_ORIGINS = True
-# or
 CSRF_TRUSTED_ORIGINS = [
     "https://dj726eg74.daveg2.online",
+    "http://10.33.44.81",
+    "http://10.33.44.81:16461",
     "http://10.33.44.81:5173",
     "https://vuedev.daveg2.online",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://dj726eg74.daveg2.online",
+    "http://10.33.44.81",
     "http://10.33.44.81:5173",
+    "http://10.33.44.81:16461",
     "https://vuedev.daveg2.online",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 
@@ -62,6 +67,7 @@ CORS_ALLOWED_ORIGINS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Add this here
     "whitenoise.middleware.WhiteNoiseMiddleware",
     
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,6 +78,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
 ]
+
 
 ROOT_URLCONF = 'djangoproj.urls'
 

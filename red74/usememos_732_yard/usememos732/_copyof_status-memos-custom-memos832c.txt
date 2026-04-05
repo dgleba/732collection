@@ -1,0 +1,50 @@
+
+------------
+
+folder for custom usememos container.
+
+/am/cruc4tb/ap/dkr/code/usememos832c
+
+memos-custom-memos832c
+
+
+=================================================
+
+how to build custom container.
+
+
+sftp://10.33.44.81/am/cruc4tb/ap/dkr/code/usememos832c/howto-build__custom.usememos.832c.2026-03-06.txt
+
+
+=================================================
+
+
+HISTORY.
+
+
+------------
+
+
+use 832dev for new dev. then copy back to this one.
+
+------------
+
+
+2026-03-07 02:22:08 PM 
+
+this adds focus button to each card -- it works.
+
+it open to 97% full screen edit.
+
+--
+
+2026-03-14_Sat_10.12-AM
+
+832c3
+i added the focus button to the `new memo` card.
+
+
+------------
+
+=================================================
+

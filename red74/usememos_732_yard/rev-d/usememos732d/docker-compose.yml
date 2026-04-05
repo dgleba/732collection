@@ -1,4 +1,6 @@
 
+# .env has multiple compose files combined.  COMPOSE_FILE=
+
 services:
 
   memosd:
