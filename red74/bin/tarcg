@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Get the current folder name
+current_folder=$(basename "$PWD")
+curfolder=${PWD##*/}
+fnpath="${PWD////_}" 
+echo  hostname=$HOSTNAME , fnpath=$fnpath ,  current_folder=$current_folder , curfolder=$curfolder
+
+# Set the output filename with the current folder and timestamp
+# output_filename="${current_folder}_$(date +%Y-%m-%d_%s).tar.gz"
+timestamp=$(date +"%Y-%m-%d_%H.%M.%S")
+output_filename="${HOSTNAME}${fnpath}_${timestamp}.tgz"
+cd ..
+
+# Find files in the current folder excluding archives, /sysdata, /log, and /tmp, etc.
+#  -type f  will prevent empty folders, but without it, the below doesn't work right.
+find ${current_folder}    \
+    -type d \( -name x -o \
+	-name sysdata  \
+	-name data  \
+	-name datasys   \
+	-name tmp \) -prune -false -o \
+	-type f \
+    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" \
+    ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/log/*" ! -path "*/logs/*"   \
+    ! -path "*/djangosite/static/*"   \
+    ! -path "*/datasys/*"    ! -path "*/sysdata/*" ! -path "*/sysdata" \
+    ! -path "*/node_modules/*"   \
+    ! -path "*_pic/*"   \
+    ! -path "*/upload/images/*"   \
+    ! -path "*/stacks/data/*"   \
+    ! -path "*/argostat/data/*"   \
+    ! -path "*/etldb/*"   \
+    ! -path "*/file/tsf/*"   \
+    ! -path "*/data/crib/*"   \
+    ! -path "*/datatest/*"   \
+    ! -path "*/logoutput/*"   \
+    ! -path "*/db/uploads/*"   \
+    ! -path "*/nc/uploads/*"   \
+    ! -path "*/djangosite/upload/*"   \
+    ! -path "./test/*"   \
+  -print0 | \
+  tar --null -czvf "${current_folder}/$output_filename" --files-from -
+
+echo -e "\n Files archived as $output_filename"
+
+#
+# another option...
+#
+# find "${current_folder}" \
+  # \( -type d -name sysdata -o -name datasys -o -name tmp -o -name log -o -name logs \
+     # -o -name node_modules -o -name datatest -o -name upload -o -name etldb \
+     # -o -name stacks -o -name argostat -o -name nc -o -name db \
+  # \) -prune -false -o \
+  # -type f \
+  # ! -name "*.tar.gz" ! -name "*.tgz" ! -name "*.zip" \
+  # -print0 | \
+# tar --null -czvf "${current_folder}/${output_filename}" --files-from -

@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# run this from folder above djangosite.
+
+date
+set -vx
+
+export srcp=.
+export desp=../to-gpt
+#export logp=/ap/log
+#export logf=rsynclog-red74-rut-24b.log
+
+
+# clean .env passwords.. lines with pass have all after = sign removed...
+find "$srcp" -type f -name ".env**" | while IFS= read -r ssfile; do
+    sed -e '/pass\|password/Is/=.*/=/'  -e 's#://[^@]*@#://--redacted--@#' \
+    sed -e '/key\|key/Is/=.*/=/'  -e 's#://[^@]*@#://--redacted--@#' \
+        "$ssfile" > "stripd$(basename "$ssfile")"
+    # rm -- "$ssfile"
+done
+
+
+
+mkdir -p $logp $desp
+rsync -ah    \
+  --exclude "**/pchart**"   --exclude "**/scheduler**"   --exclude "**/tpm**" \
+  --exclude "**/blogzzz**" \
+  --exclude "**/docs/**" \
+  --exclude ".env**" \
+  --exclude "**/x/**" \
+  --exclude "**/css/bootstrap**" \
+  --exclude "**/js/bootstrap**"  \
+  --exclude "**htmx.min.js**"  \
+  --exclude "**package-lock.json**" --exclude "**pnpm-lock.yaml**"  \
+  --exclude "**db.sqlite3**"  \
+  --exclude "**/old**"  \
+  --exclude "**/test**" \
+	  --exclude "**/log**"  \
+	  --exclude "**/data/**"  --exclude "**/sysdata/**"  \
+	  --exclude "**/tmp/**" \
+	  --exclude "**/__pycache**" \
+	  --exclude "**/.git/**" --exclude "**/node_modules/**"   --exclude "**/.github/**" \
+	  --exclude "**/mnt/**" --exclude "**/am/**"   --exclude "**/media/**" \
+		--itemize-changes  --stats       $srcp $desp;
+
+#  --log-file=$logp/$logf     
+
+# more..
+
+cp -av ./docker-compose.yml  $desp
+rsync -a ./docker  $desp
+
+# rm empty folders
+find $desp -type d -empty -delete
+
+
+# print to out.txt
+cd $desp
+prtxt
+
+echo 'look in the ../to-gpt folder. '

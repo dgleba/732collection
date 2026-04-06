@@ -1,0 +1,26 @@
+
+# copy backup .tgz file to red74 from racknerd.
+
+
+s=198.144.183.160
+p=/ap/zip;
+f=dkr617-nosudo-racknerd.tgz;
+odir=/am/cruc4tb/koofry/volums/vd67-2024/backup-vd67/racknerd;
+echo $s $sc $of $odir
+
+#troubleshooting..
+# ssh albe@$s ;
+# ls $odir
+# add -vvvv to rsync
+
+ # scp albe@$s:$p/$f $odir/
+  rsync -vv -e ssh albe@$s:$p/$f $odir --info=progress2 --itemize-changes
+
+cp  $odir/$f  $odir/$f$(date +"__%Y.%m.%d") ; cd $odir
+find  . -mtime -7 -type f -print0 | xargs -0 stat --printf='%.16y\t%s\t%n\n'  | sort -h -k1
+echo .
+echo "outdir = $odir"
+cd $odir
+
+# ll dkr617*
+

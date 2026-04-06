@@ -1,0 +1,32 @@
+
+# list docker volumes and size
+
+
+# debug can be run as sudo. shows mountpoint
+
+sudo bash -c '
+docker volume ls -q | while read v; do
+    mp=$(docker volume inspect -f "{{ .Mountpoint }}" "$v")
+    if [ -d "$mp" ]; then
+        size=$(du -sh "$mp" 2>&1 | awk "{print \$1}")
+        printf "%-40s %-10s %s\n" "$v" "$size" "$mp"
+    else
+        printf "%-40s %-10s %s\n" "$v" "NO_DIR" "$mp"
+    fi
+done
+'
+
+
+# sorted
+echo;echo sorted..; echo;
+
+sudo bash -c '
+docker volume ls -q | while read v; do
+    mp=$(docker volume inspect -f "{{ .Mountpoint }}" "$v")
+    if [ -d "$mp" ]; then
+        bytes=$(du -s "$mp" 2>/dev/null | awk "{print \$1}")
+        human=$(du -sh "$mp" 2>/dev/null | awk "{print \$1}")
+        printf "%-15s %-40s %s\n" "$bytes" "$human" "$v \t$mp"
+    fi
+done | sort -n | awk "{printf \"%-10s %-10s %s\n\", \$2, \$1, \$3}"
+'
